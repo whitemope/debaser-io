@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design tokens ────────────────────────────────────────────── */
+:root {
+  --font-inter: "Inter", system-ui, sans-serif;
+  --font-geist-mono: "Geist Mono", "JetBrains Mono", ui-monospace, monospace;
+
+  /* Light theme — space-separated RGB so Tailwind opacity modifiers work */
+  --canvas:          250 240 235;   /* #FAF0EB */
+  --canvas-subtle:   252 245 240;   /* #FCF5F0 */
+  --canvas-card:     255 252 250;   /* #FFFCFA */
+  --canvas-elevated: 255 255 255;   /* #FFFFFF */
+  --ink:             30  21  18;    /* #1E1512 */
+  --ink-secondary:   112 84  72;    /* #705448 */
+  --ink-tertiary:    160 132 122;   /* #A0847A */
+  --acid:            144 19  254;   /* #9013FE */
+
+  /* Semantic helpers used in inline styles */
+  --hero-fade:    #FAF0EB;
+  --border-mute:  rgba(30,21,18,0.06);
+  --ghost-filter: brightness(0) invert(1);   /* white ghost on purple square */
+}
+
+/* ── Dark theme ───────────────────────────────────────────────── */
+html.dark {
+  --canvas:          144 19  254;   /* #9013FE — Prince purple page bg */
+  --canvas-subtle:   122 10  220;   /* #7A0ADC — slightly darker sections */
+  --canvas-card:     163 39  254;   /* #A327FE — lighter card surfaces */
+  --canvas-elevated: 185 82  255;   /* #B952FF — most elevated */
+  --ink:             255 255 255;   /* white */
+  --ink-secondary:   250 240 235;   /* #FAF0EB — pale pink */
+  --ink-tertiary:    218 195 235;   /* lavender muted */
+  --acid:            250 240 235;   /* #FAF0EB — pale pink as accent */
+
+  --hero-fade:    #9013FE;
+  --border-mute:  rgba(255,255,255,0.10);
+  --ghost-filter: brightness(0);             /* dark ghost on pale-pink square */
+}
+
+/* ── Reset & base ─────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: rgb(var(--canvas));
+  color: rgb(var(--ink));
+  font-family: var(--font-inter);
+}
+
+::selection {
+  background-color: rgba(144, 19, 254, 0.18);
+  color: #1E1512;
+}
+
+html.dark ::selection {
+  background-color: rgba(250, 240, 235, 0.22);
+  color: #9013FE;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--canvas-subtle));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--canvas-card));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--canvas-elevated));
+}
+
+/* ── Dark mode overrides ──────────────────────────────────────── */
+
+/* Dot grid → white dots on dark purple */
+html.dark .bg-dot-grid {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
+}
+
+/* Flip all border-black/* utilities to white-based */
+html.dark [class*="border-black"] {
+  border-color: rgba(255,255,255,0.10) !important;
+}
+
+/* Flip divider lines that use bg-black/* */
+html.dark [class*="bg-black/[0.0"] {
+  background-color: rgba(255,255,255,0.08) !important;
+}
+
+/* Dark mode shadows */
+html.dark .shadow-panel {
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 24px 56px rgba(0,0,0,0.35), 0 8px 24px rgba(0,0,0,0.2);
+}
+html.dark .shadow-acid-glow {
+  box-shadow: 0 0 32px rgba(250,240,235,0.28);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-dot-grid {
+    background-image: radial-gradient(
+      circle,
+      rgba(30, 21, 18, 0.08) 1px,
+      transparent 1px
+    );
+    background-size: 32px 32px;
+  }
+
+  /* Grainy noise overlay — apply via position:relative + ::after on parent */
+  .bg-noise::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+    background-size: 300px 300px;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    opacity: 1;
+  }
+
+  .border-subtle {
+    border-color: rgba(30, 21, 18, 0.08);
+  }
+
+  .border-card {
+    border-color: rgba(30, 21, 18, 0.07);
+  }
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    letter-spacing: -0.03em;
+  }
+}
