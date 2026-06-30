@@ -1,4 +1,5 @@
 import ThemeToggle from "@/components/ThemeToggle";
+import GhostMark from "@/components/GhostMark";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -9,9 +10,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-6 h-6 bg-acid rounded-md flex items-center justify-center">
-                <img src="/ghost.svg" alt="" className="w-3.5 h-3.5" style={{ filter: "var(--ghost-filter)" }} />
-              </div>
+              <GhostMark className="w-5 h-5 text-acid" />
               <span className="text-ink font-semibold tracking-tight">
                 debaser
               </span>

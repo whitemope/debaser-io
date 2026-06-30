@@ -16,7 +16,7 @@ function RoyaltyRunMockup() {
   return (
     <div className="relative w-full max-w-3xl mx-auto">
       <div
-        className="bg-white border border-black/[0.07] rounded-2xl overflow-hidden"
+        className="force-light bg-white border border-black/[0.07] rounded-2xl overflow-hidden"
         style={{
           boxShadow:
             "0 0 0 1px rgba(30,21,18,0.07), 0 40px 80px rgba(30,21,18,0.12), 0 16px 40px rgba(30,21,18,0.07)",
@@ -175,12 +175,14 @@ function RoyaltyRunMockup() {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-24 pb-0">
+    <section className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-0">
       {/* Background */}
       <div className="absolute inset-0 bg-dot-grid opacity-60" />
-      {/* Noisy orange gradient bloom */}
+      {/* Dark mode: slow-moving noisy purple-to-orange aurora */}
+      <div className="hero-aurora absolute inset-0" />
+      {/* Noisy orange gradient bloom (light mode) */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="hero-light-glow absolute inset-0 pointer-events-none"
         style={{
           background:
             "radial-gradient(ellipse 90% 55% at 50% 0%, rgba(240,148,72,0.13) 0%, rgba(240,100,60,0.04) 45%, transparent 70%)",
@@ -193,13 +195,6 @@ export default function Hero() {
           <feComposite in="SourceGraphic" in2="noise" operator="in"/>
         </filter>
       </svg>
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 100% 40% at 50% 100%, rgba(250,240,235,0.98) 0%, transparent 60%)",
-        }}
-      />
 
       <div className="relative w-full max-w-6xl mx-auto px-6 text-center">
         <motion.div
@@ -235,7 +230,7 @@ export default function Hero() {
         >
           Debaser helps labels, publishers and catalogue owners ingest
           statements, understand contracts, detect missing income, and explain
-          every royalty payment — before the run goes wrong.
+          every royalty payment.
         </motion.p>
 
         <motion.div

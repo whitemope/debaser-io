@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import GhostMark from "@/components/GhostMark";
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -41,9 +42,7 @@ export default function Nav() {
       />
       <div className="relative max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="/" className="flex items-center gap-2 group">
-          <div className="w-7 h-7 bg-acid rounded-md flex items-center justify-center flex-shrink-0">
-            <img src="/ghost.svg" alt="" className="w-4 h-4" style={{ filter: "var(--ghost-filter)" }} />
-          </div>
+          <GhostMark className="w-6 h-6 text-acid flex-shrink-0" />
           <span className="text-ink font-semibold tracking-tight text-base">
             debaser
           </span>

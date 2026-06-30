@@ -19,14 +19,14 @@
 
   /* Semantic helpers used in inline styles */
   --hero-fade:    #FAF0EB;
+  --section-fade: 250 240 235;   /* #FAF0EB — section bottom-fade base, rgb triplet */
   --border-mute:  rgba(30,21,18,0.06);
-  --ghost-filter: brightness(0) invert(1);   /* white ghost on purple square */
 }
 
 /* ── Dark theme ───────────────────────────────────────────────── */
 html.dark {
   --canvas:          144 19  254;   /* #9013FE — Prince purple page bg */
-  --canvas-subtle:   122 10  220;   /* #7A0ADC — slightly darker sections */
+  --canvas-subtle:   44  40  52;    /* #2C2834 — lighter charcoal, alternating sections */
   --canvas-card:     163 39  254;   /* #A327FE — lighter card surfaces */
   --canvas-elevated: 185 82  255;   /* #B952FF — most elevated */
   --ink:             255 255 255;   /* white */
@@ -35,8 +35,8 @@ html.dark {
   --acid:            250 240 235;   /* #FAF0EB — pale pink as accent */
 
   --hero-fade:    #9013FE;
+  --section-fade: 61  22  44;    /* #3D162C — dark warm plum, section bottom-fade base */
   --border-mute:  rgba(255,255,255,0.10);
-  --ghost-filter: brightness(0);             /* dark ghost on pale-pink square */
 }
 
 /* ── Reset & base ─────────────────────────────────────────────── */
@@ -83,6 +83,87 @@ html.dark ::selection {
   background: rgb(var(--canvas-elevated));
 }
 
+/* ── Dark-mode hero aurora ────────────────────────────────────── */
+/* Light-mode-only glow layers fade out in dark mode, replaced by the aurora below */
+html.dark .hero-light-glow {
+  opacity: 0;
+}
+
+.hero-aurora {
+  opacity: 0;
+  pointer-events: none;
+}
+
+html.dark .hero-aurora {
+  opacity: 1;
+  background-image:
+    radial-gradient(ellipse 45% 38% at 18% 22%, rgba(240, 148, 72, 0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 34% at 86% 20%, rgba(232, 110, 70, 0.16) 0%, transparent 62%),
+    radial-gradient(ellipse 90% 72% at 55% 92%, rgba(144, 19, 254, 0.85) 0%, transparent 70%),
+    linear-gradient(135deg, #2A0640 0%, #4C1280 50%, #6A1670 100%);
+  background-size: 200% 200%, 220% 220%, 180% 180%, 140% 140%;
+  background-repeat: no-repeat;
+  background-position: 0% 0%, 100% 0%, 50% 100%, 0% 0%;
+  animation: aurora-drift 50s ease-in-out infinite;
+}
+
+.hero-aurora::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+
+@keyframes aurora-drift {
+  0%   { background-position: 0% 0%,   100% 0%,  50% 100%, 0% 0%; }
+  50%  { background-position: 30% 40%, 70% 30%,  40% 70%,  20% 15%; }
+  100% { background-position: 0% 0%,   100% 0%,  50% 100%, 0% 0%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.dark .hero-aurora {
+    animation: none;
+  }
+}
+
+/* ── Force-light scope ────────────────────────────────────────── */
+/* Product UI mockups always render as in light mode — it's a screenshot
+   of the real product, not themed chrome, so it shouldn't invert. */
+.force-light {
+  --canvas:          244 244 245;   /* neutral pale gray, not dusty pink */
+  --canvas-subtle:   237 237 239;
+  --canvas-card:     255 252 250;
+  --canvas-elevated: 255 255 255;
+  --ink:             30  21  18;
+  --ink-secondary:   112 84  72;
+  --ink-tertiary:    160 132 122;
+  --acid:            144 19  254;
+  --hero-fade:    #FAF0EB;
+  --section-fade: 250 240 235;
+  --border-mute:  rgba(30,21,18,0.06);
+  color-scheme: light;
+}
+
+html.dark .force-light [class*="bg-black/[0.0"] {
+  background-color: rgba(30,21,18,0.03) !important;
+}
+html.dark .force-light .shadow-panel {
+  box-shadow: 0 0 0 1px rgba(30,21,18,0.07), 0 24px 56px rgba(30,21,18,0.09), 0 8px 24px rgba(30,21,18,0.06);
+}
+
+/* ── Card keyline removal ─────────────────────────────────────── */
+/* Card outline borders at ≤7% opacity are "keylines" — removed in favour of
+   shadow-only depth. Buttons, dividers and inputs use ≥8% or coloured borders
+   so they are unaffected. */
+[class*="border-black/[0.05"],
+[class*="border-black/[0.06"],
+[class*="border-black/[0.07"] {
+  border-color: transparent !important;
+}
+
 /* ── Dark mode overrides ──────────────────────────────────────── */
 
 /* Dot grid → white dots on dark purple */
@@ -90,9 +171,15 @@ html.dark .bg-dot-grid {
   background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
 }
 
-/* Flip all border-black/* utilities to white-based */
+/* Flip structural border-black/* utilities to white-based (8%+ opacity only) */
 html.dark [class*="border-black"] {
   border-color: rgba(255,255,255,0.10) !important;
+}
+/* Keylines (≤7%) stay transparent in dark mode too (higher specificity wins) */
+html.dark [class*="border-black/[0.05"],
+html.dark [class*="border-black/[0.06"],
+html.dark [class*="border-black/[0.07"] {
+  border-color: transparent !important;
 }
 
 /* Flip divider lines that use bg-black/* */

@@ -22,7 +22,7 @@ export default function Vision() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 100% 40% at 50% 100%, rgba(250,240,235,0.90) 0%, transparent 60%)",
+            "radial-gradient(ellipse 100% 40% at 50% 100%, rgb(var(--section-fade) / 0.90) 0%, transparent 60%)",
         }}
       />
 

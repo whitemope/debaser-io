@@ -18,7 +18,7 @@ function DemoShell({
 }) {
   return (
     <div
-      className={`bg-white rounded-2xl border border-black/[0.07] overflow-hidden ${className}`}
+      className={`force-light bg-white rounded-2xl border border-black/[0.07] overflow-hidden ${className}`}
       style={{ boxShadow: "0 0 0 1px rgba(30,21,18,0.05), 0 32px 64px rgba(30,21,18,0.10)" }}
     >
       <div className="flex items-center gap-2 px-4 py-3 border-b border-black/[0.05] bg-black/[0.02]">

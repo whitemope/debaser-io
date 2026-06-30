@@ -67,7 +67,7 @@ function GapVisual() {
 
   return (
     <div
-      className="bg-canvas-card border border-black/[0.05] rounded-2xl overflow-hidden"
+      className="force-light bg-canvas-card border border-black/[0.05] rounded-2xl overflow-hidden"
       style={{
         boxShadow:
           "0 0 0 1px rgba(30,21,18,0.05), 0 24px 48px rgba(30,21,18,0.07)",

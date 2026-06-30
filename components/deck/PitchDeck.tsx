@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { EASE } from "@/lib/animation";
+import GhostMark from "@/components/GhostMark";
 
 // ─── Shared primitives ─────────────────────────────────────────────────────
 
@@ -53,9 +54,7 @@ function CoverSlide() {
       />
       <div className="relative text-center px-16 max-w-3xl">
         <div className="flex items-center justify-center gap-2.5 mb-14">
-          <div className="w-11 h-11 bg-acid rounded-xl flex items-center justify-center shadow-acid-glow">
-            <img src="/ghost.svg" alt="" className="w-6 h-6" style={{ filter: "var(--ghost-filter)" }} />
-          </div>
+          <GhostMark className="w-9 h-9 text-acid" />
           <span className="text-ink text-2xl font-semibold tracking-tight">debaser</span>
         </div>
         <H1 className="text-5xl md:text-6xl mb-8">
@@ -929,9 +928,7 @@ function ClosingSlide() {
       />
       <div className="relative text-center max-w-3xl">
         <div className="flex items-center justify-center gap-2 mb-10">
-          <div className="w-8 h-8 bg-acid rounded-lg flex items-center justify-center">
-            <img src="/ghost.svg" alt="" className="w-4.5 h-4.5" style={{ filter: "var(--ghost-filter)" }} />
-          </div>
+          <GhostMark className="w-7 h-7 text-acid" />
           <span className="text-ink text-lg font-semibold">debaser</span>
         </div>
         <H1 className="text-4xl md:text-5xl mb-8">
@@ -1025,9 +1022,7 @@ export default function PitchDeck({ onClose }: { onClose: () => void }) {
       {/* ── Header ── */}
       <div className="flex-shrink-0 flex items-center justify-between px-6 py-3 border-b border-black/[0.05] bg-canvas-subtle/60 backdrop-blur-sm">
         <div className="flex items-center gap-2.5">
-          <div className="w-5 h-5 bg-acid rounded-md flex items-center justify-center">
-            <img src="/ghost.svg" alt="" className="w-3 h-3" style={{ filter: "var(--ghost-filter)" }} />
-          </div>
+          <GhostMark className="w-4 h-4 text-acid" />
           <span className="text-ink text-xs font-semibold">debaser</span>
           <div className="w-px h-3 bg-black/[0.08] mx-1" />
           <span className="text-ink-tertiary text-[11px]">June 2026 Pitch Deck</span>

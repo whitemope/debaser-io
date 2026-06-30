@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { isAuthenticated, signOut } from "@/lib/auth";
 import PitchDeck from "@/components/deck/PitchDeck";
+import GhostMark from "@/components/GhostMark";
 
 type DeckMeta = {
   id: string;
@@ -106,9 +107,7 @@ export default function Dashboard() {
         <header className="border-b border-black/[0.05] bg-canvas/80 backdrop-blur-md sticky top-0 z-30">
           <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="w-6 h-6 bg-acid rounded-md flex items-center justify-center">
-                <img src="/ghost.svg" alt="" className="w-3.5 h-3.5" style={{ filter: "var(--ghost-filter)" }} />
-              </div>
+              <GhostMark className="w-5 h-5 text-acid" />
               <span className="text-ink font-semibold tracking-tight text-sm">debaser</span>
               <div className="w-px h-3.5 bg-black/[0.08] ml-1" />
               <span className="text-ink-tertiary text-xs font-mono ml-1">admin</span>
