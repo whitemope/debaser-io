@@ -209,7 +209,7 @@ function RoyaltyRunMockup() {
             <div className="flex items-center gap-2 mb-3.5">
               <div className="w-1.5 h-1.5 rounded-full bg-acid animate-pulse-slow" />
               <span className="text-acid text-[10px] font-mono tracking-wide">
-                AI Analysis
+                Findings
               </span>
             </div>
 

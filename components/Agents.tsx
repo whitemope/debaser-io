@@ -103,19 +103,20 @@ export default function Agents() {
         >
           <div className="inline-block border border-black/[0.07] rounded-2xl px-8 py-5 bg-canvas-card">
             <p className="text-ink text-base sm:text-lg font-medium tracking-tight">
-              {isV2 ? (
-                <>
-                  AI investigates.{" "}
-                  <span className="text-ink-secondary">Rules control.</span>{" "}
-                  <span className="text-ink-tertiary">People approve.</span>
-                </>
-              ) : (
-                <>
-                  AI investigates.{" "}
-                  <span className="text-ink-secondary">Humans approve.</span>{" "}
-                  <span className="text-ink-tertiary">Deterministic engines calculate.</span>
-                </>
-              )}
+              <Editable
+                path="agents.principle.lead"
+                value={content.principle.lead}
+              />{" "}
+              <Editable
+                path="agents.principle.mid"
+                value={content.principle.mid}
+                className="text-ink-secondary"
+              />{" "}
+              <Editable
+                path="agents.principle.tail"
+                value={content.principle.tail}
+                className="text-ink-tertiary"
+              />
             </p>
           </div>
         </motion.div>

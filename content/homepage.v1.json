@@ -1,78 +1,78 @@
 {
   "hero": {
     "eyebrow": "Now in early access",
-    "headline": "The AI operating system for music royalties.",
-    "subhead": "Debaser helps labels, publishers and catalogue owners ingest statements, understand contracts, detect missing income, and explain every royalty payment.",
+    "headline": "A global music royalties operating system.",
+    "subhead": "Debaser knows the music industry. It unites catalogue owners, manages statements, handles contracts, catches what no one has time to check by hand, and traces global royalty claims... all for those who have a claim.",
     "ctaPrimary": "Request early access",
     "ctaSecondary": "See how it works",
     "note": ""
   },
   "problem": {
     "eyebrow": "The problem",
-    "headline": "Royalty operations are still held together by spreadsheets, PDFs and hope.",
+    "headline": "Royalty administration. It's a messy business.",
     "items": [
       {
-        "title": "Statements arrive in incompatible formats.",
-        "description": "CSV from one DSP. PDF from another. A portal export that doesn't match the previous quarter. No two sources speak the same language."
+        "title": "Statements don't speak the same language.",
+        "description": "CSV from one DSP, PDF from another, a portal export that never quite matches last quarter. Every source describes the same money differently."
       },
       {
-        "title": "Contracts live outside the systems that calculate payments.",
-        "description": "Rates, splits, territories and deductions exist in PDFs no system has ever read. Every calculation is manual, and manual is wrong."
+        "title": "The contract and the payment live in different worlds.",
+        "description": "Rates, splits, territories and deductions sit in a PDF no system has ever read. So someone re-keys the numbers by hand leaving open to potential errors."
       },
       {
-        "title": "Metadata breaks before money moves.",
-        "description": "Missing ISRCs. Misspelled artist names. Recordings that exist under three different titles. Income that cannot find its owner."
+        "title": "Metadata breaks before the money moves.",
+        "description": "A missing ISRC. A misspelled artist name. A recording filed under three different titles. The income arrives; it just can't find its way home."
       },
       {
-        "title": "Artists ask questions finance teams cannot answer quickly.",
-        "description": "\"Why did my income drop 30%?\" Answering that question takes days. The audit trail is a spreadsheet buried in email."
+        "title": "Artists ask questions finance can't answer quickly.",
+        "description": "\"Why did my income drop 30%?\" is a fair question. Answering it shouldn't take a week and a spreadsheet buried in someone's inbox."
       },
       {
-        "title": "Missing income is discovered late, if ever.",
-        "description": "Underpayments go unchallenged. CMO collections are never chased. Gap analysis requires expertise most teams do not have time for."
+        "title": "Missing income is found late, if it's found at all.",
+        "description": "Underpayments go unchallenged. Collections owed from overseas societies are never chased. Most teams don't have the hours to go looking."
       }
     ],
     "closingLine": ""
   },
   "productFlow": {
     "eyebrow": "The workflow",
-    "headline": "From statement to explanation.",
-    "subhead": "Debaser turns messy royalty inputs into a source-backed operational workflow your team can trust.",
+    "headline": "From a pile of statements to a straight answer.",
+    "subhead": "Debaser turns messy inputs into a workflow you can actually trust. Every step backed by the source it came from.",
     "steps": [
       {
         "label": "Ingest",
-        "description": "Pull in statements, contracts and catalogue data from any source — CSV, PDF, portal export or API feed.",
+        "description": "Statements, contracts and catalogue data from CSV, PDF, portal export, APIs. It doesn't matter how it arrives.",
         "detail": "DSPs · CMOs · Portals · PDFs · APIs"
       },
       {
         "label": "Match",
-        "description": "Link income to ISRCs, ISWCs, works, recordings, writers, labels and ownership splits across your catalogue.",
+        "description": "Every payment linked to the ISRC, work, writer and split it actually belongs to.",
         "detail": "ISRC · ISWC · Work codes · Party IDs"
       },
       {
         "label": "Analyse",
-        "description": "Surface anomalies, variance from expected income, contract exceptions and metadata conflicts automatically.",
+        "description": "Anomalies, missed income, and contract conflicts are surfaced before they become somebody's problem.",
         "detail": "Variance · Anomalies · Gaps · Conflicts"
       },
       {
         "label": "Explain",
-        "description": "Generate source-backed answers to any payment question — with references to rows, clauses and metadata.",
+        "description": "Any payment question, answered with the row, clause or file it came from. No guesswork.",
         "detail": "Source rows · Contract clauses · Audit trail"
       },
       {
         "label": "Resolve",
-        "description": "Turn every issue into a prioritised action. Prepare claims, approve payments, and close the loop before statements go out.",
+        "description": "Every issue becomes an action: prepare the claim, approve the payment, close it out before statements go anywhere.",
         "detail": "Actions · Claims · Approvals · Exports"
       }
     ]
   },
   "agents": {
-    "eyebrow": "AI agents",
-    "headline": "Agents for the royalty work nobody wants to do manually.",
+    "eyebrow": "The specialists",
+    "headline": "The royalty work nobody wants to do manually.",
     "items": [
       {
         "name": "Ingestion Agent",
-        "description": "Maps messy CSVs, PDFs, API exports and portal data into a standard royalty schema — regardless of source format.",
+        "description": "Takes whatever format a CSV, PDF, export or portal throws at it, and maps it into one clean schema.",
         "tags": [
           "CSV · PDF · Portal",
           "Schema normalisation"
@@ -80,7 +80,7 @@
       },
       {
         "name": "Contract Agent",
-        "description": "Extracts splits, rates, territories, deductions, recoupment clauses and exceptions directly from contract documents.",
+        "description": "Reads the contract PDF nobody else has time to: rates, splits, territories, recoupment... the lot.",
         "tags": [
           "Rate extraction",
           "Clause indexing"
@@ -88,7 +88,7 @@
       },
       {
         "name": "Matching Agent",
-        "description": "Links income to ISRCs, ISWCs, artists, writers, labels, works and recordings across your rights catalogue.",
+        "description": "Matches income to the right ISRC, work, writer and recording across the whole catalogue.",
         "tags": [
           "ISRC · ISWC · Works",
           "Multi-source matching"
@@ -96,7 +96,7 @@
       },
       {
         "name": "Exception Agent",
-        "description": "Finds duplicates, missing splits, unexplained income drops, expired contracts and unmatched source rows.",
+        "description": "Catches the duplicate, the missing split, the income that quietly disappeared.",
         "tags": [
           "Anomaly detection",
           "Income variance"
@@ -104,7 +104,7 @@
       },
       {
         "name": "Audit Agent",
-        "description": "Compares expected income against received statements, surfaces gaps and prepares claim evidence by territory.",
+        "description": "Checks what you expected against what actually landed, territory by territory, and builds the case for what's missing.",
         "tags": [
           "Statement variance",
           "Claim evidence"
@@ -112,65 +112,70 @@
       },
       {
         "name": "Ops Agent",
-        "description": "Turns every royalty run into a prioritised action list your team can work through before a single payment goes out.",
+        "description": "Turns a royalty run into a list your team can actually work through before a payment goes out.",
         "tags": [
           "Action list",
           "Run management"
         ]
       }
     ],
-    "note": ""
+    "note": "",
+    "principle": {
+      "lead": "Debaser dives in.",
+      "mid": "Humans approve.",
+      "tail": "Debaser acts."
+    }
   },
   "useCases": {
-    "headline": "Built for the teams behind the catalogue.",
+    "headline": "Built for the people behind the catalogue.",
     "items": [
       {
         "category": "Labels",
         "headline": "Reconcile before statements go out.",
-        "description": "Ingest distributor and DSP income, match it to your catalogue, and catch every discrepancy before artists and writers are paid."
+        "description": "Match distributor and DSP income to your catalogue, and catch the discrepancy before it reaches an artist's statement."
       },
       {
         "category": "Publishers",
         "headline": "Contracts and income in one place.",
-        "description": "Connect works, writers, splits and income with contract-backed clarity. Know what every co-pub agreement should be generating."
+        "description": "Works, writers, splits and income are read against the actual contract, not a spreadsheet's memory of it."
       },
       {
         "category": "Catalogue funds",
         "headline": "Monitor every acquisition.",
-        "description": "Track performance, anomalies and missing income across acquired rights. Surface underperformers and unrecovered income at scale."
+        "description": "Track performance and missing income across every acquisition at the scale acquisitions actually happen."
       },
       {
         "category": "Artist management",
         "headline": "Audit income with evidence.",
-        "description": "Challenge bad statements with source-level evidence. Know exactly which DSPs, territories and releases are underperforming."
+        "description": "Challenge a bad statement with the row it's wrong on, not a hunch."
       },
       {
         "category": "Neighbouring rights",
         "headline": "Compare usage, claims and collections.",
-        "description": "Map usage signals to collection statements across territories. Surface gaps between what was claimed and what was received."
+        "description": "See the gap between what was claimed and what actually came back, territory by territory."
       }
     ]
   },
   "missingMoney": {
     "eyebrow": "Gap detection",
-    "headline": "Find the money that never made it to the statement.",
-    "subhead": "Debaser compares catalogue expectations, usage signals and royalty statements to surface likely underpayments, unmatched income and collection gaps.",
+    "headline": "Find the money that never made it home.",
+    "subhead": "Debaser compares what your catalogue should be earning against what actually arrived, and tells you exactly where the gap is.",
     "features": [
-      "Statement variance analysis",
-      "Usage-to-income comparison",
-      "Missing territory detection",
-      "Unmatched asset reporting",
+      "Statement variance, caught automatically",
+      "Usage compared against income, line by line",
+      "Missing territories, flagged early",
+      "Unmatched assets, surfaced not buried",
       "Claim-ready evidence packs",
-      "CMO collection gap alerts"
+      "CMO collection gaps, alerted"
     ],
     "ctaLabel": ""
   },
   "explainability": {
     "headline": "Every number should be able to defend itself.",
-    "body1": "Ask why a royalty amount changed and Debaser traces the answer back to source rows, catalogue metadata and contract terms.",
-    "body2": "Not a summary. Not a hallucination. A structured answer with direct references to the evidence — so your team can verify, audit and act.",
+    "body1": "Ask why a number changed, and Debaser traces the answer back to the row, the metadata, the clause to dig out the real cause, where ever it lies.",
+    "body2": "Not a summary. Not a guess dressed up as an answer. A structured explanation with the evidence attached, so your team can check it, not just trust it.",
     "chatUserMessage": "Why did this artist earn less this quarter?",
-    "chatAiResponse": "Spotify UK income dropped 31% versus Q1. Two tracks were unmatched due to missing ISRCs, accounting for an estimated £3,100 in unattributed income. Additionally, the producer deduction was applied before the recoupment threshold was reached, which is inconsistent with clause 4.2(b) of the recording agreement.",
+    "chatAiResponse": "Spotify UK income dropped 31% versus Q1. Two tracks were unmatched due to missing ISRCs, accounting for roughly £3,100 in unattributed income. The producer deduction was also applied before the recoupment threshold, which conflicts with clause 4.2(b) of the recording agreement.",
     "sources": [
       {
         "label": "Spotify Q2 Statement",
@@ -188,24 +193,24 @@
   },
   "trust": {
     "eyebrow": "Trust and security",
-    "headline": "Built for sensitive music rights data.",
-    "subhead": "Royalty data is some of the most commercially sensitive information in the music industry. We treat it accordingly.",
+    "headline": "Built for data this sensitive.",
+    "subhead": "Royalty data is some of the most commercially sensitive information in music. We built accordingly.",
     "items": [
       {
         "title": "Role-based access",
-        "description": "Control exactly who sees what — by catalogue, territory, deal type or run stage."
+        "description": "Control exactly who sees what; by catalogue, territory, deal type or run stage."
       },
       {
         "title": "Audit trails",
-        "description": "Every action is logged with timestamp and user. Every AI output is traceable to source data."
+        "description": "Every action is logged with a timestamp and a name. Every output traces back to its source."
       },
       {
-        "title": "Source-backed AI",
-        "description": "No output without evidence. Every insight references the row, document or clause it came from."
+        "title": "Every answer, sourced",
+        "description": "Nothing ships without evidence. Every answer points back to the row, document or clause it came from."
       },
       {
         "title": "Human approval workflows",
-        "description": "AI flags and investigates. Humans review and approve. No royalty run goes out without sign-off."
+        "description": "Software flags and investigates. A human reviews and approves. No royalty run goes out without sign-off."
       },
       {
         "title": "Private workspaces",
@@ -213,51 +218,51 @@
       },
       {
         "title": "Exportable evidence",
-        "description": "Every claim, audit and discrepancy is exportable in formats your legal and finance teams can use."
+        "description": "Every claim and discrepancy exports in a format your legal and finance teams can actually use."
       },
       {
         "title": "Designed for compliance",
-        "description": "Architecture and workflows designed for the governance standards expected by serious music companies."
+        "description": "Built to the governance standards serious music companies already expect."
       },
       {
         "title": "Transparent outputs",
-        "description": "Every recommendation includes the confidence level, the reasoning and the raw source it draws from."
+        "description": "Every recommendation comes with its confidence level, its reasoning, and the raw source behind it."
       }
     ]
   },
   "vision": {
     "eyebrow": "The vision",
-    "headline": "The rights graph for the global music economy.",
-    "body1": "Royalty intelligence is the wedge. The long-term vision is a connected rights graph that understands songs, recordings, contracts, ownership, usage and payments — across every territory and revenue stream.",
-    "body2": "We are starting where the pain is deepest: the operational layer where statements arrive, income goes missing and teams are drowning in work that software should be doing.",
+    "headline": "A global ledger of who's owed what, everywhere music is used.",
+    "body1": "We see a world where a single graph connects every song, recording, release, contract, owner, use and payment, everywhere, for every revenue stream.",
+    "body2": "Debaser is starting on the operational layer, where statements pile up, income goes missing, and teams are buried in work that shouldn't need a human at all.",
     "graphCaption": "Songs → Recordings → Contracts → Income → Ownership → Usage"
   },
   "earlyAccess": {
     "eyebrow": "Early access",
-    "headline": "Royalties are too valuable to run blind.",
-    "body": "We are working with forward-thinking music companies to shape the future of royalty operations. If you are spending too long on statements, missing money or unexplained payments — we want to hear from you.",
+    "headline": "Too much money moves through here to run it blind.",
+    "body": "We're working with a small group of labels, publishers and catalogue owners to get this right before we open it up. If statements are taking too long, or money keeps going missing without explanation, talk to us.",
     "valueProps": [
       {
-        "title": "Exclusive early access",
-        "text": "Work directly with the team during our private beta phase."
+        "title": "Direct access to the team",
+        "text": "You'll work with us directly while we build this, not a support queue."
       },
       {
-        "title": "Shape the product",
-        "text": "Your royalty problems directly influence what we build next."
+        "title": "Shape what we build",
+        "text": "Your royalty problems become our roadmap."
       },
       {
-        "title": "Founding customer pricing",
-        "text": "Early partners receive preferential terms that carry forward."
+        "title": "Founding customer terms",
+        "text": "Early partners keep their terms as we grow. That doesn't change later."
       }
     ],
     "problemLabel": "What royalty problem are you trying to solve?",
     "cta": "Request early access",
-    "disclaimer": "No spam. We will reach out directly to learn more about your work.",
+    "disclaimer": "No spam. We'll reach out directly, one human to another.",
     "successHeadline": "Request received.",
-    "successBody": "Thank you — we will be in touch shortly to learn more about your royalty operations and how Debaser can help."
+    "successBody": "Thanks — we'll be in touch shortly to learn about your royalty operations and how we can help."
   },
   "footer": {
-    "tagline": "The AI operating system for music royalties.",
-    "principle": "AI investigates. Humans approve. Deterministic engines calculate."
+    "tagline": "The back office that finally works in the artist's favour.",
+    "principle": "Software investigates. Humans approve. Deterministic engines calculate."
   }
 }
