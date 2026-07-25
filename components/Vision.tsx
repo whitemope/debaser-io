@@ -2,29 +2,21 @@
 
 import { motion } from "framer-motion";
 import { EASE } from "@/lib/animation";
+import { useHomepageVariant } from "@/components/HomepageVariantContext";
+import { getHomepageContent } from "@/lib/homepage-content";
+import Editable from "@/components/Editable";
 
 export default function Vision() {
+  const { variant } = useHomepageVariant();
+  const content = getHomepageContent(variant).vision;
+
   return (
     <section
       id="vision"
-      className="py-28 md:py-40 bg-canvas relative overflow-hidden"
+      className="py-28 md:py-40 bg-canvas relative overflow-hidden scroll-mt-16"
     >
       {/* Background atmosphere */}
       <div className="absolute inset-0 bg-dot-grid opacity-30" />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 60% at 50% 60%, rgba(144,19,254,0.04) 0%, transparent 70%)",
-        }}
-      />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 100% 40% at 50% 100%, rgb(var(--section-fade) / 0.90) 0%, transparent 60%)",
-        }}
-      />
 
       <div className="relative max-w-6xl mx-auto px-6 text-center">
         <motion.div
@@ -33,23 +25,29 @@ export default function Vision() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.9, ease: EASE }}
         >
-          <p className="text-ink-tertiary text-xs font-mono uppercase tracking-[0.18em] mb-6">
-            The vision
-          </p>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-ink leading-[1.06] mb-8 text-balance max-w-3xl mx-auto tracking-tightest">
-            The rights graph for the global music economy.
-          </h2>
-          <p className="text-ink-secondary text-xl leading-relaxed max-w-2xl mx-auto mb-6">
-            Royalty intelligence is the wedge. The long-term vision is a
-            connected rights graph that understands songs, recordings, contracts,
-            ownership, usage and payments — across every territory and revenue
-            stream.
-          </p>
-          <p className="text-ink-tertiary text-base leading-relaxed max-w-xl mx-auto">
-            We are starting where the pain is deepest: the operational layer
-            where statements arrive, income goes missing and teams are drowning
-            in work that software should be doing.
-          </p>
+          <Editable
+            path="vision.eyebrow"
+            value={content.eyebrow}
+            className="text-ink-tertiary text-xs font-mono tracking-wide mb-6 block"
+          />
+          <Editable
+            as="h2"
+            path="vision.headline"
+            value={content.headline}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-ink leading-[1.06] mb-8 text-balance max-w-3xl mx-auto tracking-tightest block"
+          />
+          <Editable
+            as="p"
+            path="vision.body1"
+            value={content.body1}
+            className="text-ink-secondary text-xl leading-relaxed max-w-2xl mx-auto mb-6 block"
+          />
+          <Editable
+            as="p"
+            path="vision.body2"
+            value={content.body2}
+            className="text-ink-tertiary text-base leading-relaxed max-w-xl mx-auto block"
+          />
         </motion.div>
 
         {/* Rights graph visual */}
@@ -63,10 +61,10 @@ export default function Vision() {
           <div
             className="relative bg-canvas-card border border-black/[0.05] rounded-2xl p-8"
             style={{
-              boxShadow: "0 0 0 1px rgba(30,21,18,0.05)",
+              boxShadow: "0 0 0 1px rgba(16, 21, 133,0.05)",
             }}
           >
-            <p className="text-ink-tertiary text-[10px] font-mono uppercase tracking-[0.18em] mb-6">
+            <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-6">
               Rights graph · prototype
             </p>
 
@@ -75,7 +73,7 @@ export default function Vision() {
               {/* Central node */}
               <div
                 className="absolute w-12 h-12 rounded-full border border-acid/30 bg-acid-dim flex items-center justify-center"
-                style={{ boxShadow: "0 0 24px rgba(144,19,254,0.12)" }}
+                style={{ boxShadow: "0 0 24px rgba(76, 175, 80,0.12)" }}
               >
                 <span className="text-acid text-[10px] font-mono">song</span>
               </div>
@@ -146,7 +144,7 @@ export default function Vision() {
                   y1="50%"
                   x2="15%"
                   y2="12%"
-                  stroke="#9013FE"
+                  stroke="#4CAF50"
                   strokeWidth="1"
                   strokeDasharray="3 3"
                 />
@@ -155,7 +153,7 @@ export default function Vision() {
                   y1="50%"
                   x2="85%"
                   y2="12%"
-                  stroke="#9013FE"
+                  stroke="#4CAF50"
                   strokeWidth="1"
                   strokeDasharray="3 3"
                 />
@@ -164,7 +162,7 @@ export default function Vision() {
                   y1="50%"
                   x2="5%"
                   y2="50%"
-                  stroke="#9013FE"
+                  stroke="#4CAF50"
                   strokeWidth="1"
                   strokeDasharray="3 3"
                 />
@@ -173,7 +171,7 @@ export default function Vision() {
                   y1="50%"
                   x2="96%"
                   y2="50%"
-                  stroke="#9013FE"
+                  stroke="#4CAF50"
                   strokeWidth="1"
                   strokeDasharray="3 3"
                 />
@@ -182,7 +180,7 @@ export default function Vision() {
                   y1="50%"
                   x2="15%"
                   y2="88%"
-                  stroke="#9013FE"
+                  stroke="#4CAF50"
                   strokeWidth="1"
                   strokeDasharray="3 3"
                 />
@@ -191,7 +189,7 @@ export default function Vision() {
                   y1="50%"
                   x2="85%"
                   y2="93%"
-                  stroke="#9013FE"
+                  stroke="#4CAF50"
                   strokeWidth="1"
                   strokeDasharray="3 3"
                 />
@@ -200,7 +198,7 @@ export default function Vision() {
                   y1="50%"
                   x2="33%"
                   y2="62%"
-                  stroke="#9013FE"
+                  stroke="#4CAF50"
                   strokeWidth="1"
                   strokeDasharray="3 3"
                 />
@@ -209,16 +207,19 @@ export default function Vision() {
                   y1="50%"
                   x2="68%"
                   y2="62%"
-                  stroke="#9013FE"
+                  stroke="#4CAF50"
                   strokeWidth="1"
                   strokeDasharray="3 3"
                 />
               </svg>
             </div>
 
-            <p className="text-ink-tertiary text-[11px] font-mono mt-6 text-center">
-              Songs → Recordings → Contracts → Income → Ownership → Usage
-            </p>
+            <Editable
+              as="p"
+              path="vision.graphCaption"
+              value={content.graphCaption}
+              className="text-ink-tertiary text-[11px] font-mono mt-6 text-center block"
+            />
           </div>
         </motion.div>
       </div>

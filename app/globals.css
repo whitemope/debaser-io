@@ -5,38 +5,39 @@
 /* ── Design tokens ────────────────────────────────────────────── */
 :root {
   --font-inter: "Inter", system-ui, sans-serif;
-  --font-geist-mono: "Geist Mono", "JetBrains Mono", ui-monospace, monospace;
+  --font-grotesque: "Hanken Grotesk", system-ui, sans-serif;
 
   /* Light theme — space-separated RGB so Tailwind opacity modifiers work */
-  --canvas:          250 240 235;   /* #FAF0EB */
-  --canvas-subtle:   252 245 240;   /* #FCF5F0 */
-  --canvas-card:     255 252 250;   /* #FFFCFA */
-  --canvas-elevated: 255 255 255;   /* #FFFFFF */
-  --ink:             30  21  18;    /* #1E1512 */
-  --ink-secondary:   112 84  72;    /* #705448 */
-  --ink-tertiary:    160 132 122;   /* #A0847A */
-  --acid:            144 19  254;   /* #9013FE */
+  --canvas:          250 250 251;   /* #FAFAFB — near-white page bg */
+  --canvas-subtle:   244 244 246;   /* #F4F4F6 — alternating sections */
+  --canvas-card:     252 252 253;   /* #FCFCFD — card surfaces */
+  --canvas-elevated: 255 255 255;   /* #FFFFFF — most elevated */
+  --ink:             16  21  133;   /* #101585 — copy/primary text */
+  --ink-secondary:   98  98  169;   /* #6262A9 — muted blue */
+  --ink-tertiary:    145 141 189;   /* #918DBD — lightest muted blue */
+  --acid:            76  175 80;    /* #4CAF50 — primary green */
 
-  /* Semantic helpers used in inline styles */
-  --hero-fade:    #FAF0EB;
-  --section-fade: 250 240 235;   /* #FAF0EB — section bottom-fade base, rgb triplet */
-  --border-mute:  rgba(30,21,18,0.06);
+  --btn-primary-bg:  16  21  133;   /* blue bg for primary buttons in light mode */
+  --btn-primary-fg:  76  175 80;    /* green text for primary buttons in light mode */
+
+  --border-mute:  rgba(16,21,133,0.06);
 }
 
 /* ── Dark theme ───────────────────────────────────────────────── */
 html.dark {
-  --canvas:          144 19  254;   /* #9013FE — Prince purple page bg */
-  --canvas-subtle:   44  40  52;    /* #2C2834 — lighter charcoal, alternating sections */
-  --canvas-card:     163 39  254;   /* #A327FE — lighter card surfaces */
-  --canvas-elevated: 185 82  255;   /* #B952FF — most elevated */
-  --ink:             255 255 255;   /* white */
-  --ink-secondary:   250 240 235;   /* #FAF0EB — pale pink */
-  --ink-tertiary:    218 195 235;   /* lavender muted */
-  --acid:            250 240 235;   /* #FAF0EB — pale pink as accent */
+  --canvas:          16  21  133;   /* #101585 — deep blue page bg */
+  --canvas-subtle:   10  13  80;    /* #0D1050 — darker navy, alternating sections */
+  --canvas-card:     52  56  151;   /* #343897 — lighter navy card surfaces */
+  --canvas-elevated: 88  91  170;   /* #585BAA — most elevated */
+  --ink:             76  175 80;    /* #4CAF50 — green primary text */
+  --ink-secondary:   140 190 145;   /* #8CBE91 — muted sage green */
+  --ink-tertiary:    120 160 130;   /* #78A082 — dimmer muted sage */
+  --acid:            76  175 80;    /* #4CAF50 — green accent */
 
-  --hero-fade:    #9013FE;
-  --section-fade: 61  22  44;    /* #3D162C — dark warm plum, section bottom-fade base */
-  --border-mute:  rgba(255,255,255,0.10);
+  --btn-primary-bg:  76  175 80;    /* green bg for primary buttons in dark mode */
+  --btn-primary-fg:  16  21  133;   /* blue text for primary buttons in dark mode */
+
+  --border-mute:  rgba(76,175,80,0.10);
 }
 
 /* ── Reset & base ─────────────────────────────────────────────── */
@@ -46,6 +47,7 @@ html.dark {
 
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -57,13 +59,13 @@ body {
 }
 
 ::selection {
-  background-color: rgba(144, 19, 254, 0.18);
-  color: #1E1512;
+  background-color: rgba(76, 175, 80, 0.18);
+  color: #101585;
 }
 
 html.dark ::selection {
-  background-color: rgba(250, 240, 235, 0.22);
-  color: #9013FE;
+  background-color: rgba(76, 175, 80, 0.22);
+  color: #101585;
 }
 
 ::-webkit-scrollbar {
@@ -83,75 +85,29 @@ html.dark ::selection {
   background: rgb(var(--canvas-elevated));
 }
 
-/* ── Dark-mode hero aurora ────────────────────────────────────── */
-/* Light-mode-only glow layers fade out in dark mode, replaced by the aurora below */
-html.dark .hero-light-glow {
-  opacity: 0;
-}
-
-.hero-aurora {
-  opacity: 0;
-  pointer-events: none;
-}
-
-html.dark .hero-aurora {
-  opacity: 1;
-  background-image:
-    radial-gradient(ellipse 45% 38% at 18% 22%, rgba(240, 148, 72, 0.22) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 34% at 86% 20%, rgba(232, 110, 70, 0.16) 0%, transparent 62%),
-    radial-gradient(ellipse 90% 72% at 55% 92%, rgba(144, 19, 254, 0.85) 0%, transparent 70%),
-    linear-gradient(135deg, #2A0640 0%, #4C1280 50%, #6A1670 100%);
-  background-size: 200% 200%, 220% 220%, 180% 180%, 140% 140%;
-  background-repeat: no-repeat;
-  background-position: 0% 0%, 100% 0%, 50% 100%, 0% 0%;
-  animation: aurora-drift 50s ease-in-out infinite;
-}
-
-.hero-aurora::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  background-size: 240px 240px;
-  mix-blend-mode: overlay;
-  opacity: 0.5;
-}
-
-@keyframes aurora-drift {
-  0%   { background-position: 0% 0%,   100% 0%,  50% 100%, 0% 0%; }
-  50%  { background-position: 30% 40%, 70% 30%,  40% 70%,  20% 15%; }
-  100% { background-position: 0% 0%,   100% 0%,  50% 100%, 0% 0%; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html.dark .hero-aurora {
-    animation: none;
-  }
-}
-
 /* ── Force-light scope ────────────────────────────────────────── */
 /* Product UI mockups always render as in light mode — it's a screenshot
    of the real product, not themed chrome, so it shouldn't invert. */
 .force-light {
-  --canvas:          244 244 245;   /* neutral pale gray, not dusty pink */
-  --canvas-subtle:   237 237 239;
-  --canvas-card:     255 252 250;
+  --canvas:          250 250 251;
+  --canvas-subtle:   244 244 246;
+  --canvas-card:     252 252 253;
   --canvas-elevated: 255 255 255;
-  --ink:             30  21  18;
-  --ink-secondary:   112 84  72;
-  --ink-tertiary:    160 132 122;
-  --acid:            144 19  254;
-  --hero-fade:    #FAF0EB;
-  --section-fade: 250 240 235;
-  --border-mute:  rgba(30,21,18,0.06);
+  --ink:             16  21  133;
+  --ink-secondary:   98  98  169;
+  --ink-tertiary:    145 141 189;
+  --acid:            76  175 80;
+  --btn-primary-bg:  16  21  133;
+  --btn-primary-fg:  76  175 80;
+  --border-mute:  rgba(16,21,133,0.06);
   color-scheme: light;
 }
 
 html.dark .force-light [class*="bg-black/[0.0"] {
-  background-color: rgba(30,21,18,0.03) !important;
+  background-color: rgba(16,21,133,0.03) !important;
 }
 html.dark .force-light .shadow-panel {
-  box-shadow: 0 0 0 1px rgba(30,21,18,0.07), 0 24px 56px rgba(30,21,18,0.09), 0 8px 24px rgba(30,21,18,0.06);
+  box-shadow: 0 0 0 1px rgba(16,21,133,0.07), 0 24px 56px rgba(16,21,133,0.09), 0 8px 24px rgba(16,21,133,0.06);
 }
 
 /* ── Card keyline removal ─────────────────────────────────────── */
@@ -192,7 +148,7 @@ html.dark .shadow-panel {
   box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 24px 56px rgba(0,0,0,0.35), 0 8px 24px rgba(0,0,0,0.2);
 }
 html.dark .shadow-acid-glow {
-  box-shadow: 0 0 32px rgba(250,240,235,0.28);
+  box-shadow: 0 0 32px rgba(76,175,80,0.28);
 }
 
 @layer utilities {
@@ -203,7 +159,7 @@ html.dark .shadow-acid-glow {
   .bg-dot-grid {
     background-image: radial-gradient(
       circle,
-      rgba(30, 21, 18, 0.08) 1px,
+      rgba(16, 21, 133, 0.08) 1px,
       transparent 1px
     );
     background-size: 32px 32px;
@@ -222,11 +178,11 @@ html.dark .shadow-acid-glow {
   }
 
   .border-subtle {
-    border-color: rgba(30, 21, 18, 0.08);
+    border-color: rgba(16, 21, 133, 0.08);
   }
 
   .border-card {
-    border-color: rgba(30, 21, 18, 0.07);
+    border-color: rgba(16, 21, 133, 0.07);
   }
 }
 

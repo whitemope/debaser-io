@@ -3,6 +3,9 @@
 import { motion } from "framer-motion";
 import { EASE } from "@/lib/animation";
 import { useState } from "react";
+import { useHomepageVariant } from "@/components/HomepageVariantContext";
+import { getHomepageContent } from "@/lib/homepage-content";
+import Editable from "@/components/Editable";
 
 type FormState = "idle" | "submitting" | "success";
 
@@ -18,6 +21,8 @@ const companyTypes = [
 ];
 
 export default function EarlyAccessForm() {
+  const { variant } = useHomepageVariant();
+  const content = getHomepageContent(variant).earlyAccess;
   const [formState, setFormState] = useState<FormState>("idle");
   const [formData, setFormData] = useState({
     name: "",
@@ -46,16 +51,8 @@ export default function EarlyAccessForm() {
   return (
     <section
       id="access"
-      className="py-28 md:py-36 bg-canvas-subtle relative overflow-hidden"
+      className="py-28 md:py-36 bg-canvas-subtle relative overflow-hidden scroll-mt-16"
     >
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(144,19,254,0.03) 0%, transparent 70%)",
-        }}
-      />
-
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Left */}
@@ -66,43 +63,43 @@ export default function EarlyAccessForm() {
             transition={{ duration: 0.7, ease: EASE }}
             className="lg:sticky lg:top-28"
           >
-            <p className="text-ink-tertiary text-xs font-mono uppercase tracking-[0.18em] mb-4">
-              Early access
-            </p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink leading-[1.1] mb-6 text-balance">
-              Royalties are too valuable to run blind.
-            </h2>
-            <p className="text-ink-secondary text-lg leading-relaxed mb-10">
-              We are working with forward-thinking music companies to shape the
-              future of royalty operations. If you are spending too long on
-              statements, missing money or unexplained payments — we want to
-              hear from you.
-            </p>
+            <Editable
+              path="earlyAccess.eyebrow"
+              value={content.eyebrow}
+              className="text-ink-tertiary text-xs font-mono tracking-wide mb-4 block"
+            />
+            <Editable
+              as="h2"
+              path="earlyAccess.headline"
+              value={content.headline}
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink leading-[1.1] mb-6 text-balance block"
+            />
+            <Editable
+              as="p"
+              path="earlyAccess.body"
+              value={content.body}
+              className="text-ink-secondary text-lg leading-relaxed mb-10 block"
+            />
 
             <div className="space-y-5">
-              {[
-                {
-                  title: "Exclusive early access",
-                  text: "Work directly with the team during our private beta phase.",
-                },
-                {
-                  title: "Shape the product",
-                  text: "Your royalty problems directly influence what we build next.",
-                },
-                {
-                  title: "Founding customer pricing",
-                  text: "Early partners receive preferential terms that carry forward.",
-                },
-              ].map((item, i) => (
+              {content.valueProps.map((item, i) => (
                 <div key={i} className="flex gap-4">
                   <div className="w-5 h-5 rounded-full bg-acid-dim border border-acid-border flex items-center justify-center flex-shrink-0 mt-0.5">
                     <div className="w-1.5 h-1.5 rounded-full bg-acid" />
                   </div>
                   <div>
-                    <p className="text-ink text-sm font-semibold mb-0.5">
-                      {item.title}
-                    </p>
-                    <p className="text-ink-secondary text-sm">{item.text}</p>
+                    <Editable
+                      as="p"
+                      path={`earlyAccess.valueProps.${i}.title`}
+                      value={item.title}
+                      className="text-ink text-sm font-semibold mb-0.5 block"
+                    />
+                    <Editable
+                      as="p"
+                      path={`earlyAccess.valueProps.${i}.text`}
+                      value={item.text}
+                      className="text-ink-secondary text-sm block"
+                    />
                   </div>
                 </div>
               ))}
@@ -119,11 +116,11 @@ export default function EarlyAccessForm() {
             {formState === "success" ? (
               <div
                 className="bg-canvas-card border border-black/[0.06] rounded-2xl p-10 text-center"
-                style={{ boxShadow: "0 0 0 1px rgba(30,21,18,0.05)" }}
+                style={{ boxShadow: "0 0 0 1px rgba(16, 21, 133,0.05)" }}
               >
                 <div
                   className="w-14 h-14 rounded-full bg-acid/10 border border-acid/25 flex items-center justify-center mx-auto mb-6"
-                  style={{ boxShadow: "0 0 24px rgba(144,19,254,0.12)" }}
+                  style={{ boxShadow: "0 0 24px rgba(76, 175, 80,0.12)" }}
                 >
                   <svg
                     width="22"
@@ -141,19 +138,24 @@ export default function EarlyAccessForm() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-ink text-2xl font-bold mb-3 tracking-tight">
-                  Request received.
-                </h3>
-                <p className="text-ink-secondary leading-relaxed">
-                  Thank you — we will be in touch shortly to learn more about
-                  your royalty operations and how Debaser can help.
-                </p>
+                <Editable
+                  as="h3"
+                  path="earlyAccess.successHeadline"
+                  value={content.successHeadline}
+                  className="text-ink text-2xl font-bold mb-3 tracking-tight block"
+                />
+                <Editable
+                  as="p"
+                  path="earlyAccess.successBody"
+                  value={content.successBody}
+                  className="text-ink-secondary leading-relaxed block"
+                />
               </div>
             ) : (
               <form
                 onSubmit={handleSubmit}
                 className="bg-canvas-card border border-black/[0.06] rounded-2xl p-7 space-y-4"
-                style={{ boxShadow: "0 0 0 1px rgba(30,21,18,0.05)" }}
+                style={{ boxShadow: "0 0 0 1px rgba(16, 21, 133,0.05)" }}
               >
                 <div className="grid sm:grid-cols-2 gap-4">
                   <FormField
@@ -197,7 +199,7 @@ export default function EarlyAccessForm() {
                 </div>
 
                 <div>
-                  <label className="block text-ink-secondary text-xs font-mono uppercase tracking-[0.12em] mb-2">
+                  <label className="block text-ink-secondary text-xs font-mono tracking-wide mb-2">
                     Company type
                   </label>
                   <select
@@ -224,8 +226,11 @@ export default function EarlyAccessForm() {
                 </div>
 
                 <div>
-                  <label className="block text-ink-secondary text-xs font-mono uppercase tracking-[0.12em] mb-2">
-                    What royalty problem are you trying to solve?{" "}
+                  <label className="block text-ink-secondary text-xs font-mono tracking-wide mb-2">
+                    <Editable
+                      path="earlyAccess.problemLabel"
+                      value={content.problemLabel}
+                    />{" "}
                     <span className="text-ink-tertiary normal-case font-sans tracking-normal">
                       (optional)
                     </span>
@@ -243,21 +248,25 @@ export default function EarlyAccessForm() {
                 <button
                   type="submit"
                   disabled={formState === "submitting"}
-                  className="w-full bg-acid text-canvas font-semibold py-3 rounded-lg text-[15px] hover:bg-acid/90 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="w-full bg-btn-primary text-btn-primary-fg font-medium py-3 rounded-lg text-[15px] hover:bg-btn-primary/90 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                   style={
                     formState !== "submitting"
                       ? {}
                       : { cursor: "not-allowed" }
                   }
                 >
-                  {formState === "submitting"
-                    ? "Submitting..."
-                    : "Request early access"}
+                  {formState === "submitting" ? (
+                    "Submitting..."
+                  ) : (
+                    <Editable path="earlyAccess.cta" value={content.cta} />
+                  )}
                 </button>
-                <p className="text-ink-tertiary text-xs text-center">
-                  No spam. We will reach out directly to learn more about your
-                  work.
-                </p>
+                <Editable
+                  as="p"
+                  path="earlyAccess.disclaimer"
+                  value={content.disclaimer}
+                  className="text-ink-tertiary text-xs text-center block"
+                />
               </form>
             )}
           </motion.div>
@@ -288,7 +297,7 @@ function FormField({
     <div>
       <label
         htmlFor={name}
-        className="block text-ink-secondary text-xs font-mono uppercase tracking-[0.12em] mb-2"
+        className="block text-ink-secondary text-xs font-mono tracking-wide mb-2"
       >
         {label}
       </label>

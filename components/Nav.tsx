@@ -4,9 +4,13 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import GhostMark from "@/components/GhostMark";
+import { useHomepageVariant } from "@/components/HomepageVariantContext";
+import { useEditMode } from "@/components/EditModeContext";
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { variant, setVariant } = useHomepageVariant();
+  const { editMode, toggleEditMode } = useEditMode();
   const { scrollY } = useScroll();
   const borderOpacity = useTransform(scrollY, [0, 60], [0, 1]);
   const bgOpacity = useTransform(scrollY, [0, 60], [0, 0.92]);
@@ -41,12 +45,46 @@ export default function Nav() {
         style={{ opacity: borderOpacity }}
       />
       <div className="relative max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-2 group">
-          <GhostMark className="w-6 h-6 text-acid flex-shrink-0" />
-          <span className="text-ink font-semibold tracking-tight text-base">
-            debaser
-          </span>
-        </a>
+        <div className="flex items-center gap-2">
+          <a href="/" className="flex items-center gap-2 group">
+            <GhostMark className="w-6 h-6 text-ink flex-shrink-0" />
+            <span className="text-ink font-semibold tracking-tight text-base">
+              debaser
+            </span>
+          </a>
+          <button
+            onClick={() => setVariant(variant === "v1" ? "v2" : "v1")}
+            aria-label="Toggle homepage copy variant"
+            className="px-1.5 py-1 rounded-[4px] bg-black/[0.04] text-ink-tertiary text-[10px] font-mono tracking-tight leading-none hover:bg-black/[0.07] hover:text-ink-secondary transition-colors"
+          >
+            {variant === "v1" ? "Option 1" : "Option 2"}
+          </button>
+          {process.env.NEXT_PUBLIC_ALLOW_CONTENT_EDIT !== "false" && (
+            <button
+              onClick={toggleEditMode}
+              aria-label="Toggle copy edit mode"
+              className={`p-1 rounded-[4px] transition-colors ${
+                editMode
+                  ? "text-acid opacity-70 hover:opacity-100"
+                  : "text-ink-tertiary opacity-[0.15] hover:opacity-50"
+              }`}
+            >
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+                <path d="m15 5 4 4" />
+              </svg>
+            </button>
+          )}
+        </div>
 
         <div className="hidden md:flex items-center gap-7">
           {mainLinks.map((link) => (
@@ -73,7 +111,7 @@ export default function Nav() {
           </a>
           <a
             href={`${a}#access`}
-            className="bg-acid text-canvas text-sm font-semibold px-4 py-2 rounded-lg hover:bg-acid/90 transition-colors"
+            className="bg-btn-primary text-btn-primary-fg text-sm font-medium px-4 py-2 rounded-lg hover:bg-btn-primary/90 transition-colors"
           >
             Request access
           </a>

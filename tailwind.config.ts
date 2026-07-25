@@ -20,10 +20,12 @@ export default {
         acid: "rgb(var(--acid) / <alpha-value>)",
         "acid-dim": "rgb(var(--acid) / 0.10)",
         "acid-border": "rgb(var(--acid) / 0.28)",
+        "btn-primary": "rgb(var(--btn-primary-bg) / <alpha-value>)",
+        "btn-primary-fg": "rgb(var(--btn-primary-fg) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
+        mono: ["var(--font-grotesque)", "system-ui", "sans-serif"],
       },
       letterSpacing: {
         tightest: "-0.04em",
@@ -32,8 +34,7 @@ export default {
       },
       backgroundImage: {
         "dot-grid":
-          "radial-gradient(circle, rgba(30,21,18,0.08) 1px, transparent 1px)",
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+          "radial-gradient(circle, rgba(16,21,133,0.08) 1px, transparent 1px)",
       },
       backgroundSize: {
         "dot-sm": "24px 24px",
@@ -51,11 +52,11 @@ export default {
       },
       boxShadow: {
         panel:
-          "0 0 0 1px rgba(30,21,18,0.07), 0 24px 56px rgba(30,21,18,0.09), 0 8px 24px rgba(30,21,18,0.06)",
-        card: "0 0 0 1px rgba(30,21,18,0.06), 0 4px 16px rgba(30,21,18,0.07)",
+          "0 0 0 1px rgba(16,21,133,0.07), 0 24px 56px rgba(16,21,133,0.09), 0 8px 24px rgba(16,21,133,0.06)",
+        card: "0 0 0 1px rgba(16,21,133,0.06), 0 4px 16px rgba(16,21,133,0.07)",
         "card-hover":
-          "0 0 0 1px rgba(30,21,18,0.09), 0 8px 24px rgba(30,21,18,0.10)",
-        "acid-glow": "0 0 32px rgba(144,19,254,0.22)",
+          "0 0 0 1px rgba(16,21,133,0.09), 0 8px 24px rgba(16,21,133,0.10)",
+        "acid-glow": "0 0 32px rgba(76,175,80,0.22)",
       },
     },
   },

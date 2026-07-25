@@ -9,7 +9,7 @@ import GhostMark from "@/components/GhostMark";
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-ink-tertiary text-[10px] font-mono uppercase tracking-[0.22em] mb-5">
+    <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-5">
       {children}
     </p>
   );
@@ -33,7 +33,7 @@ function Body({ children, className = "" }: { children: React.ReactNode; classNa
 
 function AcidPill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center text-[10px] font-mono text-acid uppercase tracking-[0.15em] bg-acid/[0.08] border border-acid/[0.18] rounded-full px-2.5 py-1">
+    <span className="inline-flex items-center text-[10px] font-mono text-acid tracking-wide bg-acid/[0.08] border border-acid/[0.18] rounded-full px-2.5 py-1">
       {children}
     </span>
   );
@@ -45,16 +45,9 @@ function CoverSlide() {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden">
       <div className="absolute inset-0 bg-dot-grid opacity-50" />
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(144,19,254,0.05) 0%, transparent 65%)",
-        }}
-      />
       <div className="relative text-center px-16 max-w-3xl">
         <div className="flex items-center justify-center gap-2.5 mb-14">
-          <GhostMark className="w-9 h-9 text-acid" />
+          <GhostMark className="w-9 h-9 text-ink" />
           <span className="text-ink text-2xl font-semibold tracking-tight">debaser</span>
         </div>
         <H1 className="text-5xl md:text-6xl mb-8">
@@ -214,7 +207,7 @@ function MarketFailureSlide() {
               {s.value}
             </span>
             <div>
-              <p className="text-ink text-xs font-semibold mb-1.5 uppercase tracking-wide">{s.label}</p>
+              <p className="text-ink text-xs font-semibold mb-1.5 tracking-wide">{s.label}</p>
               <p className="text-ink-tertiary text-xs leading-relaxed">{s.detail}</p>
             </div>
           </div>
@@ -271,7 +264,7 @@ function MarketSizeSlide() {
             className={`${t.width} border ${t.border} ${t.opacity} rounded-xl px-6 py-4 flex items-center gap-8`}
           >
             <div className="flex-shrink-0 w-12">
-              <span className="text-[10px] font-mono text-ink-tertiary uppercase tracking-widest">{t.label}</span>
+              <span className="text-[10px] font-mono text-ink-tertiary tracking-wide">{t.label}</span>
             </div>
             <span className={`text-2xl font-bold tabular-nums ${t.textColor} flex-shrink-0 w-28`}>
               {t.amount}
@@ -321,10 +314,10 @@ function CompetitiveLandscapeSlide() {
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-black/[0.06]">
-              <th className="text-left text-ink-tertiary text-[10px] font-mono uppercase tracking-[0.15em] pb-3 pr-6 w-48">Company</th>
-              <th className="text-left text-ink-tertiary text-[10px] font-mono uppercase tracking-[0.15em] pb-3 pr-8">Type</th>
+              <th className="text-left text-ink-tertiary text-[10px] font-mono tracking-wide pb-3 pr-6 w-48">Company</th>
+              <th className="text-left text-ink-tertiary text-[10px] font-mono tracking-wide pb-3 pr-8">Type</th>
               {cols.map((c) => (
-                <th key={c.key} className="text-center text-ink-tertiary text-[10px] font-mono uppercase tracking-[0.12em] pb-3 px-4">
+                <th key={c.key} className="text-center text-ink-tertiary text-[10px] font-mono tracking-wide pb-3 px-4">
                   {c.label}
                 </th>
               ))}
@@ -345,7 +338,7 @@ function CompetitiveLandscapeSlide() {
                     {row.name}
                   </span>
                   {row.highlight && (
-                    <span className="ml-2 text-[9px] font-mono text-acid uppercase tracking-widest bg-acid/10 rounded-full px-2 py-0.5">us</span>
+                    <span className="ml-2 text-[9px] font-mono text-acid tracking-wide bg-acid/10 rounded-full px-2 py-0.5">us</span>
                   )}
                 </td>
                 <td className="py-4 pr-8 text-ink-secondary text-xs">{row.type}</td>
@@ -368,10 +361,6 @@ function CompetitiveLandscapeSlide() {
 function InsightSlide() {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center px-16 relative overflow-hidden">
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(144,19,254,0.04) 0%, transparent 70%)" }}
-      />
       <div className="relative text-center max-w-3xl">
         <Eyebrow>07 — Insight</Eyebrow>
         <H1 className="text-5xl md:text-6xl mb-8">
@@ -629,7 +618,7 @@ function GTMSlide() {
       <H1 className="text-4xl md:text-5xl mb-10">Starting where the pain is deepest.</H1>
       <div className="grid lg:grid-cols-2 gap-10 flex-1 items-start">
         <div>
-          <p className="text-ink text-sm font-semibold mb-4 uppercase tracking-wider text-xs">Beachhead segments</p>
+          <p className="text-ink text-sm font-semibold mb-4 tracking-wide text-xs">Beachhead segments</p>
           <div className="space-y-2">
             {segments.map((s, i) => (
               <div key={i} className="flex items-center gap-3 border border-black/[0.05] rounded-lg px-4 py-2.5 bg-canvas-card">
@@ -643,7 +632,7 @@ function GTMSlide() {
         </div>
         <div className="flex flex-col gap-4">
           <div className="border border-acid/[0.2] bg-acid/[0.04] rounded-2xl p-6">
-            <p className="text-ink-tertiary text-[10px] font-mono uppercase tracking-[0.2em] mb-3">Sales motion</p>
+            <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-3">Sales motion</p>
             <p className="text-ink text-lg font-semibold leading-snug mb-3 tracking-tight">
               "Send us last quarter's royalty mess. We'll show you what's wrong."
             </p>
@@ -657,7 +646,7 @@ function GTMSlide() {
             </div>
           </div>
           <div className="border border-black/[0.06] bg-canvas-card rounded-xl p-5">
-            <p className="text-ink-tertiary text-[10px] font-mono uppercase tracking-[0.15em] mb-2">Why they stay</p>
+            <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-2">Why they stay</p>
             <p className="text-ink-secondary text-sm leading-relaxed">
               Once Debaser has ingested a catalogue, contracts and historical statements — switching cost is high. Royalty intelligence becomes institutional infrastructure.
             </p>
@@ -761,7 +750,7 @@ function VisionSlide() {
       </div>
       <div
         className="border border-acid/[0.15] rounded-xl px-6 py-4"
-        style={{ background: "rgba(144,19,254,0.03)" }}
+        style={{ background: "rgba(76, 175, 80,0.03)" }}
       >
         <p className="text-ink text-sm font-medium">
           Endgame:{" "}
@@ -800,7 +789,7 @@ function TeamSlide() {
           </div>
           {/* Recruiting */}
           <div className="border border-black/[0.05] border-dashed bg-canvas-card rounded-2xl p-5">
-            <p className="text-ink-tertiary text-[10px] font-mono uppercase tracking-[0.15em] mb-3">Recruiting</p>
+            <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-3">Recruiting</p>
             <div className="space-y-2">
               {["CTO / Head of Engineering", "Head of Royalty Operations", "Commercial Lead"].map((r) => (
                 <div key={r} className="flex items-center gap-2">
@@ -814,7 +803,7 @@ function TeamSlide() {
 
         <div className="flex flex-col gap-4">
           <div className="border border-black/[0.05] bg-canvas-card rounded-2xl p-6">
-            <p className="text-ink-tertiary text-[10px] font-mono uppercase tracking-[0.15em] mb-4">Advisory board</p>
+            <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-4">Advisory board</p>
             <p className="text-ink-secondary text-sm leading-relaxed mb-4">
               We are building an advisory board of senior operators, royalty lawyers, DSP executives and rights data specialists.
             </p>
@@ -859,13 +848,13 @@ function AskSlide() {
         <div className="flex flex-col gap-4">
           <div
             className="border border-acid/[0.25] rounded-2xl p-7"
-            style={{ background: "rgba(144,19,254,0.03)" }}
+            style={{ background: "rgba(76, 175, 80,0.03)" }}
           >
-            <p className="text-ink-tertiary text-[10px] font-mono uppercase tracking-[0.2em] mb-2">Round</p>
+            <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-2">Round</p>
             <p className="text-acid text-4xl font-bold mb-1">£[TBD]</p>
             <p className="text-ink-secondary text-sm">Pre-seed · SAFE or priced round</p>
             <div className="mt-4 pt-4 border-t border-black/[0.06]">
-              <p className="text-ink-tertiary text-[10px] font-mono uppercase tracking-[0.15em] mb-3">Use of funds</p>
+              <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-3">Use of funds</p>
               <div className="space-y-2">
                 {useOfFunds.map((f) => (
                   <div key={f.label} className="flex items-center gap-3">
@@ -886,7 +875,7 @@ function AskSlide() {
 
         <div className="flex flex-col gap-4">
           <div className="border border-black/[0.06] bg-canvas-card rounded-2xl p-6">
-            <p className="text-ink-tertiary text-[10px] font-mono uppercase tracking-[0.15em] mb-4">
+            <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-4">
               What this round achieves
             </p>
             <ul className="space-y-2.5">
@@ -901,7 +890,7 @@ function AskSlide() {
             </ul>
           </div>
           <div className="border border-black/[0.05] bg-canvas-card rounded-xl p-5">
-            <p className="text-ink-tertiary text-[10px] font-mono uppercase tracking-[0.15em] mb-2">Contact</p>
+            <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-2">Contact</p>
             <p className="text-ink text-sm font-medium">David Rennick</p>
             <a
               href="mailto:daverennick@gmail.com"
@@ -922,13 +911,9 @@ function ClosingSlide() {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center px-16 relative overflow-hidden">
       <div className="absolute inset-0 bg-dot-grid opacity-40" />
-      <div
-        className="absolute inset-0"
-        style={{ background: "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(144,19,254,0.05) 0%, transparent 70%)" }}
-      />
       <div className="relative text-center max-w-3xl">
         <div className="flex items-center justify-center gap-2 mb-10">
-          <GhostMark className="w-7 h-7 text-acid" />
+          <GhostMark className="w-7 h-7 text-ink" />
           <span className="text-ink text-lg font-semibold">debaser</span>
         </div>
         <H1 className="text-4xl md:text-5xl mb-8">
@@ -1020,12 +1005,14 @@ export default function PitchDeck({ onClose }: { onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-50 bg-canvas flex flex-col" style={{ fontFamily: "var(--font-inter)" }}>
       {/* ── Header ── */}
-      <div className="flex-shrink-0 flex items-center justify-between px-6 py-3 border-b border-black/[0.05] bg-canvas-subtle/60 backdrop-blur-sm">
+      <div className="flex-shrink-0 flex items-center justify-between px-6 h-16 border-b border-black/[0.05] bg-canvas-subtle/60 backdrop-blur-sm">
         <div className="flex items-center gap-2.5">
-          <GhostMark className="w-4 h-4 text-acid" />
-          <span className="text-ink text-xs font-semibold">debaser</span>
-          <div className="w-px h-3 bg-black/[0.08] mx-1" />
-          <span className="text-ink-tertiary text-[11px]">June 2026 Pitch Deck</span>
+          <a href="/" className="flex items-center gap-2.5">
+            <GhostMark className="w-6 h-6 text-ink" />
+            <span className="text-ink text-base font-semibold">debaser</span>
+          </a>
+          <div className="w-px h-4 bg-black/[0.08] mx-1" />
+          <span className="text-ink-tertiary text-sm">June 2026 Pitch Deck</span>
         </div>
 
         <div className="flex items-center gap-1">
@@ -1042,15 +1029,15 @@ export default function PitchDeck({ onClose }: { onClose: () => void }) {
         </div>
 
         <div className="flex items-center gap-4">
-          <span className="text-ink-tertiary text-[11px] font-mono">
+          <span className="text-ink-tertiary text-sm font-mono">
             {String(current + 1).padStart(2, "0")} / {String(SLIDES.length).padStart(2, "0")}
           </span>
           <button
             onClick={onClose}
-            className="w-7 h-7 rounded-lg border border-black/[0.07] flex items-center justify-center hover:border-black/[0.16] hover:bg-canvas-card transition-all text-ink-secondary hover:text-ink"
+            className="w-8 h-8 rounded-lg border border-black/[0.07] flex items-center justify-center hover:border-black/[0.16] hover:bg-canvas-card transition-all text-ink-secondary hover:text-ink"
             aria-label="Close"
           >
-            <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
               <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
             </svg>
           </button>
@@ -1058,35 +1045,37 @@ export default function PitchDeck({ onClose }: { onClose: () => void }) {
       </div>
 
       {/* ── Slide area ── */}
-      <div className="flex-1 relative overflow-hidden">
-        <AnimatePresence custom={direction} mode="wait">
-          <motion.div
-            key={current}
-            custom={direction}
-            variants={variants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            className="absolute inset-0"
-          >
-            <Component />
-          </motion.div>
-        </AnimatePresence>
+      <div className="flex-1 relative overflow-hidden bg-black/[0.03] p-3 sm:p-4 lg:p-6">
+        <div className="relative w-full h-full max-w-[2000px] mx-auto rounded-xl border border-black/[0.06] bg-canvas shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] overflow-hidden">
+          <AnimatePresence custom={direction} mode="wait">
+            <motion.div
+              key={current}
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              className="absolute inset-0"
+            >
+              <Component />
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
 
       {/* ── Footer nav ── */}
-      <div className="flex-shrink-0 flex items-center justify-between px-6 py-3 border-t border-black/[0.05] bg-canvas-subtle/60 backdrop-blur-sm">
-        <div className="flex items-center gap-1.5 w-48">
+      <div className="flex-shrink-0 flex items-center justify-between px-6 h-16 border-t border-black/[0.05] bg-canvas-subtle/60 backdrop-blur-sm">
+        <div className="flex items-center gap-2 w-56">
           <div className="flex-1 h-px bg-black/[0.06] rounded-full overflow-hidden">
             <div
               className="h-full bg-acid/50 rounded-full transition-all duration-300"
               style={{ width: `${pct}%` }}
             />
           </div>
-          <span className="text-ink-tertiary text-[10px] font-mono flex-shrink-0">{pct}%</span>
+          <span className="text-ink-tertiary text-xs font-mono flex-shrink-0">{pct}%</span>
         </div>
 
-        <p className="text-ink-tertiary text-[10px] font-mono hidden sm:block">
+        <p className="text-ink-tertiary text-sm font-mono hidden sm:block">
           {SLIDES[current].label}
         </p>
 
@@ -1094,9 +1083,9 @@ export default function PitchDeck({ onClose }: { onClose: () => void }) {
           <button
             onClick={prev}
             disabled={current === 0}
-            className="flex items-center gap-1.5 text-xs text-ink-secondary border border-black/[0.07] rounded-lg px-3 py-1.5 hover:border-black/[0.14] hover:text-ink transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+            className="flex items-center gap-1.5 text-sm text-ink-secondary border border-black/[0.07] rounded-lg px-4 py-2 hover:border-black/[0.14] hover:text-ink transition-all disabled:opacity-30 disabled:cursor-not-allowed"
           >
-            <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
               <path d="M8 10L4 6l4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
             Prev
@@ -1104,10 +1093,10 @@ export default function PitchDeck({ onClose }: { onClose: () => void }) {
           <button
             onClick={next}
             disabled={current === SLIDES.length - 1}
-            className="flex items-center gap-1.5 text-xs text-ink border border-black/[0.1] rounded-lg px-3 py-1.5 bg-canvas-card hover:border-black/[0.18] hover:bg-canvas-elevated transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+            className="flex items-center gap-1.5 text-sm text-ink border border-black/[0.1] rounded-lg px-4 py-2 bg-canvas-card hover:border-black/[0.18] hover:bg-canvas-elevated transition-all disabled:opacity-30 disabled:cursor-not-allowed"
           >
             Next
-            <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
               <path d="M4 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>

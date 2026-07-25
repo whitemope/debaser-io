@@ -19,7 +19,7 @@ function DemoShell({
   return (
     <div
       className={`force-light bg-white rounded-2xl border border-black/[0.07] overflow-hidden ${className}`}
-      style={{ boxShadow: "0 0 0 1px rgba(30,21,18,0.05), 0 32px 64px rgba(30,21,18,0.10)" }}
+      style={{ boxShadow: "0 0 0 1px rgba(16, 21, 133,0.05), 0 32px 64px rgba(16, 21, 133,0.10)" }}
     >
       <div className="flex items-center gap-2 px-4 py-3 border-b border-black/[0.05] bg-black/[0.02]">
         <div className="flex gap-1.5">
@@ -95,7 +95,7 @@ function IngestionDemo() {
                 className="w-4 h-4 rounded-full bg-acid/20 flex items-center justify-center flex-shrink-0"
               >
                 <svg width="8" height="6" viewBox="0 0 8 6" fill="none">
-                  <path d="M1 3l2 2 4-4" stroke="#9013FE" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M1 3l2 2 4-4" stroke="#4CAF50" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </motion.div>
             </motion.div>
@@ -165,7 +165,7 @@ function MatchingDemo() {
     <DemoShell title="Catalogue Matching · Atlantic Records UK">
       <div ref={ref}>
         {/* Column headers */}
-        <div className="grid grid-cols-[1fr_1fr_60px_80px] text-[9px] font-mono text-ink-tertiary uppercase tracking-widest pb-2 mb-1 border-b border-black/[0.04] px-1">
+        <div className="grid grid-cols-[1fr_1fr_60px_80px] text-[9px] font-mono text-ink-tertiary tracking-wide pb-2 mb-1 border-b border-black/[0.04] px-1">
           <span>ISRC</span>
           <span>Work / Artist</span>
           <span className="text-center">Conf.</span>
@@ -309,7 +309,7 @@ function ContractDemo() {
               transition={{ delay: ex.delay, duration: 0.4, ease: EASE }}
               className="bg-canvas-card border border-black/[0.05] rounded-lg p-2.5"
             >
-              <p className="text-ink-tertiary text-[9px] font-mono uppercase tracking-wider mb-1">{ex.label}</p>
+              <p className="text-ink-tertiary text-[9px] font-mono tracking-wide mb-1">{ex.label}</p>
               <p className={`text-[11px] font-semibold ${ex.color}`}>{ex.value}</p>
             </motion.div>
           ))}
@@ -400,7 +400,7 @@ function AnomalyDemo() {
           transition={{ delay: 1.4, duration: 0.5, ease: EASE }}
           className="border border-red-500/20 bg-red-500/[0.03] rounded-xl p-3"
         >
-          <p className="text-red-400 text-[10px] font-mono uppercase tracking-wider mb-2">3 anomalies require review</p>
+          <p className="text-red-400 text-[10px] font-mono tracking-wide mb-2">3 anomalies require review</p>
           <div className="space-y-1.5">
             {ALERTS.map((a, i) => (
               <motion.div
@@ -410,8 +410,8 @@ function AnomalyDemo() {
                 transition={{ delay: 1.6 + i * 0.1 }}
                 className="flex items-start gap-2 text-[10px]"
               >
-                <span className={`flex-shrink-0 font-mono uppercase ${a.sev === "critical" ? "text-red-400" : "text-amber-400"}`}>
-                  {a.sev === "critical" ? "CRIT" : "HIGH"}
+                <span className={`flex-shrink-0 font-mono ${a.sev === "critical" ? "text-red-400" : "text-amber-400"}`}>
+                  {a.sev === "critical" ? "Crit" : "High"}
                 </span>
                 <span className="text-ink-secondary">{a.msg}</span>
               </motion.div>
@@ -492,7 +492,7 @@ function ExplainDemo() {
             transition={{ delay: 2.9, duration: 0.4, ease: EASE }}
             className="mt-4 pt-3 border-t border-black/[0.05]"
           >
-            <p className="text-ink-tertiary text-[9px] font-mono uppercase tracking-wider mb-2">Sources</p>
+            <p className="text-ink-tertiary text-[9px] font-mono tracking-wide mb-2">Sources</p>
             <div className="space-y-1">
               {SOURCES.map((s, i) => (
                 <div key={i} className="flex items-center gap-2">
@@ -534,7 +534,7 @@ function MissingIncomeDemo() {
     <DemoShell title="Missing Income Detection · All Rights · Q2 2024">
       <div ref={ref}>
         {/* Table header */}
-        <div className="grid grid-cols-[1fr_64px_72px_72px_72px] gap-2 text-[9px] font-mono text-ink-tertiary uppercase tracking-widest pb-2 mb-1 border-b border-black/[0.04] px-1">
+        <div className="grid grid-cols-[1fr_64px_72px_72px_72px] gap-2 text-[9px] font-mono text-ink-tertiary tracking-wide pb-2 mb-1 border-b border-black/[0.04] px-1">
           <span>Right / Source</span>
           <span>Source</span>
           <span className="text-right">Expected</span>
@@ -576,7 +576,7 @@ function MissingIncomeDemo() {
           className="border-t border-black/[0.08] pt-3 flex items-center justify-between"
         >
           <div>
-            <p className="text-ink-tertiary text-[10px] font-mono uppercase tracking-wider">Total missing income</p>
+            <p className="text-ink-tertiary text-[10px] font-mono tracking-wide">Total missing income</p>
             <p className="text-red-400 text-xl font-bold tabular-nums mt-0.5">£4,960</p>
           </div>
           <div className="text-right">
@@ -625,7 +625,7 @@ function Feature({ number, tag, title, description, bullets, demo, reversed }: F
               <div className="flex items-center gap-3 mb-6">
                 <span className="text-ink-tertiary text-[10px] font-mono">{number}</span>
                 <div className="w-1 h-1 rounded-full bg-black/20" />
-                <span className="text-acid text-[10px] font-mono uppercase tracking-wider">{tag}</span>
+                <span className="text-acid text-[10px] font-mono tracking-wide">{tag}</span>
               </div>
               <h2 className="text-ink text-3xl lg:text-4xl font-bold tracking-tight leading-tight mb-5 text-balance">
                 {title}
@@ -770,10 +770,6 @@ export default function ProductPage() {
       {/* Hero */}
       <section className="pt-36 pb-20 relative overflow-hidden border-b border-black/[0.04]">
         <div className="absolute inset-0 bg-dot-grid opacity-40" />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(144,19,254,0.04) 0%, transparent 60%)" }}
-        />
         <div className="relative max-w-6xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -781,7 +777,7 @@ export default function ProductPage() {
             transition={{ duration: 0.7, ease: EASE }}
             className="max-w-3xl"
           >
-            <div className="inline-flex items-center gap-2 text-acid text-[10px] font-mono uppercase tracking-[0.2em] mb-6 border border-acid/20 bg-acid/[0.06] rounded-full px-3.5 py-1.5">
+            <div className="inline-flex items-center gap-2 text-acid text-[10px] font-mono tracking-wide mb-6 border border-acid/20 bg-acid/[0.06] rounded-full px-3.5 py-1.5">
               <div className="w-1 h-1 rounded-full bg-acid" />
               Product
             </div>
@@ -821,10 +817,6 @@ export default function ProductPage() {
       {/* CTA */}
       <section className="py-28 relative overflow-hidden">
         <div className="absolute inset-0 bg-dot-grid opacity-30" />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse 60% 60% at 50% 50%, rgba(144,19,254,0.04) 0%, transparent 70%)" }}
-        />
         <div className="relative max-w-6xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -841,7 +833,7 @@ export default function ProductPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
                 href="/#access"
-                className="bg-acid text-canvas text-sm font-semibold px-7 py-3 rounded-xl hover:bg-acid/90 transition-all"
+                className="bg-btn-primary text-btn-primary-fg text-sm font-medium px-7 py-3 rounded-xl hover:bg-btn-primary/90 transition-all"
               >
                 Request early access
               </a>

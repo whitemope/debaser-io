@@ -29,10 +29,6 @@ export default function SignIn() {
     <div className="min-h-screen bg-canvas flex flex-col items-center justify-center px-4 relative">
       {/* Background */}
       <div className="absolute inset-0 bg-dot-grid opacity-50" />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 60% 50% at 50% 40%, rgba(144,19,254,0.03) 0%, transparent 70%)" }}
-      />
 
       <div className="relative w-full max-w-sm">
         {/* Logo */}
@@ -48,7 +44,7 @@ export default function SignIn() {
         {/* Card */}
         <div
           className="bg-canvas-card border border-black/[0.06] rounded-2xl p-8"
-          style={{ boxShadow: "0 0 0 1px rgba(30,21,18,0.05), 0 24px 48px rgba(30,21,18,0.07)" }}
+          style={{ boxShadow: "0 0 0 1px rgba(16, 21, 133,0.05), 0 24px 48px rgba(16, 21, 133,0.07)" }}
         >
           <div className="mb-7">
             <h1 className="text-ink text-xl font-semibold tracking-tight mb-1">
@@ -61,7 +57,7 @@ export default function SignIn() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-ink-secondary text-xs font-mono uppercase tracking-[0.12em] mb-1.5">
+              <label className="block text-ink-secondary text-xs font-mono tracking-wide mb-1.5">
                 Email
               </label>
               <input
@@ -74,7 +70,7 @@ export default function SignIn() {
               />
             </div>
             <div>
-              <label className="block text-ink-secondary text-xs font-mono uppercase tracking-[0.12em] mb-1.5">
+              <label className="block text-ink-secondary text-xs font-mono tracking-wide mb-1.5">
                 Password
               </label>
               <input
@@ -94,7 +90,7 @@ export default function SignIn() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-acid text-canvas font-semibold py-2.5 rounded-lg text-sm hover:bg-acid/90 transition-all disabled:opacity-60 mt-2"
+              className="w-full bg-btn-primary text-btn-primary-fg font-medium py-2.5 rounded-lg text-sm hover:bg-btn-primary/90 transition-all disabled:opacity-60 mt-2"
             >
               {loading ? "Signing in…" : "Sign in"}
             </button>

@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Hanken_Grotesk } from "next/font/google";
+import { HomepageVariantProvider } from "@/components/HomepageVariantContext";
+import { EditModeProvider } from "@/components/EditModeContext";
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+const hankenGrotesk = Hanken_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-hanken-grotesk",
   display: "swap",
 });
 
@@ -47,7 +55,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${inter.variable} ${hankenGrotesk.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         {/* Prevent flash of wrong theme by reading localStorage before first paint */}
         <script
@@ -56,7 +68,11 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-canvas text-ink antialiased">{children}</body>
+      <body className="bg-canvas text-ink antialiased">
+        <HomepageVariantProvider>
+          <EditModeProvider>{children}</EditModeProvider>
+        </HomepageVariantProvider>
+      </body>
     </html>
   );
 }

@@ -2,6 +2,9 @@
 
 import { motion } from "framer-motion";
 import { EASE } from "@/lib/animation";
+import { useHomepageVariant } from "@/components/HomepageVariantContext";
+import { getHomepageContent } from "@/lib/homepage-content";
+import Editable from "@/components/Editable";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -12,6 +15,110 @@ const fadeUp = {
   }),
 };
 
+function RoyaltyReviewMockup() {
+  const findings = [
+    {
+      finding: "£18,420 cannot be matched to known recordings.",
+      evidence: "Spotify UK. 12 missing or invalid ISRCs.",
+      action: "Investigate",
+    },
+    {
+      finding: "Producer deduction conflicts with the agreement.",
+      evidence: "Clause 4.2(b).",
+      action: "Review",
+    },
+    {
+      finding: "Three expected statements are missing.",
+      evidence: "Germany, France and Japan.",
+      action: "Prepare claim",
+    },
+  ];
+
+  return (
+    <div className="relative w-full max-w-3xl mx-auto">
+      <div
+        className="force-light bg-white border border-black/[0.07] rounded-2xl overflow-hidden"
+        style={{
+          boxShadow:
+            "0 0 0 1px rgba(16, 21, 133,0.07), 0 40px 80px rgba(16, 21, 133,0.12), 0 16px 40px rgba(16, 21, 133,0.07)",
+        }}
+      >
+        {/* Window chrome */}
+        <div className="flex items-center justify-between px-5 py-3.5 border-b border-black/[0.05] bg-black/[0.02]">
+          <div className="flex items-center gap-3">
+            <div className="flex gap-1.5">
+              <div className="w-2.5 h-2.5 rounded-full bg-black/[0.08]" />
+              <div className="w-2.5 h-2.5 rounded-full bg-black/[0.08]" />
+              <div className="w-2.5 h-2.5 rounded-full bg-black/[0.08]" />
+            </div>
+            <div className="w-px h-3.5 bg-black/[0.06]" />
+            <span className="text-[11px] text-ink-tertiary font-mono tracking-wide">
+              debaser · royalty review
+            </span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <div className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse-slow" />
+            <span className="text-[11px] text-amber-600/80 font-mono">
+              in review
+            </span>
+          </div>
+        </div>
+
+        <div className="p-5 sm:p-6">
+          <div className="flex items-start justify-between mb-5">
+            <div>
+              <p className="text-[10px] text-ink-tertiary font-mono tracking-wide mb-1">
+                Q2 2026
+              </p>
+              <h3 className="text-ink text-xl font-semibold tracking-tight">
+                Royalty Review
+              </h3>
+            </div>
+          </div>
+
+          <div className="border border-black/[0.06] rounded-xl overflow-hidden">
+            <div className="grid grid-cols-[2fr_1.4fr_auto] text-[10px] font-mono text-ink-tertiary tracking-wide px-4 py-2.5 bg-black/[0.02] border-b border-black/[0.05]">
+              <span>Finding</span>
+              <span>Evidence</span>
+              <span>Action</span>
+            </div>
+            {findings.map((row, i) => (
+              <div
+                key={i}
+                className={`grid grid-cols-[2fr_1.4fr_auto] gap-2 px-4 py-3.5 items-center ${
+                  i < findings.length - 1 ? "border-b border-black/[0.04]" : ""
+                }`}
+              >
+                <span className="text-ink/85 text-[13px] leading-snug">
+                  {row.finding}
+                </span>
+                <span className="text-ink-tertiary text-[11px] font-mono leading-snug">
+                  {row.evidence}
+                </span>
+                <span className="text-acid text-[12px] font-medium whitespace-nowrap">
+                  {row.action}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex gap-2.5 mt-4">
+            <button className="flex-1 py-2 text-[13px] text-ink-secondary border border-black/[0.08] rounded-lg hover:bg-black/[0.02] transition-colors font-medium">
+              Open evidence
+            </button>
+            <button className="flex-1 py-2 text-[13px] text-acid border border-acid/25 rounded-lg hover:bg-acid/5 transition-colors font-medium">
+              Assign
+            </button>
+            <button className="flex-1 py-2 text-[13px] text-btn-primary-fg bg-btn-primary rounded-lg font-medium hover:bg-btn-primary/90 transition-colors">
+              Export claim
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function RoyaltyRunMockup() {
   return (
     <div className="relative w-full max-w-3xl mx-auto">
@@ -19,7 +126,7 @@ function RoyaltyRunMockup() {
         className="force-light bg-white border border-black/[0.07] rounded-2xl overflow-hidden"
         style={{
           boxShadow:
-            "0 0 0 1px rgba(30,21,18,0.07), 0 40px 80px rgba(30,21,18,0.12), 0 16px 40px rgba(30,21,18,0.07)",
+            "0 0 0 1px rgba(16, 21, 133,0.07), 0 40px 80px rgba(16, 21, 133,0.12), 0 16px 40px rgba(16, 21, 133,0.07)",
         }}
       >
         {/* Window chrome */}
@@ -47,7 +154,7 @@ function RoyaltyRunMockup() {
           {/* Run header */}
           <div className="flex items-start justify-between mb-5">
             <div>
-              <p className="text-[10px] text-ink-tertiary font-mono uppercase tracking-[0.18em] mb-1">
+              <p className="text-[10px] text-ink-tertiary font-mono tracking-wide mb-1">
                 Q2 2024 · Atlantic Records UK
               </p>
               <h3 className="text-ink text-xl font-semibold tracking-tight">
@@ -96,12 +203,12 @@ function RoyaltyRunMockup() {
             className="rounded-xl p-4 border"
             style={{
               background: "rgba(248, 247, 255, 0.90)",
-              borderColor: "rgba(144, 19, 254, 0.30)",
+              borderColor: "rgba(76, 175, 80, 0.30)",
             }}
           >
             <div className="flex items-center gap-2 mb-3.5">
               <div className="w-1.5 h-1.5 rounded-full bg-acid animate-pulse-slow" />
-              <span className="text-acid text-[10px] font-mono uppercase tracking-[0.18em]">
+              <span className="text-acid text-[10px] font-mono tracking-wide">
                 AI Analysis
               </span>
             </div>
@@ -153,48 +260,26 @@ function RoyaltyRunMockup() {
               <button className="flex-1 py-2 text-[13px] text-acid border border-acid/25 rounded-lg hover:bg-acid/5 transition-colors font-medium">
                 Investigate
               </button>
-              <button className="flex-1 py-2 text-[13px] text-canvas bg-acid rounded-lg font-semibold hover:bg-acid/90 transition-colors">
+              <button className="flex-1 py-2 text-[13px] text-btn-primary-fg bg-btn-primary rounded-lg font-medium hover:bg-btn-primary/90 transition-colors">
                 Approve Run
               </button>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Bottom fade */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-20 rounded-b-2xl pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(to top, var(--hero-fade) 0%, transparent 100%)",
-        }}
-      />
     </div>
   );
 }
 
 export default function Hero() {
+  const { variant } = useHomepageVariant();
+  const isV2 = variant === "v2";
+  const content = getHomepageContent(variant).hero;
+
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-0">
       {/* Background */}
       <div className="absolute inset-0 bg-dot-grid opacity-60" />
-      {/* Dark mode: slow-moving noisy purple-to-orange aurora */}
-      <div className="hero-aurora absolute inset-0" />
-      {/* Noisy orange gradient bloom (light mode) */}
-      <div
-        className="hero-light-glow absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 90% 55% at 50% 0%, rgba(240,148,72,0.13) 0%, rgba(240,100,60,0.04) 45%, transparent 70%)",
-          filter: "url(#grain)",
-        }}
-      />
-      <svg width="0" height="0" className="absolute">
-        <filter id="grain" x="0%" y="0%" width="100%" height="100%" colorInterpolationFilters="sRGB">
-          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise"/>
-          <feComposite in="SourceGraphic" in2="noise" operator="in"/>
-        </filter>
-      </svg>
 
       <div className="relative w-full max-w-6xl mx-auto px-6 text-center">
         <motion.div
@@ -205,9 +290,12 @@ export default function Hero() {
           className="inline-flex items-center gap-2 bg-acid-dim border border-acid-border rounded-full px-3.5 py-1.5 mb-8"
         >
           <div className="w-1.5 h-1.5 rounded-full bg-acid" />
-          <span className="text-acid text-xs font-mono uppercase tracking-[0.15em]">
-            Now in early access
-          </span>
+          <Editable
+            as="span"
+            path="hero.eyebrow"
+            value={content.eyebrow}
+            className="text-acid text-xs font-mono tracking-wide"
+          />
         </motion.div>
 
         <motion.h1
@@ -215,10 +303,13 @@ export default function Hero() {
           custom={0.1}
           initial="hidden"
           animate="show"
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-[80px] font-bold text-ink leading-[1.04] tracking-tightest mb-6 text-balance max-w-4xl mx-auto"
         >
-          The AI operating system for{" "}
-          <span className="text-acid">music royalties.</span>
+          <Editable
+            as="span"
+            path="hero.headline"
+            value={content.headline}
+            className="block text-5xl sm:text-6xl md:text-7xl lg:text-[80px] font-bold text-ink leading-[1.04] tracking-tightest mb-6 text-balance max-w-4xl mx-auto"
+          />
         </motion.h1>
 
         <motion.p
@@ -228,9 +319,7 @@ export default function Hero() {
           animate="show"
           className="text-lg sm:text-xl text-ink-secondary leading-relaxed max-w-2xl mx-auto mb-10 text-balance"
         >
-          Debaser helps labels, publishers and catalogue owners ingest
-          statements, understand contracts, detect missing income, and explain
-          every royalty payment.
+          <Editable path="hero.subhead" value={content.subhead} />
         </motion.p>
 
         <motion.div
@@ -238,19 +327,19 @@ export default function Hero() {
           custom={0.3}
           initial="hidden"
           animate="show"
-          className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-20"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8"
         >
           <a
             href="#access"
-            className="w-full sm:w-auto bg-acid text-canvas font-semibold px-6 py-3 rounded-lg text-[15px] hover:bg-acid/90 transition-all hover:shadow-acid-glow"
+            className="w-full sm:w-auto bg-btn-primary text-btn-primary-fg font-medium px-6 py-3 rounded-lg text-[15px] hover:bg-btn-primary/90 transition-all hover:shadow-acid-glow"
           >
-            Request early access
+            <Editable path="hero.ctaPrimary" value={content.ctaPrimary} />
           </a>
           <a
             href="#product"
             className="w-full sm:w-auto flex items-center justify-center gap-2 border border-black/[0.1] text-ink-secondary hover:text-ink hover:border-black/[0.18] font-medium px-6 py-3 rounded-lg text-[15px] transition-all"
           >
-            See how it works
+            <Editable path="hero.ctaSecondary" value={content.ctaSecondary} />
             <svg
               width="14"
               height="14"
@@ -269,13 +358,26 @@ export default function Hero() {
           </a>
         </motion.div>
 
+        {isV2 && content.note && (
+          <motion.p
+            variants={fadeUp}
+            custom={0.35}
+            initial="hidden"
+            animate="show"
+            className="text-ink-tertiary text-sm mb-12"
+          >
+            <Editable path="hero.note" value={content.note} />
+          </motion.p>
+        )}
+
         <motion.div
           variants={fadeUp}
           custom={0.45}
           initial="hidden"
           animate="show"
+          className={isV2 ? "" : "mt-12"}
         >
-          <RoyaltyRunMockup />
+          {isV2 ? <RoyaltyReviewMockup /> : <RoyaltyRunMockup />}
         </motion.div>
       </div>
     </section>

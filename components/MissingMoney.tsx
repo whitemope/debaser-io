@@ -2,15 +2,9 @@
 
 import { motion } from "framer-motion";
 import { EASE } from "@/lib/animation";
-
-const features = [
-  "Statement variance analysis",
-  "Usage-to-income comparison",
-  "Missing territory detection",
-  "Unmatched asset reporting",
-  "Claim-ready evidence packs",
-  "CMO collection gap alerts",
-];
+import { useHomepageVariant } from "@/components/HomepageVariantContext";
+import { getHomepageContent } from "@/lib/homepage-content";
+import Editable from "@/components/Editable";
 
 function GapVisual() {
   const rows = [
@@ -70,13 +64,13 @@ function GapVisual() {
       className="force-light bg-canvas-card border border-black/[0.05] rounded-2xl overflow-hidden"
       style={{
         boxShadow:
-          "0 0 0 1px rgba(30,21,18,0.05), 0 24px 48px rgba(30,21,18,0.07)",
+          "0 0 0 1px rgba(16, 21, 133,0.05), 0 24px 48px rgba(16, 21, 133,0.07)",
       }}
     >
       <div className="flex items-center justify-between px-5 py-4 border-b border-black/[0.05] bg-canvas-subtle/40">
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 rounded-full bg-acid" />
-          <span className="text-ink-tertiary text-[11px] font-mono uppercase tracking-[0.15em]">
+          <span className="text-ink-tertiary text-[11px] font-mono tracking-wide">
             Income Gap Analysis · Q2 2024
           </span>
         </div>
@@ -86,7 +80,7 @@ function GapVisual() {
       </div>
 
       <div className="p-4">
-        <div className="grid grid-cols-4 text-[10px] font-mono text-ink-tertiary uppercase tracking-[0.1em] pb-2 border-b border-black/[0.04] mb-1 px-2">
+        <div className="grid grid-cols-4 text-[10px] font-mono text-ink-tertiary tracking-wide pb-2 border-b border-black/[0.04] mb-1 px-2">
           <span>Source</span>
           <span className="text-right">Expected</span>
           <span className="text-right">Received</span>
@@ -130,15 +124,13 @@ function GapVisual() {
 }
 
 export default function MissingMoney() {
+  const { variant } = useHomepageVariant();
+  const isV2 = variant === "v2";
+  const content = getHomepageContent(variant).missingMoney;
+  const features = content.features;
+
   return (
     <section className="py-28 md:py-36 bg-canvas-subtle relative overflow-hidden">
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 80% at 100% 50%, rgba(144,19,254,0.02) 0%, transparent 70%)",
-        }}
-      />
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
@@ -147,17 +139,23 @@ export default function MissingMoney() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, ease: EASE }}
           >
-            <p className="text-ink-tertiary text-xs font-mono uppercase tracking-[0.18em] mb-4">
-              Gap detection
-            </p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink leading-[1.1] mb-6 text-balance">
-              Find the money that never made it to the statement.
-            </h2>
-            <p className="text-ink-secondary text-lg leading-relaxed mb-10">
-              Debaser compares catalogue expectations, usage signals and royalty
-              statements to surface likely underpayments, unmatched income and
-              collection gaps.
-            </p>
+            <Editable
+              path="missingMoney.eyebrow"
+              value={content.eyebrow}
+              className="text-ink-tertiary text-xs font-mono tracking-wide mb-4 block"
+            />
+            <Editable
+              as="h2"
+              path="missingMoney.headline"
+              value={content.headline}
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink leading-[1.1] mb-6 text-balance block"
+            />
+            <Editable
+              as="p"
+              path="missingMoney.subhead"
+              value={content.subhead}
+              className="text-ink-secondary text-lg leading-relaxed mb-10 block"
+            />
             <ul className="space-y-3">
               {features.map((feature, i) => (
                 <motion.li
@@ -175,10 +173,25 @@ export default function MissingMoney() {
                   <div className="w-4 h-4 rounded-full bg-acid/10 border border-acid/25 flex items-center justify-center flex-shrink-0">
                     <div className="w-1 h-1 rounded-full bg-acid" />
                   </div>
-                  <span className="text-ink-secondary text-sm">{feature}</span>
+                  <Editable
+                    path={`missingMoney.features.${i}`}
+                    value={feature}
+                    className="text-ink-secondary text-sm"
+                  />
                 </motion.li>
               ))}
             </ul>
+            {isV2 && content.ctaLabel && (
+              <a
+                href="#access"
+                className="inline-flex items-center gap-2 mt-10 text-acid text-sm font-semibold hover:underline underline-offset-2"
+              >
+                <Editable path="missingMoney.ctaLabel" value={content.ctaLabel} />
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="opacity-60">
+                  <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            )}
           </motion.div>
 
           <motion.div

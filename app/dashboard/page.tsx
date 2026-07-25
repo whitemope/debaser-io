@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { isAuthenticated, signOut } from "@/lib/auth";
 import PitchDeck from "@/components/deck/PitchDeck";
+import PitchDeckHarness from "@/components/deck/PitchDeckHarness";
 import GhostMark from "@/components/GhostMark";
 
 type DeckMeta = {
@@ -17,6 +18,14 @@ type DeckMeta = {
 
 const DECKS: DeckMeta[] = [
   {
+    id: "july-2026-harness",
+    title: "July 2026 Pitch Deck - Harness",
+    subtitle: "Pre-seed · Investor presentation",
+    date: "Jul 2026",
+    slides: 16,
+    status: "ready",
+  },
+  {
     id: "june-2026",
     title: "June 2026 Pitch Deck",
     subtitle: "Series Seed · Investor presentation",
@@ -28,7 +37,6 @@ const DECKS: DeckMeta[] = [
   { id: "sk2", title: "", subtitle: "", date: "", slides: 0, status: "skeleton" },
   { id: "sk3", title: "", subtitle: "", date: "", slides: 0, status: "skeleton" },
   { id: "sk4", title: "", subtitle: "", date: "", slides: 0, status: "skeleton" },
-  { id: "sk5", title: "", subtitle: "", date: "", slides: 0, status: "skeleton" },
 ];
 
 function DeckCard({ deck, onClick }: { deck: DeckMeta; onClick?: () => void }) {
@@ -49,15 +57,19 @@ function DeckCard({ deck, onClick }: { deck: DeckMeta; onClick?: () => void }) {
       className="group bg-canvas-card border border-black/[0.05] rounded-2xl overflow-hidden text-left hover:border-black/[0.12] transition-all duration-300 hover:shadow-panel"
     >
       {/* Preview thumbnail */}
-      <div className="relative overflow-hidden" style={{ height: "144px" }}>
-        <img
-          src="/deck-thumb.png"
-          alt="Deck cover"
-          className="w-full h-full object-cover object-top"
-        />
+      <div className="relative overflow-hidden bg-canvas flex flex-col items-center justify-center gap-2 px-6" style={{ height: "144px" }}>
+        <div className="absolute inset-0 bg-dot-grid opacity-50" />
+        <div className="relative flex items-center gap-1.5">
+          <GhostMark className="w-4 h-4 text-ink" />
+          <span className="text-ink text-xs font-semibold tracking-tight">debaser</span>
+        </div>
+        <p className="relative text-ink font-bold text-[13px] leading-snug text-center tracking-tight">
+          {deck.title.replace(/ - Harness$/, "")}
+        </p>
+        <p className="relative text-ink-tertiary text-[9px] font-mono">{deck.subtitle}</p>
         {/* Hover overlay */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
-          <div className="bg-acid text-canvas text-xs font-semibold px-4 py-1.5 rounded-full">
+          <div className="bg-btn-primary text-btn-primary-fg text-xs font-medium px-4 py-1.5 rounded-full">
             Open deck
           </div>
         </div>
@@ -83,7 +95,7 @@ function DeckCard({ deck, onClick }: { deck: DeckMeta; onClick?: () => void }) {
 export default function Dashboard() {
   const router = useRouter();
   const [checked, setChecked] = useState(false);
-  const [deckOpen, setDeckOpen] = useState(false);
+  const [openDeckId, setOpenDeckId] = useState<string | null>(null);
 
   useEffect(() => {
     if (!isAuthenticated()) {
@@ -105,23 +117,25 @@ export default function Dashboard() {
       <div className="min-h-screen bg-canvas">
         {/* Header */}
         <header className="border-b border-black/[0.05] bg-canvas/80 backdrop-blur-md sticky top-0 z-30">
-          <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+          <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <GhostMark className="w-5 h-5 text-acid" />
-              <span className="text-ink font-semibold tracking-tight text-sm">debaser</span>
-              <div className="w-px h-3.5 bg-black/[0.08] ml-1" />
-              <span className="text-ink-tertiary text-xs font-mono ml-1">admin</span>
+              <a href="/" className="flex items-center gap-2.5">
+                <GhostMark className="w-6 h-6 text-ink" />
+                <span className="text-ink font-semibold tracking-tight text-base">debaser</span>
+              </a>
+              <div className="w-px h-4 bg-black/[0.08] ml-1" />
+              <span className="text-ink-tertiary text-sm font-mono ml-1">admin</span>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-5">
               <div className="hidden sm:flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-acid/10 border border-acid/20 flex items-center justify-center">
-                  <span className="text-acid text-[10px] font-bold">D</span>
+                <div className="w-7 h-7 rounded-full bg-acid/10 border border-acid/20 flex items-center justify-center">
+                  <span className="text-acid text-xs font-bold">D</span>
                 </div>
-                <span className="text-ink-secondary text-xs">David Rennick</span>
+                <span className="text-ink-secondary text-sm">David Rennick</span>
               </div>
               <button
                 onClick={handleSignOut}
-                className="text-ink-tertiary text-xs hover:text-ink-secondary transition-colors"
+                className="text-ink-tertiary text-sm hover:text-ink-secondary transition-colors"
               >
                 Sign out
               </button>
@@ -159,7 +173,7 @@ export default function Dashboard() {
                 <DeckCard
                   key={deck.id}
                   deck={deck}
-                  onClick={deck.status === "ready" ? () => setDeckOpen(true) : undefined}
+                  onClick={deck.status === "ready" ? () => setOpenDeckId(deck.id) : undefined}
                 />
               ))}
             </div>
@@ -168,7 +182,12 @@ export default function Dashboard() {
       </div>
 
       {/* Deck modal */}
-      {deckOpen && <PitchDeck onClose={() => setDeckOpen(false)} />}
+      {openDeckId === "july-2026-harness" && (
+        <PitchDeckHarness onClose={() => setOpenDeckId(null)} />
+      )}
+      {openDeckId === "june-2026" && (
+        <PitchDeck onClose={() => setOpenDeckId(null)} />
+      )}
     </>
   );
 }

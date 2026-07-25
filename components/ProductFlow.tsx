@@ -2,55 +2,18 @@
 
 import { motion } from "framer-motion";
 import { EASE } from "@/lib/animation";
-
-const steps = [
-  {
-    number: "01",
-    label: "Ingest",
-    description:
-      "Pull in statements, contracts and catalogue data from any source — CSV, PDF, portal export or API feed.",
-    detail: "DSPs · CMOs · Portals · PDFs · APIs",
-  },
-  {
-    number: "02",
-    label: "Match",
-    description:
-      "Link income to ISRCs, ISWCs, works, recordings, writers, labels and ownership splits across your catalogue.",
-    detail: "ISRC · ISWC · Work codes · Party IDs",
-  },
-  {
-    number: "03",
-    label: "Analyse",
-    description:
-      "Surface anomalies, variance from expected income, contract exceptions and metadata conflicts automatically.",
-    detail: "Variance · Anomalies · Gaps · Conflicts",
-  },
-  {
-    number: "04",
-    label: "Explain",
-    description:
-      "Generate source-backed answers to any payment question — with references to rows, clauses and metadata.",
-    detail: "Source rows · Contract clauses · Audit trail",
-  },
-  {
-    number: "05",
-    label: "Resolve",
-    description:
-      "Turn every issue into a prioritised action. Prepare claims, approve payments, and close the loop before statements go out.",
-    detail: "Actions · Claims · Approvals · Exports",
-  },
-];
+import { useHomepageVariant } from "@/components/HomepageVariantContext";
+import { getHomepageContent } from "@/lib/homepage-content";
+import Editable from "@/components/Editable";
 
 export default function ProductFlow() {
+  const { variant } = useHomepageVariant();
+  const isV2 = variant === "v2";
+  const content = getHomepageContent(variant).productFlow;
+  const steps = content.steps;
+
   return (
-    <section id="product" className="py-28 md:py-36 bg-canvas relative">
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(144,19,254,0.025) 0%, transparent 70%)",
-        }}
-      />
+    <section id="product" className="py-28 md:py-36 bg-canvas relative scroll-mt-16">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -59,21 +22,28 @@ export default function ProductFlow() {
           transition={{ duration: 0.7, ease: EASE }}
           className="text-center mb-16"
         >
-          <p className="text-ink-tertiary text-xs font-mono uppercase tracking-[0.18em] mb-4">
-            The workflow
-          </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink leading-[1.1] mb-4">
-            From statement to explanation.
-          </h2>
-          <p className="text-ink-secondary text-lg max-w-xl mx-auto">
-            Debaser turns messy royalty inputs into a source-backed operational
-            workflow your team can trust.
-          </p>
+          <Editable
+            path="productFlow.eyebrow"
+            value={content.eyebrow}
+            className="text-ink-tertiary text-xs font-mono tracking-wide mb-4 block"
+          />
+          <Editable
+            as="h2"
+            path="productFlow.headline"
+            value={content.headline}
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-ink leading-[1.1] mb-4 block"
+          />
+          <Editable
+            as="p"
+            path="productFlow.subhead"
+            value={content.subhead}
+            className="text-ink-secondary text-lg max-w-xl mx-auto block"
+          />
         </motion.div>
 
         <div className="relative">
           {/* Connector line — desktop */}
-          <div className="hidden lg:block absolute top-[52px] left-[calc(10%+32px)] right-[calc(10%+32px)] h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+          <div className="hidden lg:block absolute top-[52px] left-[calc(10%+32px)] right-[calc(10%+32px)] h-px bg-white/[0.08]" />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-6">
             {steps.map((step, i) => (
@@ -94,7 +64,7 @@ export default function ProductFlow() {
                   <div className="flex items-center justify-between mb-5">
                     <div className="w-11 h-11 rounded-xl bg-canvas border border-black/[0.07] flex items-center justify-center">
                       <span className="text-ink-tertiary text-xs font-mono">
-                        {step.number}
+                        {String(i + 1).padStart(2, "0")}
                       </span>
                     </div>
                     {i < steps.length - 1 && (
@@ -116,20 +86,48 @@ export default function ProductFlow() {
                     )}
                   </div>
 
-                  <h3 className="text-ink font-semibold text-base mb-2 tracking-tight">
-                    {step.label}
-                  </h3>
-                  <p className="text-ink-secondary text-sm leading-relaxed mb-4">
-                    {step.description}
-                  </p>
-                  <p className="text-ink-tertiary text-[11px] font-mono leading-relaxed">
-                    {step.detail}
-                  </p>
+                  <Editable
+                    as="h3"
+                    path={`productFlow.steps.${i}.label`}
+                    value={step.label}
+                    className="text-ink font-semibold text-base mb-2 tracking-tight block"
+                  />
+                  <Editable
+                    as="p"
+                    path={`productFlow.steps.${i}.description`}
+                    value={step.description}
+                    className="text-ink-secondary text-sm leading-relaxed mb-4 block"
+                  />
+                  {step.detail && (
+                    <Editable
+                      as="p"
+                      path={`productFlow.steps.${i}.detail`}
+                      value={step.detail}
+                      className="text-ink-tertiary text-[11px] font-mono leading-relaxed block"
+                    />
+                  )}
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
+
+        {isV2 && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, delay: 0.2, ease: EASE }}
+            className="mt-12 text-center"
+          >
+            <div className="inline-block border border-black/[0.07] rounded-2xl px-8 py-5 bg-canvas-card">
+              <p className="text-ink text-base sm:text-lg font-medium tracking-tight">
+                Curve calculates the royalty.{" "}
+                <span className="text-acid">Debaser tells you whether it is right.</span>
+              </p>
+            </div>
+          </motion.div>
+        )}
       </div>
     </section>
   );
