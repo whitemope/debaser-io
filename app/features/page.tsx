@@ -4,6 +4,9 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Nav from "@/components/Nav";
 import { EASE } from "@/lib/animation";
+import { useHomepageVariant } from "@/components/HomepageVariantContext";
+import { getFeaturesContent } from "@/lib/features-content";
+import Editable from "@/components/Editable";
 
 // ── Shared helpers ────────────────────────────────────────────────────────
 
@@ -593,19 +596,24 @@ function MissingIncomeDemo() {
 
 // ── Feature section layout ────────────────────────────────────────────────
 
-interface FeatureProps {
-  number: string;
+interface FeatureItem {
   tag: string;
   title: string;
   description: string;
   bullets: string[];
+}
+
+interface FeatureProps {
+  index: number;
+  item: FeatureItem;
   demo: React.ReactNode;
   reversed?: boolean;
 }
 
-function Feature({ number, tag, title, description, bullets, demo, reversed }: FeatureProps) {
+function Feature({ index, item, demo, reversed }: FeatureProps) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-120px" });
+  const number = String(index + 1).padStart(2, "0");
 
   return (
     <section ref={ref} className="py-20 border-b border-black/[0.04]">
@@ -625,14 +633,29 @@ function Feature({ number, tag, title, description, bullets, demo, reversed }: F
               <div className="flex items-center gap-3 mb-6">
                 <span className="text-ink-tertiary text-[10px] font-mono">{number}</span>
                 <div className="w-1 h-1 rounded-full bg-black/20" />
-                <span className="text-acid text-[10px] font-mono tracking-wide">{tag}</span>
+                <Editable
+                  doc="features"
+                  path={`items.${index}.tag`}
+                  value={item.tag}
+                  className="text-acid text-[10px] font-mono tracking-wide"
+                />
               </div>
-              <h2 className="text-ink text-3xl lg:text-4xl font-bold tracking-tight leading-tight mb-5 text-balance">
-                {title}
-              </h2>
-              <p className="text-ink-secondary text-base leading-relaxed mb-8">{description}</p>
+              <Editable
+                doc="features"
+                as="h2"
+                path={`items.${index}.title`}
+                value={item.title}
+                className="text-ink text-3xl lg:text-4xl font-bold tracking-tight leading-tight mb-5 text-balance block"
+              />
+              <Editable
+                doc="features"
+                as="p"
+                path={`items.${index}.description`}
+                value={item.description}
+                className="text-ink-secondary text-base leading-relaxed mb-8 block"
+              />
               <ul className="space-y-3">
-                {bullets.map((b, i) => (
+                {item.bullets.map((b, i) => (
                   <motion.li
                     key={i}
                     initial={{ opacity: 0, x: -8 }}
@@ -643,7 +666,12 @@ function Feature({ number, tag, title, description, bullets, demo, reversed }: F
                     <div className="w-4 h-4 rounded-full bg-acid/10 border border-acid/20 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <div className="w-1 h-1 rounded-full bg-acid" />
                     </div>
-                    <span className="text-ink-secondary text-sm">{b}</span>
+                    <Editable
+                      doc="features"
+                      path={`items.${index}.bullets.${i}`}
+                      value={b}
+                      className="text-ink-secondary text-sm"
+                    />
                   </motion.li>
                 ))}
               </ul>
@@ -665,104 +693,23 @@ function Feature({ number, tag, title, description, bullets, demo, reversed }: F
   );
 }
 
-// ── Features data ─────────────────────────────────────────────────────────
+// ── Features demos (illustrative mockups — not sourced from editable content) ──
 
-const FEATURES: FeatureProps[] = [
-  {
-    number: "01",
-    tag: "Ingestion",
-    title: "Any statement format. One clean schema.",
-    description:
-      "Debaser ingests royalty statements from every DSP, CMO, distributor and collecting society — regardless of format, structure or encoding — and normalises them into a unified data model your team can actually work with.",
-    bullets: [
-      "CSV, PDF, XLSX, API — all handled automatically",
-      "Vendor-specific quirks mapped and normalised",
-      "Duplicate detection across sources",
-      "Full ingestion audit trail retained",
-    ],
-    demo: <IngestionDemo />,
-    reversed: false,
-  },
-  {
-    number: "02",
-    tag: "Matching",
-    title: "Connect income to every recording and right it belongs to.",
-    description:
-      "Every income row is matched to the correct ISRC, ISWC, work, recording, artist, writer and rights-holder. Partial matches are flagged with confidence scores. Unmatched income never falls through the cracks.",
-    bullets: [
-      "ISRC and ISWC matching across your full catalogue",
-      "Confidence scoring on every match",
-      "Partial and no-match queues for human review",
-      "Matching history and decision audit trail",
-    ],
-    demo: <MatchingDemo />,
-    reversed: true,
-  },
-  {
-    number: "03",
-    tag: "Contract Intelligence",
-    title: "Read the contract. Understand the payment.",
-    description:
-      "Debaser extracts payable terms from contract PDFs — rates, territories, recoupment structures, deductions, exclusions — and uses them to validate every payment and detect breaches automatically.",
-    bullets: [
-      "Extracts rates, splits, recoupment thresholds",
-      "Supports complex cross-collateralisation",
-      "Territory exclusions and window restrictions",
-      "Contract breach detection on every run",
-    ],
-    demo: <ContractDemo />,
-    reversed: false,
-  },
-  {
-    number: "04",
-    tag: "Anomaly Detection",
-    title: "Find what's broken before it breaks a relationship.",
-    description:
-      "Every royalty run is screened against prior periods, contract terms, and statistical baselines. Drops, duplicates, impossible values, early deductions — all surfaced before the money moves.",
-    bullets: [
-      "Period-over-period variance detection",
-      "Duplicate statement identification",
-      "Deduction timing and threshold validation",
-      "Prioritised anomaly queue with severity scoring",
-    ],
-    demo: <AnomalyDemo />,
-    reversed: true,
-  },
-  {
-    number: "05",
-    tag: "Explainability",
-    title: "Every number should be able to defend itself.",
-    description:
-      "Any income figure, deduction or variance can be interrogated in plain English. Debaser cites the specific statement rows, contract clauses and catalogue records behind every answer — so you can stand behind them too.",
-    bullets: [
-      "Natural language Q&A over your royalty data",
-      "Source-level citations on every response",
-      "Explainable to artists, managers and lawyers",
-      "Full reasoning trace available for audit",
-    ],
-    demo: <ExplainDemo />,
-    reversed: false,
-  },
-  {
-    number: "06",
-    tag: "Missing Income",
-    title: "Find the money that never arrived.",
-    description:
-      "Debaser compares expected income across every right, territory and source against what was actually received. Gaps are quantified, claim packs assembled and the evidence handed to your team — ready to file.",
-    bullets: [
-      "Cross-territory income gap analysis",
-      "Unregistered works and recordings flagged",
-      "Claim-ready evidence packs per territory",
-      "Historical backfill analysis available",
-    ],
-    demo: <MissingIncomeDemo />,
-    reversed: true,
-  },
+const FEATURE_DEMOS: { demo: React.ReactNode; reversed: boolean }[] = [
+  { demo: <IngestionDemo />, reversed: false },
+  { demo: <MatchingDemo />, reversed: true },
+  { demo: <ContractDemo />, reversed: false },
+  { demo: <AnomalyDemo />, reversed: true },
+  { demo: <ExplainDemo />, reversed: false },
+  { demo: <MissingIncomeDemo />, reversed: true },
 ];
 
 // ── Page ──────────────────────────────────────────────────────────────────
 
 export default function ProductPage() {
+  const { variant } = useHomepageVariant();
+  const content = getFeaturesContent(variant);
+
   return (
     <div className="min-h-screen bg-canvas">
       <Nav />
@@ -779,14 +726,22 @@ export default function ProductPage() {
           >
             <div className="inline-flex items-center gap-2 text-acid text-[10px] font-mono tracking-wide mb-6 border border-acid/20 bg-acid/[0.06] rounded-full px-3.5 py-1.5">
               <div className="w-1 h-1 rounded-full bg-acid" />
-              Product
+              <Editable doc="features" path="hero.eyebrow" value={content.hero.eyebrow} />
             </div>
-            <h1 className="text-ink text-5xl lg:text-6xl font-bold tracking-tight leading-[1.06] mb-6 text-balance">
-              Every module you need to run royalties properly.
-            </h1>
-            <p className="text-ink-secondary text-lg leading-relaxed max-w-2xl">
-              Six interconnected capabilities — from ingestion to missing income detection — built as a single AI-native system. No stitching spreadsheets. No guessing where the money went.
-            </p>
+            <Editable
+              doc="features"
+              as="h1"
+              path="hero.headline"
+              value={content.hero.headline}
+              className="text-ink text-5xl lg:text-6xl font-bold tracking-tight leading-[1.06] mb-6 text-balance block"
+            />
+            <Editable
+              doc="features"
+              as="p"
+              path="hero.subhead"
+              value={content.hero.subhead}
+              className="text-ink-secondary text-lg leading-relaxed max-w-2xl block"
+            />
           </motion.div>
 
           {/* Feature nav pills */}
@@ -796,12 +751,12 @@ export default function ProductPage() {
             transition={{ delay: 0.3, duration: 0.6, ease: EASE }}
             className="flex flex-wrap gap-2 mt-10"
           >
-            {FEATURES.map((f) => (
+            {content.items.map((f, i) => (
               <span
-                key={f.number}
+                key={i}
                 className="text-[11px] font-mono text-ink-secondary border border-black/[0.07] bg-canvas-card rounded-full px-3 py-1.5 hover:border-black/[0.14] hover:text-ink transition-colors cursor-default"
               >
-                <span className="text-ink-tertiary mr-1.5">{f.number}</span>
+                <span className="text-ink-tertiary mr-1.5">{String(i + 1).padStart(2, "0")}</span>
                 {f.tag}
               </span>
             ))}
@@ -810,8 +765,8 @@ export default function ProductPage() {
       </section>
 
       {/* Feature sections */}
-      {FEATURES.map((f) => (
-        <Feature key={f.number} {...f} />
+      {content.items.map((item, i) => (
+        <Feature key={i} index={i} item={item} {...FEATURE_DEMOS[i]} />
       ))}
 
       {/* CTA */}
@@ -824,24 +779,32 @@ export default function ProductPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: EASE }}
           >
-            <h2 className="text-ink text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-balance max-w-2xl mx-auto">
-              Ready to see it on your catalogue?
-            </h2>
-            <p className="text-ink-secondary text-lg mb-10 max-w-xl mx-auto">
-              Send us last quarter&apos;s royalty mess. We&apos;ll show you what&apos;s wrong.
-            </p>
+            <Editable
+              doc="features"
+              as="h2"
+              path="cta.headline"
+              value={content.cta.headline}
+              className="text-ink text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-balance max-w-2xl mx-auto block"
+            />
+            <Editable
+              doc="features"
+              as="p"
+              path="cta.subhead"
+              value={content.cta.subhead}
+              className="text-ink-secondary text-lg mb-10 max-w-xl mx-auto block"
+            />
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
                 href="/#access"
                 className="bg-btn-primary text-btn-primary-fg text-sm font-medium px-7 py-3 rounded-xl hover:bg-btn-primary/90 transition-all"
               >
-                Request early access
+                <Editable doc="features" path="cta.ctaPrimary" value={content.cta.ctaPrimary} />
               </a>
               <a
                 href="/"
                 className="border border-black/[0.1] text-ink-secondary text-sm px-7 py-3 rounded-xl hover:border-black/[0.2] hover:text-ink transition-all"
               >
-                Back to overview
+                <Editable doc="features" path="cta.ctaSecondary" value={content.cta.ctaSecondary} />
               </a>
             </div>
           </motion.div>

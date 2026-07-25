@@ -81,10 +81,13 @@ async function saveViaGitHubCommit(fileName: string, segments: string[], value: 
   throw new Error(`Failed to commit ${fileName} — someone else edited it at the same time.`);
 }
 
+const KNOWN_DOCS = ["homepage", "features"];
+
 export async function POST(request: Request) {
-  const { variant, path: fieldPath, value } = await request.json();
+  const { doc, variant, path: fieldPath, value } = await request.json();
 
   if (
+    !KNOWN_DOCS.includes(doc) ||
     (variant !== "v1" && variant !== "v2") ||
     typeof fieldPath !== "string" ||
     typeof value !== "string"
@@ -92,7 +95,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
 
-  const fileName = `homepage.${variant}.json`;
+  const fileName = `${doc}.${variant}.json`;
   const segments = fieldPath.split(".");
   const onVercel = process.env.VERCEL === "1";
 

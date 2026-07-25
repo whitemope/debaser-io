@@ -9,11 +9,13 @@ export default function Editable({
   value,
   as: Tag = "span",
   className,
+  doc = "homepage",
 }: {
   path: string;
   value: string;
   as?: "span" | "h1" | "h2" | "h3" | "p";
   className?: string;
+  doc?: "homepage" | "features";
 }) {
   const { editMode } = useEditMode();
   const { variant } = useHomepageVariant();
@@ -32,7 +34,7 @@ export default function Editable({
       const res = await fetch("/api/content", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ variant, path, value: next }),
+        body: JSON.stringify({ doc, variant, path, value: next }),
       });
       const result = await res.json();
       if (!res.ok) throw new Error(result.error ?? "save failed");
