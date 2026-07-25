@@ -82,13 +82,6 @@ async function saveViaGitHubCommit(fileName: string, segments: string[], value: 
 }
 
 export async function POST(request: Request) {
-  if (process.env.VERCEL_ENV === "production") {
-    return NextResponse.json(
-      { error: "Editing is disabled on the production deployment." },
-      { status: 403 }
-    );
-  }
-
   const { variant, path: fieldPath, value } = await request.json();
 
   if (

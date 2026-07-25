@@ -59,31 +59,29 @@ export default function Nav() {
           >
             {variant === "v1" ? "Option 1" : "Option 2"}
           </button>
-          {process.env.NEXT_PUBLIC_ALLOW_CONTENT_EDIT !== "false" && (
-            <button
-              onClick={toggleEditMode}
-              aria-label="Toggle copy edit mode"
-              className={`p-1 rounded-[4px] transition-colors ${
-                editMode
-                  ? "text-acid opacity-70 hover:opacity-100"
-                  : "text-ink-tertiary opacity-[0.15] hover:opacity-50"
-              }`}
+          <button
+            onClick={toggleEditMode}
+            aria-label="Toggle copy edit mode"
+            className={`p-1 rounded-[4px] transition-colors ${
+              editMode
+                ? "text-acid opacity-70 hover:opacity-100"
+                : "text-ink-tertiary opacity-[0.15] hover:opacity-50"
+            }`}
+          >
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
-                <path d="m15 5 4 4" />
-              </svg>
-            </button>
-          )}
+              <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+              <path d="m15 5 4 4" />
+            </svg>
+          </button>
         </div>
 
         <div className="hidden md:flex items-center gap-7">
