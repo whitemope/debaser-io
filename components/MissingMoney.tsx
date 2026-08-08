@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { EASE } from "@/lib/animation";
 import { useHomepageVariant } from "@/components/HomepageVariantContext";
-import { getHomepageContent } from "@/lib/homepage-content";
+import { useHomepageContentLive } from "@/lib/live-content";
 import Editable from "@/components/Editable";
 
 function GapVisual() {
@@ -125,7 +125,7 @@ function GapVisual() {
 
 export default function MissingMoney() {
   const { variant } = useHomepageVariant();
-  const content = getHomepageContent(variant).missingMoney;
+  const content = useHomepageContentLive(variant).missingMoney;
   const features = content.features;
 
   return (

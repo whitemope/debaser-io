@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useEditMode } from "@/components/EditModeContext";
 import { useHomepageVariant } from "@/components/HomepageVariantContext";
+import { useRefreshLiveContent } from "@/lib/live-content";
 
 export default function Editable({
   path,
@@ -19,6 +20,7 @@ export default function Editable({
 }) {
   const { editMode } = useEditMode();
   const { variant } = useHomepageVariant();
+  const { refreshHomepage, refreshFeatures } = useRefreshLiveContent();
   const [status, setStatus] = useState<"idle" | "saving" | "committed" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -38,9 +40,13 @@ export default function Editable({
       });
       const result = await res.json();
       if (!res.ok) throw new Error(result.error ?? "save failed");
+      // Pull the fresh copy back in immediately rather than waiting for the
+      // next natural fetch — this is what makes the edit show up right away.
+      if (doc === "features") refreshFeatures(variant);
+      else refreshHomepage(variant);
       if (result.mode === "commit") {
         setStatus("committed");
-        setTimeout(() => setStatus("idle"), 6000);
+        setTimeout(() => setStatus("idle"), 4000);
       } else {
         setStatus("idle");
       }
@@ -54,7 +60,7 @@ export default function Editable({
     <Tag
       title={
         status === "committed"
-          ? "Committed to GitHub — redeploying, refresh this page in about a minute"
+          ? "Saved — live now"
           : status === "error"
             ? errorMessage
             : undefined

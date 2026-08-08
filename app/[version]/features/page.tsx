@@ -5,7 +5,7 @@ import { motion, useInView } from "framer-motion";
 import Nav from "@/components/Nav";
 import { EASE } from "@/lib/animation";
 import { useHomepageVariant } from "@/components/HomepageVariantContext";
-import { getFeaturesContent } from "@/lib/features-content";
+import { useFeaturesContentLive } from "@/lib/live-content";
 import Editable from "@/components/Editable";
 
 // ── Shared helpers ────────────────────────────────────────────────────────
@@ -708,7 +708,7 @@ const FEATURE_DEMOS: { demo: React.ReactNode; reversed: boolean }[] = [
 
 export default function ProductPage() {
   const { variant } = useHomepageVariant();
-  const content = getFeaturesContent(variant);
+  const content = useFeaturesContentLive(variant);
 
   return (
     <div className="min-h-screen bg-canvas">

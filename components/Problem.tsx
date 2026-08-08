@@ -3,12 +3,12 @@
 import { motion } from "framer-motion";
 import { EASE, cardVariants, containerVariants } from "@/lib/animation";
 import { useHomepageVariant } from "@/components/HomepageVariantContext";
-import { getHomepageContent } from "@/lib/homepage-content";
+import { useHomepageContentLive } from "@/lib/live-content";
 import Editable from "@/components/Editable";
 
 export default function Problem() {
   const { variant } = useHomepageVariant();
-  const content = getHomepageContent(variant).problem;
+  const content = useHomepageContentLive(variant).problem;
   const problems = content.items;
 
   return (

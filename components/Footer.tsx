@@ -5,13 +5,13 @@ import OptionToggle from "@/components/OptionToggle";
 import GhostMark from "@/components/GhostMark";
 import { usePathname } from "next/navigation";
 import { useHomepageVariant } from "@/components/HomepageVariantContext";
-import { getHomepageContent } from "@/lib/homepage-content";
+import { useHomepageContentLive } from "@/lib/live-content";
 import Editable from "@/components/Editable";
 
 export default function Footer() {
   const year = new Date().getFullYear();
   const { variant } = useHomepageVariant();
-  const content = getHomepageContent(variant).footer;
+  const content = useHomepageContentLive(variant).footer;
   const pathname = usePathname();
   const homeBase = pathname === `/${variant}` ? "" : `/${variant}`;
 

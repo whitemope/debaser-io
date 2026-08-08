@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { EASE } from "@/lib/animation";
 import { useState } from "react";
 import { useHomepageVariant } from "@/components/HomepageVariantContext";
-import { getHomepageContent } from "@/lib/homepage-content";
+import { useHomepageContentLive } from "@/lib/live-content";
 import Editable from "@/components/Editable";
 
 type FormState = "idle" | "submitting" | "success";
@@ -22,7 +22,7 @@ const companyTypes = [
 
 export default function EarlyAccessForm() {
   const { variant } = useHomepageVariant();
-  const content = getHomepageContent(variant).earlyAccess;
+  const content = useHomepageContentLive(variant).earlyAccess;
   const [formState, setFormState] = useState<FormState>("idle");
   const [formData, setFormData] = useState({
     name: "",

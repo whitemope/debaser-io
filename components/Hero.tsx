@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { EASE } from "@/lib/animation";
 import { useHomepageVariant } from "@/components/HomepageVariantContext";
-import { getHomepageContent } from "@/lib/homepage-content";
+import { useHomepageContentLive } from "@/lib/live-content";
 import Editable from "@/components/Editable";
 
 const fadeUp = {
@@ -432,7 +432,7 @@ function CataloguePortfolioMockup() {
 export default function Hero() {
   const { variant } = useHomepageVariant();
   const isV2 = variant === "v2";
-  const content = getHomepageContent(variant).hero;
+  const content = useHomepageContentLive(variant).hero;
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-0">

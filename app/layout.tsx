@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Hanken_Grotesk } from "next/font/google";
 import { HomepageVariantProvider } from "@/components/HomepageVariantContext";
 import { EditModeProvider } from "@/components/EditModeContext";
+import { LiveContentProvider } from "@/lib/live-content";
 import "./globals.css";
 
 const inter = Inter({
@@ -70,7 +71,9 @@ export default function RootLayout({
       </head>
       <body className="bg-canvas text-ink antialiased">
         <HomepageVariantProvider>
-          <EditModeProvider>{children}</EditModeProvider>
+          <LiveContentProvider>
+            <EditModeProvider>{children}</EditModeProvider>
+          </LiveContentProvider>
         </HomepageVariantProvider>
       </body>
     </html>

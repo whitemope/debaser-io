@@ -3,13 +3,13 @@
 import { motion } from "framer-motion";
 import { EASE } from "@/lib/animation";
 import { useHomepageVariant } from "@/components/HomepageVariantContext";
-import { getHomepageContent } from "@/lib/homepage-content";
+import { useHomepageContentLive } from "@/lib/live-content";
 import Editable from "@/components/Editable";
 
 export default function ProductFlow() {
   const { variant } = useHomepageVariant();
   const isV2 = variant === "v2";
-  const content = getHomepageContent(variant).productFlow;
+  const content = useHomepageContentLive(variant).productFlow;
   const steps = content.steps;
 
   return (

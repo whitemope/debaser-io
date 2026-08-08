@@ -2,8 +2,19 @@ import { NextResponse } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
 
+// Reads must never be served from Next's route cache — an edit committed a
+// moment ago has to be visible on the very next request, not after a rebuild.
+export const dynamic = "force-dynamic";
+
 const CONTENT_DIR = path.join(process.cwd(), "content");
 const GITHUB_API = "https://api.github.com";
+
+// The features doc only has copy for v1/v2 — v3 reuses v1, same fallback
+// lib/features-content.ts applies on the client for the bundled default.
+function resolveFileName(doc: string, variant: string): string {
+  const effectiveVariant = doc === "features" && variant === "v3" ? "v1" : variant;
+  return `${doc}.${effectiveVariant}.json`;
+}
 
 function setAtPath(obj: unknown, segments: string[], value: string) {
   let cur = obj as Record<string, unknown>;
@@ -81,6 +92,40 @@ async function saveViaGitHubCommit(fileName: string, segments: string[], value: 
   throw new Error(`Failed to commit ${fileName} — someone else edited it at the same time.`);
 }
 
+async function readViaFilesystem(fileName: string) {
+  const filePath = path.join(CONTENT_DIR, fileName);
+  const raw = await fs.readFile(filePath, "utf-8");
+  return JSON.parse(raw);
+}
+
+async function readViaGitHub(fileName: string) {
+  const owner = process.env.VERCEL_GIT_REPO_OWNER;
+  const repo = process.env.VERCEL_GIT_REPO_SLUG;
+  const branch = process.env.VERCEL_GIT_COMMIT_REF;
+  const token = process.env.GITHUB_TOKEN;
+
+  if (!owner || !repo || !branch || !token) {
+    throw new Error("Missing GitHub read configuration.");
+  }
+
+  const apiUrl = `${GITHUB_API}/repos/${owner}/${repo}/contents/content/${fileName}?ref=${branch}`;
+  const res = await fetch(apiUrl, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/vnd.github+json",
+    },
+    // A few seconds of edge caching keeps a traffic spike from hammering the
+    // GitHub API, while still reflecting a save within moments, not minutes.
+    next: { revalidate: 5 },
+  });
+
+  if (!res.ok) {
+    throw new Error(`Failed to read ${fileName} from GitHub (${res.status}).`);
+  }
+  const file = await res.json();
+  return JSON.parse(Buffer.from(file.content, "base64").toString("utf-8"));
+}
+
 const KNOWN_DOCS = ["homepage", "features"];
 
 export async function POST(request: Request) {
@@ -110,6 +155,37 @@ export async function POST(request: Request) {
   } catch (err) {
     return NextResponse.json(
       { error: err instanceof Error ? err.message : "Failed to save." },
+      { status: 500 }
+    );
+  }
+}
+
+// Reads the current copy live — on Vercel that means straight from GitHub,
+// so a save shows up on the next request instead of waiting on a rebuild.
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const doc = searchParams.get("doc") ?? "";
+  const variant = searchParams.get("variant") ?? "";
+
+  if (
+    !KNOWN_DOCS.includes(doc) ||
+    (variant !== "v1" && variant !== "v2" && variant !== "v3")
+  ) {
+    return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+  }
+
+  const fileName = resolveFileName(doc, variant);
+  const onVercel = process.env.VERCEL === "1";
+
+  try {
+    const data = onVercel ? await readViaGitHub(fileName) : await readViaFilesystem(fileName);
+    return NextResponse.json(
+      { ok: true, data },
+      { headers: { "Cache-Control": "no-store" } }
+    );
+  } catch (err) {
+    return NextResponse.json(
+      { error: err instanceof Error ? err.message : "Failed to load." },
       { status: 500 }
     );
   }

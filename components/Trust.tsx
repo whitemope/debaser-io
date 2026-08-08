@@ -3,13 +3,13 @@
 import { motion } from "framer-motion";
 import { EASE, cardVariants, containerVariants } from "@/lib/animation";
 import { useHomepageVariant } from "@/components/HomepageVariantContext";
-import { getHomepageContent } from "@/lib/homepage-content";
+import { useHomepageContentLive } from "@/lib/live-content";
 import Editable from "@/components/Editable";
 
 export default function Trust() {
   const { variant } = useHomepageVariant();
   const isV2 = variant === "v2";
-  const content = getHomepageContent(variant).trust;
+  const content = useHomepageContentLive(variant).trust;
   const trustItems = content.items;
 
   return (

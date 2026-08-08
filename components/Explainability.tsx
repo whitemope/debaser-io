@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { EASE } from "@/lib/animation";
 import { useHomepageVariant } from "@/components/HomepageVariantContext";
-import { getHomepageContent } from "@/lib/homepage-content";
+import { useHomepageContentLive } from "@/lib/live-content";
 import Editable from "@/components/Editable";
 
 function ExplainChat({
@@ -136,7 +136,7 @@ function ExplainChat({
 
 export default function Explainability() {
   const { variant } = useHomepageVariant();
-  const content = getHomepageContent(variant).explainability;
+  const content = useHomepageContentLive(variant).explainability;
 
   return (
     <section className="py-28 md:py-36 bg-canvas relative overflow-hidden">
