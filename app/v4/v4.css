@@ -1,0 +1,245 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Version 4 homepage — a standalone design system, scoped under `.v4`.
+   Deliberately does not touch the tokens in app/globals.css: this page
+   looks nothing like the rest of the site on purpose.
+   ───────────────────────────────────────────────────────────────────── */
+
+.v4 {
+  --v4-bg: #f6f8f3;
+  --v4-bg-soft: #eef1e9;
+  --v4-ink: #151619;
+  --v4-ink-secondary: rgba(21, 22, 25, 0.62);
+  --v4-ink-tertiary: rgba(21, 22, 25, 0.42);
+  --v4-line: rgba(21, 22, 25, 0.1);
+  --v4-cream: #f6f8f3;
+  --v4-card-radius: 32px;
+  --v4-pill-radius: 999px;
+
+  background: var(--v4-bg);
+  color: var(--v4-ink);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+.v4 * {
+  box-sizing: border-box;
+}
+
+.v4 ::selection {
+  background: var(--v4-ink);
+  color: var(--v4-bg);
+}
+
+.v4-heading {
+  font-family: var(--font-grotesque), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
+}
+
+.v4-eyebrow {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--v4-ink-tertiary);
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────── */
+
+.v4-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 26px;
+  border-radius: var(--v4-pill-radius);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, opacity 0.2s ease;
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+}
+
+.v4-btn:hover {
+  transform: translateY(-2px);
+}
+
+.v4-btn-cream {
+  background: var(--v4-cream);
+  color: var(--v4-ink);
+  box-shadow: 0 1px 0 rgba(21, 22, 25, 0.08) inset;
+}
+
+.v4-btn-dark {
+  background: var(--v4-ink);
+  color: var(--v4-cream);
+}
+
+.v4-btn-ghost {
+  background: transparent;
+  color: var(--v4-ink);
+  border: 1px solid var(--v4-line);
+}
+
+/* ── Nav ─────────────────────────────────────────────────────────────── */
+
+.v4-nav-pill {
+  background: rgba(246, 248, 243, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(21, 22, 25, 0.06);
+  border-radius: var(--v4-pill-radius);
+  box-shadow: 0 8px 30px rgba(21, 22, 25, 0.05);
+}
+
+/* ── Kinetic rotating word ───────────────────────────────────────────── */
+
+.v4-kinetic {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  vertical-align: bottom;
+  height: 1em;
+}
+
+.v4-kinetic-word {
+  display: inline-block;
+  animation: v4-kinetic-in 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes v4-kinetic-in {
+  from {
+    transform: translateY(60%);
+    opacity: 0;
+    filter: blur(6px);
+  }
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* ── Floating jargon badges around the hero ─────────────────────────── */
+
+.v4-float-badge {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 14px;
+  border-radius: var(--v4-pill-radius);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(21, 22, 25, 0.08);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--v4-ink-secondary);
+  animation: v4-bob 6s ease-in-out infinite;
+  backdrop-filter: blur(6px);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+@keyframes v4-bob {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ── Grainy gradient blob (product card artwork) ────────────────────── */
+
+.v4-gradient-blob {
+  position: relative;
+  background: conic-gradient(
+    from 200deg at 50% 40%,
+    #e7a765 0deg,
+    #d9866f 90deg,
+    #8fa876 180deg,
+    #e0c073 270deg,
+    #e7a765 360deg
+  );
+}
+
+.v4-gradient-blob::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/></svg>");
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+
+/* ── Stacked product cards ───────────────────────────────────────────── */
+
+.v4-stack {
+  position: relative;
+}
+
+.v4-stack-card {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--v4-card-radius);
+  background: var(--v4-ink);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+
+/* ── Marquee ─────────────────────────────────────────────────────────── */
+
+.v4-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: v4-marquee 32s linear infinite;
+}
+
+.v4-marquee-track-slow {
+  animation-duration: 60s;
+}
+
+.v4-marquee-track-reverse {
+  animation-direction: reverse;
+}
+
+@keyframes v4-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.v4-marquee-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+
+/* ── Scroll reveal ───────────────────────────────────────────────────── */
+
+.v4-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.v4-reveal.v4-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Divider gradient (section transition) ──────────────────────────── */
+
+.v4-fade-to-light {
+  height: 120px;
+  background: linear-gradient(to bottom, var(--v4-ink), var(--v4-bg));
+}
+
+.v4-fade-to-dark {
+  height: 120px;
+  background: linear-gradient(to bottom, var(--v4-bg), var(--v4-ink));
+}
+
+@media (max-width: 768px) {
+  .v4-float-badge {
+    display: none;
+  }
+}
