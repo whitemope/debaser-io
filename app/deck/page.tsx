@@ -1,8 +1,6 @@
-"use client";
-import { useRouter } from "next/navigation";
-import PitchDeck from "@/components/deck/PitchDeck";
+import { redirect } from "next/navigation";
 
-export default function DeckPage() {
-  const router = useRouter();
-  return <PitchDeck onClose={() => router.push("/")} />;
+// Bare /deck has no single deck to show. Send visitors to the current default.
+export default function DeckIndexPage() {
+  redirect("/deck/introducing-debaser-version-1");
 }

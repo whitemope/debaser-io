@@ -8,7 +8,6 @@ import Editable from "@/components/Editable";
 
 export default function Agents() {
   const { variant } = useHomepageVariant();
-  const isV2 = variant === "v2";
   const content = getHomepageContent(variant).agents;
   const agents = content.items;
 
@@ -87,7 +86,7 @@ export default function Agents() {
           ))}
         </motion.div>
 
-        {isV2 && content.note && (
+        {content.note && (
           <p className="text-ink-tertiary text-sm text-center mt-8">
             <Editable path="agents.note" value={content.note} />
           </p>

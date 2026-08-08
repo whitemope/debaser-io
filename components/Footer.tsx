@@ -3,6 +3,7 @@
 import ThemeToggle from "@/components/ThemeToggle";
 import OptionToggle from "@/components/OptionToggle";
 import GhostMark from "@/components/GhostMark";
+import { usePathname } from "next/navigation";
 import { useHomepageVariant } from "@/components/HomepageVariantContext";
 import { getHomepageContent } from "@/lib/homepage-content";
 import Editable from "@/components/Editable";
@@ -11,6 +12,8 @@ export default function Footer() {
   const year = new Date().getFullYear();
   const { variant } = useHomepageVariant();
   const content = getHomepageContent(variant).footer;
+  const pathname = usePathname();
+  const homeBase = pathname === `/${variant}` ? "" : `/${variant}`;
 
   return (
     <footer className="border-t border-black/[0.05] bg-canvas py-12">
@@ -33,31 +36,31 @@ export default function Footer() {
 
           <div className="flex flex-wrap gap-x-8 gap-y-3">
             <a
-              href="#product"
+              href={`${homeBase}#product`}
               className="text-ink-tertiary text-sm hover:text-ink-secondary transition-colors"
             >
               Product
             </a>
             <a
-              href="#agents"
+              href={`${homeBase}#agents`}
               className="text-ink-tertiary text-sm hover:text-ink-secondary transition-colors"
             >
               Agents
             </a>
             <a
-              href="#use-cases"
+              href={`${homeBase}#use-cases`}
               className="text-ink-tertiary text-sm hover:text-ink-secondary transition-colors"
             >
               Use cases
             </a>
             <a
-              href="#vision"
+              href={`${homeBase}#vision`}
               className="text-ink-tertiary text-sm hover:text-ink-secondary transition-colors"
             >
               Vision
             </a>
             <a
-              href="#access"
+              href={`${homeBase}#access`}
               className="text-ink-tertiary text-sm hover:text-ink-secondary transition-colors"
             >
               Early access

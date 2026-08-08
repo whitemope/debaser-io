@@ -3,40 +3,48 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { isAuthenticated, signOut } from "@/lib/auth";
-import PitchDeck from "@/components/deck/PitchDeck";
-import PitchDeckHarness from "@/components/deck/PitchDeckHarness";
 import GhostMark from "@/components/GhostMark";
 
 type DeckMeta = {
   id: string;
+  slug: string;
   title: string;
   subtitle: string;
   date: string;
   slides: number;
   status: "ready" | "skeleton";
+  /** Hero headline from the deck's own cover slide, shown on the thumbnail. */
+  heroText: string;
 };
+
+// Always reflects the current month/year. No manual date bumps between updates.
+const DECK_DATE_SHORT = new Date().toLocaleDateString("en-US", { month: "short", year: "numeric" });
 
 const DECKS: DeckMeta[] = [
   {
     id: "july-2026-harness",
-    title: "July 2026 Pitch Deck - Harness",
+    slug: "introducing-debaser-version-2",
+    title: "Introducing Debaser (Version 2)",
     subtitle: "Pre-seed · Investor presentation",
-    date: "Jul 2026",
+    date: DECK_DATE_SHORT,
     slides: 16,
     status: "ready",
+    heroText: "The intelligence layer for music royalties.",
   },
   {
     id: "june-2026",
-    title: "June 2026 Pitch Deck",
-    subtitle: "Series Seed · Investor presentation",
-    date: "Jun 2026",
-    slides: 16,
+    slug: "introducing-debaser-version-1",
+    title: "Introducing Debaser (Version 1)",
+    subtitle: "Pre-seed · Investor presentation",
+    date: DECK_DATE_SHORT,
+    slides: 15,
     status: "ready",
+    heroText: "The AI royalty operations platform for the modern music rights economy.",
   },
-  { id: "sk1", title: "", subtitle: "", date: "", slides: 0, status: "skeleton" },
-  { id: "sk2", title: "", subtitle: "", date: "", slides: 0, status: "skeleton" },
-  { id: "sk3", title: "", subtitle: "", date: "", slides: 0, status: "skeleton" },
-  { id: "sk4", title: "", subtitle: "", date: "", slides: 0, status: "skeleton" },
+  { id: "sk1", slug: "", title: "", subtitle: "", date: "", slides: 0, status: "skeleton", heroText: "" },
+  { id: "sk2", slug: "", title: "", subtitle: "", date: "", slides: 0, status: "skeleton", heroText: "" },
+  { id: "sk3", slug: "", title: "", subtitle: "", date: "", slides: 0, status: "skeleton", heroText: "" },
+  { id: "sk4", slug: "", title: "", subtitle: "", date: "", slides: 0, status: "skeleton", heroText: "" },
 ];
 
 function DeckCard({ deck, onClick }: { deck: DeckMeta; onClick?: () => void }) {
@@ -63,8 +71,8 @@ function DeckCard({ deck, onClick }: { deck: DeckMeta; onClick?: () => void }) {
           <GhostMark className="w-4 h-4 text-ink" />
           <span className="text-ink text-xs font-semibold tracking-tight">debaser</span>
         </div>
-        <p className="relative text-ink font-bold text-[13px] leading-snug text-center tracking-tight">
-          {deck.title.replace(/ - Harness$/, "")}
+        <p className="relative text-ink font-bold text-[11px] leading-snug text-center tracking-tight">
+          {deck.heroText}
         </p>
         <p className="relative text-ink-tertiary text-[9px] font-mono">{deck.subtitle}</p>
         {/* Hover overlay */}
@@ -95,7 +103,6 @@ function DeckCard({ deck, onClick }: { deck: DeckMeta; onClick?: () => void }) {
 export default function Dashboard() {
   const router = useRouter();
   const [checked, setChecked] = useState(false);
-  const [openDeckId, setOpenDeckId] = useState<string | null>(null);
 
   useEffect(() => {
     if (!isAuthenticated()) {
@@ -119,7 +126,7 @@ export default function Dashboard() {
         <header className="border-b border-black/[0.05] bg-canvas/80 backdrop-blur-md sticky top-0 z-30">
           <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <a href="/" className="flex items-center gap-2.5">
+              <a href="/v1" className="flex items-center gap-2.5">
                 <GhostMark className="w-6 h-6 text-ink" />
                 <span className="text-ink font-semibold tracking-tight text-base">debaser</span>
               </a>
@@ -173,21 +180,13 @@ export default function Dashboard() {
                 <DeckCard
                   key={deck.id}
                   deck={deck}
-                  onClick={deck.status === "ready" ? () => setOpenDeckId(deck.id) : undefined}
+                  onClick={deck.status === "ready" ? () => router.push(`/deck/${deck.slug}`) : undefined}
                 />
               ))}
             </div>
           </section>
         </main>
       </div>
-
-      {/* Deck modal */}
-      {openDeckId === "july-2026-harness" && (
-        <PitchDeckHarness onClose={() => setOpenDeckId(null)} />
-      )}
-      {openDeckId === "june-2026" && (
-        <PitchDeck onClose={() => setOpenDeckId(null)} />
-      )}
     </>
   );
 }

@@ -271,6 +271,164 @@ function RoyaltyRunMockup() {
   );
 }
 
+function CataloguePortfolioMockup() {
+  const flags = [
+    {
+      icon: "⚠",
+      color: "text-amber-400",
+      main: "$1.1M unmatched to known works across the portfolio",
+      sub: "Catalogue 142 · Spotify US · 34 recordings with ISRC gaps",
+      borderBottom: true,
+    },
+    {
+      icon: "⚠",
+      color: "text-amber-400",
+      main: "Recoupment clause conflict on a top-20 catalogue",
+      sub: "Catalogue 58 · Contract §5.1(c) — manual review required",
+      borderBottom: true,
+    },
+    {
+      icon: "ℹ",
+      color: "text-blue-400",
+      main: "6 catalogues missing CMO statements this quarter",
+      sub: "DE, JP, BR · claim evidence already prepared",
+      borderBottom: false,
+    },
+  ];
+
+  return (
+    <div className="relative w-full max-w-3xl mx-auto">
+      <div
+        className="force-light bg-white border border-black/[0.07] rounded-2xl overflow-hidden"
+        style={{
+          boxShadow:
+            "0 0 0 1px rgba(16, 21, 133,0.07), 0 40px 80px rgba(16, 21, 133,0.12), 0 16px 40px rgba(16, 21, 133,0.07)",
+        }}
+      >
+        {/* Window chrome */}
+        <div className="flex items-center justify-between px-5 py-3.5 border-b border-black/[0.05] bg-black/[0.02]">
+          <div className="flex items-center gap-3">
+            <div className="flex gap-1.5">
+              <div className="w-2.5 h-2.5 rounded-full bg-black/[0.08]" />
+              <div className="w-2.5 h-2.5 rounded-full bg-black/[0.08]" />
+              <div className="w-2.5 h-2.5 rounded-full bg-black/[0.08]" />
+            </div>
+            <div className="w-px h-3.5 bg-black/[0.06]" />
+            <span className="text-[11px] text-ink-tertiary font-mono tracking-wide">
+              debaser · catalogue portfolio
+            </span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <div className="w-1.5 h-1.5 rounded-full bg-acid animate-pulse-slow" />
+            <span className="text-[11px] text-acid/80 font-mono">
+              portfolio synced
+            </span>
+          </div>
+        </div>
+
+        <div className="p-5 sm:p-6">
+          {/* Portfolio header */}
+          <div className="flex items-start justify-between mb-5">
+            <div>
+              <p className="text-[10px] text-ink-tertiary font-mono tracking-wide mb-1">
+                Q2 2026 · Portfolio-wide
+              </p>
+              <h3 className="text-ink text-xl font-semibold tracking-tight">
+                Catalogue Portfolio
+              </h3>
+            </div>
+            <div className="bg-black/[0.03] border border-black/[0.06] rounded-md px-2.5 py-1">
+              <span className="text-ink-secondary text-xs font-mono">
+                212 catalogues
+              </span>
+            </div>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-5">
+            <div className="bg-canvas rounded-xl border border-acid/20 p-3.5">
+              <div className="text-acid text-xl font-bold tabular-nums">
+                $2.84B
+              </div>
+              <div className="text-ink-tertiary text-[11px] mt-0.5 leading-tight">
+                catalogue value tracked
+              </div>
+            </div>
+            <div className="bg-canvas rounded-xl border border-black/[0.05] p-3.5">
+              <div className="text-ink text-xl font-bold tabular-nums">
+                $142.6M
+              </div>
+              <div className="text-ink-tertiary text-[11px] mt-0.5 leading-tight">
+                reconciled this quarter
+              </div>
+            </div>
+            <div className="bg-canvas rounded-xl border border-orange-500/20 p-3.5">
+              <div className="text-orange-400 text-xl font-bold tabular-nums">
+                $6.2M
+              </div>
+              <div className="text-ink-tertiary text-[11px] mt-0.5 leading-tight">
+                flagged for review
+              </div>
+            </div>
+            <div className="bg-canvas rounded-xl border border-black/[0.05] p-3.5">
+              <div className="text-ink text-xl font-bold tabular-nums">96%</div>
+              <div className="text-ink-tertiary text-[11px] mt-0.5 leading-tight">
+                portfolio reconciled
+              </div>
+            </div>
+          </div>
+
+          {/* AI analysis panel */}
+          <div
+            className="rounded-xl p-4 border"
+            style={{
+              background: "rgba(248, 247, 255, 0.90)",
+              borderColor: "rgba(76, 175, 80, 0.30)",
+            }}
+          >
+            <div className="flex items-center gap-2 mb-3.5">
+              <div className="w-1.5 h-1.5 rounded-full bg-acid animate-pulse-slow" />
+              <span className="text-acid text-[10px] font-mono tracking-wide">
+                Findings
+              </span>
+            </div>
+
+            <div className="space-y-3">
+              {flags.map((item, i) => (
+                <div
+                  key={i}
+                  className={`flex gap-3 ${item.borderBottom ? "pb-3 border-b border-black/[0.05]" : ""}`}
+                >
+                  <span className={`${item.color} text-xs mt-0.5 flex-shrink-0`}>
+                    {item.icon}
+                  </span>
+                  <div>
+                    <p className="text-ink/80 text-[13px] leading-relaxed">
+                      {item.main}
+                    </p>
+                    <p className="text-ink-tertiary text-[11px] mt-0.5 font-mono">
+                      {item.sub}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex gap-2.5 mt-4 pt-3.5 border-t border-black/[0.05]">
+              <button className="flex-1 py-2 text-[13px] text-acid border border-acid/25 rounded-lg hover:bg-acid/5 transition-colors font-medium">
+                View portfolio
+              </button>
+              <button className="flex-1 py-2 text-[13px] text-btn-primary-fg bg-btn-primary rounded-lg font-medium hover:bg-btn-primary/90 transition-colors">
+                Export LP report
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Hero() {
   const { variant } = useHomepageVariant();
   const isV2 = variant === "v2";
@@ -358,7 +516,7 @@ export default function Hero() {
           </a>
         </motion.div>
 
-        {isV2 && content.note && (
+        {content.note && (
           <motion.p
             variants={fadeUp}
             custom={0.35}
@@ -375,9 +533,15 @@ export default function Hero() {
           custom={0.45}
           initial="hidden"
           animate="show"
-          className={isV2 ? "" : "mt-12"}
+          className={content.note ? "" : "mt-12"}
         >
-          {isV2 ? <RoyaltyReviewMockup /> : <RoyaltyRunMockup />}
+          {variant === "v3" ? (
+            <CataloguePortfolioMockup />
+          ) : isV2 ? (
+            <RoyaltyReviewMockup />
+          ) : (
+            <RoyaltyRunMockup />
+          )}
         </motion.div>
       </div>
     </section>

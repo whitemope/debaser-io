@@ -5,6 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { EASE } from "@/lib/animation";
 import GhostMark from "@/components/GhostMark";
 
+// Always reflects the current month/year — no manual date bumps between updates.
+const DECK_DATE = new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" });
+
 // ─── Shared primitives ─────────────────────────────────────────────────────
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
@@ -58,14 +61,14 @@ function NumberedList({ items }: { items: string[] }) {
 
 function CoverSlide() {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden">
+    <div className="w-full min-h-full flex flex-col items-center justify-center relative overflow-hidden">
       <div className="absolute inset-0 bg-dot-grid opacity-50" />
-      <div className="relative text-center px-16 max-w-3xl">
+      <div className="relative w-full text-center px-5 py-10 sm:px-10 sm:py-14 lg:px-16 max-w-3xl">
         <div className="flex items-center justify-center gap-2.5 mb-14">
           <GhostMark className="w-9 h-9 text-ink" />
           <span className="text-ink text-2xl font-semibold tracking-tight">debaser</span>
         </div>
-        <H1 className="text-5xl md:text-6xl mb-8">
+        <H1 className="text-3xl sm:text-5xl md:text-6xl mb-8">
           The intelligence layer for music royalties.
         </H1>
         <Body className="text-lg max-w-xl mx-auto mb-8">
@@ -73,7 +76,7 @@ function CoverSlide() {
         </Body>
         <div className="w-12 h-px bg-black/[0.1] mx-auto mb-8" />
         <p className="text-ink-secondary text-sm font-mono mb-1">
-          Investor Deck · July 2026
+          Introducing Debaser · {DECK_DATE}
         </p>
         <p className="text-ink-tertiary text-xs font-mono">Strictly Confidential</p>
       </div>
@@ -85,10 +88,10 @@ function CoverSlide() {
 
 function ProblemSlide() {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center px-16 relative overflow-hidden">
-      <div className="relative text-center max-w-3xl">
+    <div className="w-full min-h-full flex flex-col items-center justify-center px-5 py-10 sm:px-10 sm:py-14 lg:px-16 relative overflow-hidden">
+      <div className="relative w-full text-center max-w-3xl">
         <Eyebrow>02 — The Problem</Eyebrow>
-        <H1 className="text-4xl md:text-5xl mb-8">
+        <H1 className="text-2xl sm:text-4xl md:text-5xl mb-8">
           Royalty teams cannot see the full picture.
         </H1>
         <Body className="text-lg max-w-2xl mx-auto mb-6">
@@ -108,10 +111,10 @@ function ProblemSlide() {
 
 function GapSlide() {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center px-16 relative overflow-hidden">
-      <div className="relative text-center max-w-3xl">
+    <div className="w-full min-h-full flex flex-col items-center justify-center px-5 py-10 sm:px-10 sm:py-14 lg:px-16 relative overflow-hidden">
+      <div className="relative w-full text-center max-w-3xl">
         <Eyebrow>03 — The Gap</Eyebrow>
-        <H1 className="text-5xl md:text-6xl mb-8">
+        <H1 className="text-3xl sm:text-5xl md:text-6xl mb-8">
           The market does not need another royalty calculator.
         </H1>
         <div className="w-12 h-px bg-acid/30 mx-auto mb-8" />
@@ -141,9 +144,9 @@ const productSteps = [
 
 function ProductSlide() {
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
       <Eyebrow>04 — The Product</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-12">One workspace for royalty intelligence.</H1>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-12">One workspace for royalty intelligence.</H1>
       <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
         {productSteps.map((s, i) => (
           <div key={s.n} className="relative bg-canvas-card border border-black/[0.05] rounded-2xl p-5 hover:border-black/[0.1] transition-colors">
@@ -175,12 +178,12 @@ function FirstUseCaseSlide() {
     "Claim-ready evidence.",
   ];
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
       <Eyebrow>05 — The First Use Case</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-3">
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-3">
         Find mistakes and missing money
       </H1>
-      <H1 className="text-4xl md:text-5xl mb-8 text-acid">
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-8 text-acid">
         before the next royalty run.
       </H1>
       <Body className="text-base mb-6 max-w-xl">
@@ -214,9 +217,9 @@ function WhyCustomersBuySlide() {
     "Preserve royalty knowledge when staff leave.",
   ];
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
       <Eyebrow>06 — Why Customers Buy</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-10">The value is measurable.</H1>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-10">The value is measurable.</H1>
       <p className="text-ink-tertiary text-xs font-mono tracking-wide mb-4">Debaser can:</p>
       <div className="max-w-lg mb-8">
         <NumberedList items={items} />
@@ -245,9 +248,9 @@ function WhyNowSlide() {
     },
   ];
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
       <Eyebrow>07 — Why Now</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-12 max-w-xl">Royalty complexity keeps growing.</H1>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-12 max-w-xl">Royalty complexity keeps growing.</H1>
       <div className="grid lg:grid-cols-2 gap-6 mb-8">
         {cards.map((c, i) => (
           <div key={i} className="border border-black/[0.06] rounded-2xl p-7 bg-canvas-card flex flex-col gap-3">
@@ -276,11 +279,11 @@ function CompetitivePositionSlide() {
     { name: "Debaser", job: "Continuous investigation, explanation and action across all of the above.", highlight: true },
   ];
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
       <Eyebrow>08 — Competitive Position</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-10">Debaser works with the existing stack.</H1>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-10">Debaser works with the existing stack.</H1>
       <div className="overflow-x-auto mb-6">
-        <table className="w-full text-sm">
+        <table className="w-full min-w-[480px] text-sm">
           <thead>
             <tr className="border-b border-black/[0.06]">
               <th className="text-left text-ink-tertiary text-[10px] font-mono tracking-wide pb-3 pr-6 w-64">Product type</th>
@@ -325,11 +328,11 @@ function BusinessModelSlide() {
     { name: "Expansion", desc: "Contract intelligence, neighbouring rights, publishing and acquisition monitoring." },
   ];
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
       <Eyebrow>09 — Business Model</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-10">Enterprise software with clear expansion.</H1>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-10">Enterprise software with clear expansion.</H1>
       <div className="overflow-x-auto mb-6">
-        <table className="w-full text-sm">
+        <table className="w-full min-w-[520px] text-sm">
           <thead>
             <tr className="border-b border-black/[0.06]">
               <th className="text-left text-ink-tertiary text-[10px] font-mono tracking-wide pb-3 pr-6 w-40">Revenue</th>
@@ -374,9 +377,9 @@ function GTMSlide() {
     "Neighbouring rights specialists",
   ];
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
       <Eyebrow>10 — Go-to-Market</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-10">Lead with proof, not a software demo.</H1>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-10">Lead with proof, not a software demo.</H1>
       <div className="grid lg:grid-cols-2 gap-10 flex-1 items-start">
         <NumberedList items={steps} />
         <div>
@@ -405,9 +408,9 @@ function ProductFoundationSlide() {
     "A full audit trail for every finding.",
   ];
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
       <Eyebrow>11 — Product Foundation</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-6">Accuracy comes from structure and evidence.</H1>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-6">Accuracy comes from structure and evidence.</H1>
       <p className="text-ink-secondary text-base mb-6">Debaser combines:</p>
       <div className="max-w-xl mb-8">
         <NumberedList items={items} />
@@ -434,10 +437,10 @@ function DefensibilitySlide() {
     "Which sources can be trusted.",
   ];
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center px-16 relative overflow-hidden">
-      <div className="relative text-center max-w-2xl">
+    <div className="w-full min-h-full flex flex-col items-center justify-center px-5 py-10 sm:px-10 sm:py-14 lg:px-16 relative overflow-hidden">
+      <div className="relative w-full text-center max-w-2xl">
         <Eyebrow>12 — Defensibility</Eyebrow>
-        <H1 className="text-4xl md:text-5xl mb-8">The moat is the rights and operations graph.</H1>
+        <H1 className="text-2xl sm:text-4xl md:text-5xl mb-8">The moat is the rights and operations graph.</H1>
         <p className="text-ink-secondary text-base mb-6">Each workflow improves Debaser's understanding of:</p>
         <div className="text-left inline-block mb-8">
           <NumberedList items={items} />
@@ -462,9 +465,9 @@ function LongTermVisionSlide() {
     { n: "5", label: "Support direct claims, administration and collection.", active: false },
   ];
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
       <Eyebrow>13 — Long-term Vision</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-10">From royalty intelligence to royalty infrastructure.</H1>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-10">From royalty intelligence to royalty infrastructure.</H1>
       <div className="grid gap-3 mb-6">
         {phases.map((p) => (
           <div
@@ -500,9 +503,9 @@ function CurrentStageSlide() {
     "Refine pricing and sales motion.",
   ];
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
       <Eyebrow>14 — Current Stage</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-10">Pre-seed. Building with design partners.</H1>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-10">Pre-seed. Building with design partners.</H1>
       <p className="text-ink-tertiary text-xs font-mono tracking-wide mb-4">Current priorities</p>
       <div className="max-w-xl">
         <NumberedList items={items} />
@@ -520,9 +523,9 @@ function TeamAndRaiseSlide() {
     { label: "Operations & Legal", pct: 20, color: "bg-acid/25" },
   ];
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
       <Eyebrow>15 — Team & Raise</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-10">The team and the raise.</H1>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-10">The team and the raise.</H1>
       <div className="grid lg:grid-cols-2 gap-8">
         <div className="flex flex-col gap-4">
           <div className="border border-black/[0.06] bg-canvas-card rounded-2xl p-6">
@@ -559,14 +562,16 @@ function TeamAndRaiseSlide() {
             <p className="text-ink-secondary text-sm">Pre-seed</p>
             <div className="mt-4 pt-4 border-t border-black/[0.06]">
               <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-3">Use of funds</p>
-              <div className="space-y-2">
+              <div className="space-y-3 sm:space-y-2">
                 {useOfFunds.map((f) => (
-                  <div key={f.label} className="flex items-center gap-3">
-                    <div className="flex-1 h-1.5 bg-black/[0.05] rounded-full overflow-hidden">
+                  <div key={f.label} className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3">
+                    <div className="flex items-center justify-between sm:contents">
+                      <span className="text-ink-secondary text-xs sm:w-24 sm:flex-shrink-0 sm:order-2">{f.label}</span>
+                      <span className="text-ink text-xs font-mono sm:w-8 sm:text-right sm:flex-shrink-0 sm:order-3">{f.pct}%</span>
+                    </div>
+                    <div className="flex-1 h-1.5 bg-black/[0.05] rounded-full overflow-hidden sm:order-1">
                       <div className={`h-full ${f.color} rounded-full`} style={{ width: `${f.pct}%` }} />
                     </div>
-                    <span className="text-ink-secondary text-xs w-24 flex-shrink-0">{f.label}</span>
-                    <span className="text-ink text-xs font-mono w-8 text-right">{f.pct}%</span>
                   </div>
                 ))}
               </div>
@@ -589,17 +594,17 @@ function TeamAndRaiseSlide() {
 
 function ClosingSlide() {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center px-16 relative overflow-hidden">
+    <div className="w-full min-h-full flex flex-col items-center justify-center px-5 py-10 sm:px-10 sm:py-14 lg:px-16 relative overflow-hidden">
       <div className="absolute inset-0 bg-dot-grid opacity-40" />
-      <div className="relative text-center max-w-3xl">
+      <div className="relative w-full text-center max-w-3xl">
         <div className="flex items-center justify-center gap-2 mb-10">
           <GhostMark className="w-7 h-7 text-ink" />
           <span className="text-ink text-lg font-semibold">debaser</span>
         </div>
-        <H1 className="text-4xl md:text-5xl mb-6">
+        <H1 className="text-2xl sm:text-4xl md:text-5xl mb-6">
           Every royalty payment should be explainable.
         </H1>
-        <H1 className="text-4xl md:text-5xl mb-8 text-acid">
+        <H1 className="text-2xl sm:text-4xl md:text-5xl mb-8 text-acid">
           Every missing payment should be actionable.
         </H1>
       </div>
@@ -675,41 +680,29 @@ export default function PitchDeckHarness({ onClose }: { onClose: () => void }) {
   }, []);
 
   const { Component } = SLIDES[current];
-  const pct = Math.round(((current + 1) / SLIDES.length) * 100);
 
   return (
     <div className="fixed inset-0 z-50 bg-canvas flex flex-col" style={{ fontFamily: "var(--font-inter)" }}>
       {/* ── Header ── */}
-      <div className="flex-shrink-0 flex items-center justify-between px-6 h-16 border-b border-black/[0.05] bg-canvas-subtle/60 backdrop-blur-sm">
-        <div className="flex items-center gap-2.5">
-          <a href="/" className="flex items-center gap-2.5">
-            <GhostMark className="w-6 h-6 text-ink" />
-            <span className="text-ink text-base font-semibold">debaser</span>
+      <div className="flex-shrink-0 flex items-center justify-between gap-3 px-3 sm:px-6 h-14 sm:h-16 border-b border-black/[0.05] bg-canvas-subtle/60 backdrop-blur-sm">
+        <div className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1">
+          <a href="/v1" className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
+            <GhostMark className="w-5 h-5 sm:w-6 sm:h-6 text-ink" />
+            <span className="hidden sm:inline text-ink text-base font-semibold">debaser</span>
           </a>
-          <div className="w-px h-4 bg-black/[0.08] mx-1" />
-          <span className="text-ink-tertiary text-sm">July 2026 Pitch Deck · Harness</span>
+          <div className="hidden sm:block w-px h-4 bg-black/[0.08] mx-1 flex-shrink-0" />
+          <span className="text-ink-tertiary text-xs sm:text-sm truncate min-w-0">
+            Introducing Debaser (Version 2) · Harness
+          </span>
         </div>
 
-        <div className="flex items-center gap-1">
-          {SLIDES.map((s, i) => (
-            <button
-              key={s.id}
-              onClick={() => goTo(i, i > current ? 1 : -1)}
-              title={s.label}
-              className={`w-4 h-1 rounded-full transition-all duration-200 ${
-                i === current ? "bg-acid" : "bg-black/[0.12] hover:bg-black/[0.22]"
-              }`}
-            />
-          ))}
-        </div>
-
-        <div className="flex items-center gap-4">
-          <span className="text-ink-tertiary text-sm font-mono">
+        <div className="flex items-center gap-3 sm:gap-4 flex-shrink-0">
+          <span className="text-ink-tertiary text-xs sm:text-sm font-mono whitespace-nowrap">
             {String(current + 1).padStart(2, "0")} / {String(SLIDES.length).padStart(2, "0")}
           </span>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-lg border border-black/[0.07] flex items-center justify-center hover:border-black/[0.16] hover:bg-canvas-card transition-all text-ink-secondary hover:text-ink"
+            className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg border border-black/[0.07] flex items-center justify-center hover:border-black/[0.16] hover:bg-canvas-card transition-all text-ink-secondary hover:text-ink flex-shrink-0"
             aria-label="Close"
           >
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -719,9 +712,9 @@ export default function PitchDeckHarness({ onClose }: { onClose: () => void }) {
         </div>
       </div>
 
-      {/* ── Slide area ── */}
-      <div className="flex-1 relative overflow-hidden bg-black/[0.03] p-3 sm:p-4 lg:p-6">
-        <div className="relative w-full h-full max-w-[2000px] mx-auto rounded-xl border border-black/[0.06] bg-canvas shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] overflow-hidden">
+      {/* ── Slide area — scrolls internally, the page itself never does ── */}
+      <div className="flex-1 relative overflow-hidden bg-black/[0.03] sm:p-4 lg:p-6">
+        <div className="relative w-full h-full sm:max-w-[2000px] sm:mx-auto sm:rounded-xl sm:border border-black/[0.06] bg-canvas sm:shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] overflow-hidden">
           <AnimatePresence custom={direction} mode="wait">
             <motion.div
               key={current}
@@ -730,7 +723,7 @@ export default function PitchDeckHarness({ onClose }: { onClose: () => void }) {
               initial="enter"
               animate="center"
               exit="exit"
-              className="absolute inset-0"
+              className="absolute inset-0 overflow-y-auto overflow-x-hidden overscroll-contain"
             >
               <Component />
             </motion.div>
@@ -739,38 +732,28 @@ export default function PitchDeckHarness({ onClose }: { onClose: () => void }) {
       </div>
 
       {/* ── Footer nav ── */}
-      <div className="flex-shrink-0 flex items-center justify-between px-6 h-16 border-t border-black/[0.05] bg-canvas-subtle/60 backdrop-blur-sm">
-        <div className="flex items-center gap-2 w-56">
-          <div className="flex-1 h-px bg-black/[0.06] rounded-full overflow-hidden">
-            <div
-              className="h-full bg-acid/50 rounded-full transition-all duration-300"
-              style={{ width: `${pct}%` }}
-            />
-          </div>
-          <span className="text-ink-tertiary text-xs font-mono flex-shrink-0">{pct}%</span>
-        </div>
-
-        <p className="text-ink-tertiary text-sm font-mono hidden sm:block">
+      <div className="flex-shrink-0 flex items-center justify-between gap-3 px-3 sm:px-6 h-14 sm:h-16 border-t border-black/[0.05] bg-canvas-subtle/60 backdrop-blur-sm">
+        <p className="text-ink-tertiary text-xs sm:text-sm font-mono truncate min-w-0 flex-1">
           {SLIDES[current].label}
         </p>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-shrink-0">
           <button
             onClick={prev}
             disabled={current === 0}
-            className="flex items-center gap-1.5 text-sm text-ink-secondary border border-black/[0.07] rounded-lg px-4 py-2 hover:border-black/[0.14] hover:text-ink transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+            aria-label="Previous slide"
+            className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 text-ink-secondary border border-black/[0.07] rounded-lg hover:border-black/[0.14] hover:text-ink transition-all disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
               <path d="M8 10L4 6l4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            Prev
           </button>
           <button
             onClick={next}
             disabled={current === SLIDES.length - 1}
-            className="flex items-center gap-1.5 text-sm text-ink border border-black/[0.1] rounded-lg px-4 py-2 bg-canvas-card hover:border-black/[0.18] hover:bg-canvas-elevated transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+            aria-label="Next slide"
+            className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 text-ink border border-black/[0.1] rounded-lg bg-canvas-card hover:border-black/[0.18] hover:bg-canvas-elevated transition-all disabled:opacity-30 disabled:cursor-not-allowed"
           >
-            Next
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
               <path d="M4 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>

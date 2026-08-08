@@ -5,6 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { EASE } from "@/lib/animation";
 import GhostMark from "@/components/GhostMark";
 
+// Always reflects the current month/year — no manual date bumps between updates.
+const DECK_DATE = new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" });
+
 // ─── Shared primitives ─────────────────────────────────────────────────────
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
@@ -43,19 +46,19 @@ function AcidPill({ children }: { children: React.ReactNode }) {
 
 function CoverSlide() {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden">
+    <div className="w-full min-h-full flex flex-col items-center justify-center relative overflow-hidden">
       <div className="absolute inset-0 bg-dot-grid opacity-50" />
-      <div className="relative text-center px-16 max-w-3xl">
+      <div className="relative w-full text-center px-5 py-10 sm:px-10 sm:py-14 lg:px-16 max-w-3xl">
         <div className="flex items-center justify-center gap-2.5 mb-14">
           <GhostMark className="w-9 h-9 text-ink" />
           <span className="text-ink text-2xl font-semibold tracking-tight">debaser</span>
         </div>
-        <H1 className="text-5xl md:text-6xl mb-8">
+        <H1 className="text-3xl sm:text-5xl md:text-6xl mb-8">
           The AI royalty operations platform for the modern music rights economy.
         </H1>
         <div className="w-12 h-px bg-black/[0.1] mx-auto mb-8" />
         <p className="text-ink-secondary text-sm font-mono mb-1">
-          Investor Deck · June 2026
+          Introducing Debaser · {DECK_DATE}
         </p>
         <p className="text-ink-tertiary text-xs font-mono">Strictly Confidential</p>
       </div>
@@ -70,25 +73,27 @@ const problems = [
   { n: "02", label: "Bad metadata", detail: "Missing ISRCs, misspelled artists, duplicate works." },
   { n: "03", label: "Contract complexity", detail: "Rates, splits, recoupment buried in PDFs no system reads." },
   { n: "04", label: "Unmatched income", detail: "Revenue sitting unattributed in royalty pools." },
-  { n: "05", label: "Artist disputes", detail: "Payment questions that take days to answer — if ever." },
+  { n: "05", label: "Artist disputes", detail: "Payment questions that take days to answer. If ever." },
   { n: "06", label: "Manual reconciliation", detail: "Spreadsheet hell. Every quarter. Every time." },
 ];
 
 function ProblemSlide() {
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
-      <Eyebrow>02 — The Problem</Eyebrow>
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
+      <Eyebrow>02. The Problem</Eyebrow>
       <div className="flex-1 grid lg:grid-cols-2 gap-10 items-center">
         <div>
-          <H1 className="text-4xl md:text-5xl mb-6">
-            Music royalties are fragmented, opaque, slow and error-prone.
+          <H1 className="text-2xl sm:text-4xl md:text-5xl mb-6">
+            The economy of music catalogue management is fragmented.
           </H1>
           <Body className="text-base">
-            Every quarter, labels, publishers and managers face the same broken
-            workflow — and absorb the cost in labour, disputes and missing money.
+            Billion-dollar catalogue funds now own hundreds of thousands of songs.
+            Arts IP whales are buying at a pace the back office can't match. And
+            every independent label and publisher underneath them inherits the
+            same broken workflow. Just at a different scale.
           </Body>
         </div>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {problems.map((p) => (
             <div
               key={p.n}
@@ -109,25 +114,25 @@ function ProblemSlide() {
 
 function WhyNowSlide() {
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
-      <Eyebrow>03 — Why Now</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-12 max-w-xl">
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-8 lg:px-16 lg:py-10">
+      <Eyebrow>03. Why Now</Eyebrow>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-5 max-w-xl">
         Three converging tailwinds.
       </H1>
-      <div className="grid lg:grid-cols-3 gap-6">
+      <div className="grid lg:grid-cols-3 gap-4">
         {[
           {
             stat: "$31.7bn",
             label: "Music revenue growing",
             detail:
-              "Recorded music hit $31.7bn in 2025, up 6.4% YoY. The rights economy keeps expanding — and so does the ops complexity behind it.",
+              "Recorded music hit $31.7bn in 2025, up 6.4% YoY. The rights economy keeps expanding. So does the ops complexity behind it.",
             color: "text-acid",
           },
           {
             stat: "×7",
             label: "Royalty complexity exploding",
             detail:
-              "Streaming, UGC, short-form, sync, social, live, neighbouring rights — each with different rules, rates and reporting standards.",
+              "Streaming, UGC, short-form, sync, social, live, neighbouring rights. Each with different rules, rates and reporting standards.",
             color: "text-ink",
           },
           {
@@ -140,17 +145,50 @@ function WhyNowSlide() {
         ].map((t, i) => (
           <div
             key={i}
-            className="border border-black/[0.06] rounded-2xl p-7 bg-canvas-card flex flex-col gap-4"
+            className="border border-black/[0.06] rounded-2xl p-4 bg-canvas-card flex flex-col gap-2"
           >
-            <span className={`text-5xl font-bold tracking-tight ${t.color}`}>
+            <span className={`text-3xl font-bold tracking-tight ${t.color}`}>
               {t.stat}
             </span>
             <div>
-              <p className="text-ink text-sm font-semibold mb-2">{t.label}</p>
-              <p className="text-ink-secondary text-sm leading-relaxed">{t.detail}</p>
+              <p className="text-ink text-sm font-semibold mb-1">{t.label}</p>
+              <p className="text-ink-secondary text-xs leading-relaxed">{t.detail}</p>
             </div>
           </div>
         ))}
+      </div>
+      <div className="mt-3 border border-black/[0.06] bg-canvas-card rounded-2xl p-4">
+        <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-2.5">
+          Capital is already betting big on catalogues
+        </p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {[
+            {
+              name: "Recognition Music Group (ex-Hipgnosis)",
+              detail: "Blackstone took the fund private for $1.6bn in 2024; Sony Music Publishing bought its 45,000-song Recognition catalogue in 2026.",
+            },
+            {
+              name: "Primary Wave",
+              detail: "Closed a $2.225bn fourth flagship fund in 2025. The largest dedicated closed-end music royalty fund raised to date.",
+            },
+            {
+              name: "Concord",
+              detail: "Backed an $850m securitisation across 1m+ songs, after acquiring Round Hill's catalogue fund for ~$469m.",
+            },
+            {
+              name: "Pophouse",
+              detail: "Raised $1.3bn in 2025 to acquire catalogues and build experiences around them.",
+            },
+          ].map((c) => (
+            <div key={c.name}>
+              <p className="text-ink text-xs font-semibold mb-1 leading-snug">{c.name}</p>
+              <p className="text-ink-tertiary text-[11px] leading-relaxed">{c.detail}</p>
+            </div>
+          ))}
+        </div>
+        <p className="text-ink-tertiary text-[10px] font-mono mt-2.5">
+          Sources: Billboard, Music Business Worldwide, Music Week, Variety (2024–2026).
+        </p>
       </div>
     </div>
   );
@@ -165,55 +203,77 @@ function MarketFailureSlide() {
       label: "IFPI performance rights",
       detail: "Recorded music performance rights reached $2.9bn globally in 2025.",
       accent: "text-acid",
+      dot: "bg-acid",
     },
     {
       value: "€13.97bn",
       label: "CISAC creator collections",
       detail: "Global creator collection society income, CISAC 2025 Global Collections Report.",
       accent: "text-acid",
+      dot: "bg-acid",
     },
     {
       value: "$424m",
       label: "MLC unmatched mechanicals",
       detail:
-        "The MLC received $424m in historical unmatched mechanical royalties from DSPs — money that couldn't find its owner.",
+        "Received by the MLC in historical unmatched mechanical royalties from DSPs. Money that couldn't find its owner.",
       accent: "text-red-400",
+      dot: "bg-red-400",
     },
     {
       value: "28% → 90%",
       label: "Accuracy improvement",
       detail:
-        "UK club royalty research found only 28% correctly distributed to creators. Music recognition tech improves this to ~90%.",
+        "UK club royalty research found only 28% correctly distributed to creators. Recognition tech improves this to ~90%.",
       accent: "text-amber-400",
+      dot: "bg-amber-400",
     },
   ];
 
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
-      <Eyebrow>04 — Evidence</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-3">
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
+      <Eyebrow>04. Evidence</Eyebrow>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-1">
         Rights income exists.
       </H1>
-      <H1 className="text-4xl md:text-5xl mb-10 text-ink-secondary">
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-10 text-ink-secondary">
         The allocation is broken.
       </H1>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+      {/* Mobile: simple stacked list. A horizontal spine doesn't read at one-column width. */}
+      <div className="flex flex-col gap-3 sm:hidden">
         {stats.map((s, i) => (
-          <div
-            key={i}
-            className="bg-canvas-card border border-black/[0.05] rounded-2xl p-5 flex flex-col gap-3"
-          >
-            <span className={`text-3xl font-bold tabular-nums tracking-tight ${s.accent}`}>
-              {s.value}
-            </span>
+          <div key={i} className="border border-black/[0.06] rounded-xl p-4 flex items-start gap-3">
+            <div className={`w-2.5 h-2.5 rounded-full ${s.dot} flex-shrink-0 mt-2`} />
             <div>
-              <p className="text-ink text-xs font-semibold mb-1.5 tracking-wide">{s.label}</p>
-              <p className="text-ink-tertiary text-xs leading-relaxed">{s.detail}</p>
+              <span className={`text-2xl font-bold tabular-nums tracking-tight block ${s.accent}`}>
+                {s.value}
+              </span>
+              <p className="text-ink text-xs font-semibold mt-1.5 mb-1">{s.label}</p>
+              <p className="text-ink-tertiary text-[11px] leading-relaxed">{s.detail}</p>
             </div>
           </div>
         ))}
       </div>
-      <p className="text-ink-tertiary text-xs font-mono mt-6">
+
+      {/* Desktop/tablet: infographic spine — four measured points along a single line */}
+      <div className="relative mt-6 hidden sm:block">
+        <div className="absolute left-0 right-0 top-0 h-px bg-black/[0.1]" />
+        <div className="grid grid-cols-4 gap-6">
+          {stats.map((s, i) => (
+            <div key={i} className="flex flex-col items-center text-center">
+              <div className={`w-2.5 h-2.5 rounded-full ${s.dot} -mt-[5px] mb-5 ring-4 ring-canvas flex-shrink-0`} />
+              <span className={`text-3xl font-bold tabular-nums tracking-tight ${s.accent}`}>
+                {s.value}
+              </span>
+              <p className="text-ink text-xs font-semibold mt-2 mb-1.5">{s.label}</p>
+              <p className="text-ink-tertiary text-[11px] leading-relaxed">{s.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <p className="text-ink-tertiary text-xs font-mono mt-8">
         These are not edge cases. They are systemic, repeating, and addressable.
       </p>
     </div>
@@ -227,54 +287,67 @@ function MarketSizeSlide() {
     {
       label: "TAM",
       amount: "~$10bn+",
-      desc: "Global royalty operations — software, services and labour across all labels, publishers, CMOs, distributors and management companies worldwide.",
-      width: "w-full",
+      desc: "Global royalty operations. Software, services and labour across all labels, publishers, CMOs, distributors and management companies worldwide.",
+      width: "sm:w-full",
       opacity: "bg-acid/[0.06]",
       border: "border-acid/[0.15]",
       textColor: "text-acid",
+      ringSize: 46,
     },
     {
       label: "SAM",
       amount: "~$2.5bn",
-      desc: "Mid-market and independent labels, publishers, catalogue funds and management in US, UK, EU, AU — annual software + outsourced services spend.",
-      width: "w-4/5",
+      desc: "Mid-market and independent labels, publishers, catalogue funds and management in US, UK, EU, AU. Annual software + outsourced services spend.",
+      width: "sm:w-4/5",
       opacity: "bg-acid/[0.1]",
       border: "border-acid/[0.22]",
       textColor: "text-acid",
+      ringSize: 32,
     },
     {
       label: "SOM",
       amount: "~£80m",
-      desc: "Beachhead — UK + Western EU independent music companies. Year 1–3 target with direct sales and partner channels.",
-      width: "w-3/5",
+      desc: "Beachhead. UK + Western EU independent music companies. Year 1–3 target with direct sales and partner channels.",
+      width: "sm:w-3/5",
       opacity: "bg-acid/[0.16]",
       border: "border-acid/[0.3]",
       textColor: "text-acid",
+      ringSize: 18,
     },
   ];
 
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
-      <Eyebrow>05 — Market</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-10">A large and growing opportunity.</H1>
-      <div className="flex flex-col gap-3 mb-6">
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-8 lg:px-16 lg:py-12">
+      <Eyebrow>05. Market</Eyebrow>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-2">A large and growing opportunity.</H1>
+      <p className="text-ink-tertiary text-xs font-mono mb-4">
+        TAM = Total Addressable Market, the whole prize · SAM = Serviceable Addressable Market, who we can realistically
+        reach · SOM = Serviceable Obtainable Market, what we can capture first.
+      </p>
+      <div className="flex flex-col gap-2.5 mb-3">
         {tiers.map((t) => (
           <div
             key={t.label}
-            className={`${t.width} border ${t.border} ${t.opacity} rounded-xl px-6 py-4 flex items-center gap-8`}
+            className={`w-full ${t.width} border ${t.border} ${t.opacity} rounded-xl px-4 py-3 sm:px-6 sm:py-4 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-8`}
           >
-            <div className="flex-shrink-0 w-12">
-              <span className="text-[10px] font-mono text-ink-tertiary tracking-wide">{t.label}</span>
+            <div className="flex items-baseline gap-3 sm:contents">
+              <span className="text-[10px] font-mono text-ink-tertiary tracking-wide flex-shrink-0 sm:w-12">{t.label}</span>
+              <span className={`text-xl sm:text-2xl font-bold tabular-nums ${t.textColor} flex-shrink-0 sm:w-28`}>
+                {t.amount}
+              </span>
             </div>
-            <span className={`text-2xl font-bold tabular-nums ${t.textColor} flex-shrink-0 w-28`}>
-              {t.amount}
-            </span>
-            <p className="text-ink-secondary text-sm leading-relaxed">{t.desc}</p>
+            <p className="text-ink-secondary text-sm leading-relaxed flex-1">{t.desc}</p>
+            <div className="hidden sm:flex flex-shrink-0 w-14 h-14 items-center justify-center">
+              <div
+                className={`rounded-full border ${t.border} ${t.opacity}`}
+                style={{ width: t.ringSize, height: t.ringSize }}
+              />
+            </div>
           </div>
         ))}
       </div>
       <p className="text-ink-tertiary text-[10px] font-mono">
-        Preliminary estimates — deeper TAM/SAM/SOM research in progress. Adjacent revenue ops opportunity extends total market significantly.
+        Preliminary estimates. Deeper TAM/SAM/SOM research in progress. Adjacent revenue ops opportunity extends total market significantly.
       </p>
     </div>
   );
@@ -287,6 +360,8 @@ function CompetitiveLandscapeSlide() {
     { name: "Vistex", type: "Enterprise rights management", ai: false, explain: false, missing: false, graph: false, modern: false },
     { name: "Curve / Counterpoint", type: "Royalty accounting (now selling)", ai: false, explain: false, missing: false, graph: false, modern: "partial" },
     { name: "Reprtoir / Revelator", type: "Modern music ops", ai: "partial", explain: false, missing: false, graph: "partial", modern: true },
+    { name: "Blokur (Music Reports)", type: "AI metadata & rights matching", ai: true, explain: "partial", missing: false, graph: "partial", modern: true },
+    { name: "Exactuals (PaymentHub)", type: "Royalty payments infrastructure", ai: false, explain: false, missing: false, graph: false, modern: "partial" },
     { name: "Debaser", type: "AI royalty operations", ai: true, explain: true, missing: true, graph: true, modern: true, highlight: true },
   ];
 
@@ -305,19 +380,19 @@ function CompetitiveLandscapeSlide() {
   };
 
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
-      <Eyebrow>06 — Landscape</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-10">
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-8 lg:px-16 lg:py-12">
+      <Eyebrow>06. Landscape</Eyebrow>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-6">
         Existing tools leave a gap.
       </H1>
       <div className="overflow-x-auto">
-        <table className="w-full text-sm">
+        <table className="w-full min-w-[720px] text-sm">
           <thead>
             <tr className="border-b border-black/[0.06]">
-              <th className="text-left text-ink-tertiary text-[10px] font-mono tracking-wide pb-3 pr-6 w-48">Company</th>
-              <th className="text-left text-ink-tertiary text-[10px] font-mono tracking-wide pb-3 pr-8">Type</th>
+              <th className="text-left text-ink-tertiary text-[10px] font-mono tracking-wide pb-2 pr-6 w-48">Company</th>
+              <th className="text-left text-ink-tertiary text-[10px] font-mono tracking-wide pb-2 pr-8">Type</th>
               {cols.map((c) => (
-                <th key={c.key} className="text-center text-ink-tertiary text-[10px] font-mono tracking-wide pb-3 px-4">
+                <th key={c.key} className="text-center text-ink-tertiary text-[10px] font-mono tracking-wide pb-2 px-4">
                   {c.label}
                 </th>
               ))}
@@ -333,7 +408,7 @@ function CompetitiveLandscapeSlide() {
                     : "hover:bg-canvas-elevated"
                 } transition-colors`}
               >
-                <td className="py-4 pr-6">
+                <td className="py-2.5 pr-6">
                   <span className={`font-semibold text-sm ${row.highlight ? "text-acid" : "text-ink"}`}>
                     {row.name}
                   </span>
@@ -341,9 +416,9 @@ function CompetitiveLandscapeSlide() {
                     <span className="ml-2 text-[9px] font-mono text-acid tracking-wide bg-acid/10 rounded-full px-2 py-0.5">us</span>
                   )}
                 </td>
-                <td className="py-4 pr-8 text-ink-secondary text-xs">{row.type}</td>
+                <td className="py-2.5 pr-8 text-ink-secondary text-xs">{row.type}</td>
                 {cols.map((c) => (
-                  <td key={c.key} className="py-4 px-4 text-center">
+                  <td key={c.key} className="py-2.5 px-4 text-center">
                     <Cell val={row[c.key as keyof typeof row] as boolean | string | undefined} />
                   </td>
                 ))}
@@ -360,60 +435,74 @@ function CompetitiveLandscapeSlide() {
 
 function InsightSlide() {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center px-16 relative overflow-hidden">
-      <div className="relative text-center max-w-3xl">
-        <Eyebrow>07 — Insight</Eyebrow>
-        <H1 className="text-5xl md:text-6xl mb-8">
+    <div className="w-full min-h-full flex flex-col items-center justify-center px-5 py-10 sm:px-10 sm:py-14 lg:px-16 relative overflow-hidden">
+      <div className="relative w-full text-center max-w-3xl">
+        <Eyebrow>07. Insight</Eyebrow>
+        <H1 className="text-3xl sm:text-5xl md:text-6xl mb-8">
           The market does not need another royalty calculator.
         </H1>
         <div className="w-12 h-px bg-acid/30 mx-auto mb-8" />
         <Body className="text-xl max-w-2xl mx-auto">
           It needs a{" "}
           <span className="text-ink font-semibold">trusted AI analyst</span> that
-          understands contracts, catalogues, statements and missing income —
-          and can explain every answer with source-level evidence.
+          understands contracts, catalogues, statements and missing income, and
+          explains every answer with source-level evidence.
         </Body>
       </div>
     </div>
   );
 }
 
-// ─── Slide 8 — Product ─────────────────────────────────────────────────────
-
-const productModules = [
-  { name: "Statement Ingestion", desc: "Any format, any source." },
-  { name: "Catalogue Matching", desc: "ISRCs, ISWCs, works, recordings." },
-  { name: "Contract Extraction", desc: "Rates, splits, recoupment terms." },
-  { name: "Anomaly Detection", desc: "Drops, duplicates, gaps, outliers." },
-  { name: "Explainable Royalty Runs", desc: "Every number traced to source." },
-  { name: "Missing Income Detection", desc: "Find what never arrived." },
-  { name: "Rights Graph", desc: "Song → recording → contract → income." },
-  { name: "Audit & Claim Workflows", desc: "Evidence-backed dispute packs." },
-];
+// ─── Slide 8 — Product & Vision ─────────────────────────────────────────────
 
 function ProductSlide() {
+  const phases = [
+    { n: "1", label: "Royalty Intelligence", desc: "AI-powered exception detection and explainability", active: true },
+    { n: "2", label: "Royalty Calculations", desc: "Deterministic engine for full royalty runs", active: false },
+    { n: "3", label: "Rights Graph", desc: "Connected song → recording → contract → income", active: false },
+    { n: "4", label: "Artist Portal", desc: "Transparent self-service for artists and writers", active: false },
+    { n: "5", label: "Usage Detection", desc: "Match usage signals to income across platforms", active: false },
+    { n: "6", label: "Direct Clearing", desc: "Semi-direct licensing and collection layer", active: false },
+  ];
+
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
-      <Eyebrow>08 — Product</Eyebrow>
-      <div className="flex items-baseline gap-4 mb-10">
-        <H1 className="text-4xl md:text-5xl">
-          Debaser
-        </H1>
-        <span className="text-ink-secondary text-lg">AI Royalty Ops Platform</span>
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-8 lg:px-16 lg:py-12">
+      <Eyebrow>08. Product</Eyebrow>
+      <div className="flex items-baseline gap-4 mb-3">
+        <H1 className="text-2xl sm:text-4xl md:text-5xl">Debaser</H1>
+        <span className="text-ink-secondary text-lg">the long game.</span>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        {productModules.map((m, i) => (
+      <Body className="text-base mb-6 max-w-xl">
+        Royalty intelligence is the wedge. The product we ship first. The endgame is the
+        AI-native infrastructure layer for music rights, royalties and usage.
+      </Body>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-5">
+        {phases.map((p) => (
           <div
-            key={i}
-            className="bg-canvas-card border border-black/[0.05] rounded-xl p-4 hover:border-acid/20 transition-colors group"
+            key={p.n}
+            className={`border rounded-xl p-4 ${p.active ? "border-acid/30 bg-acid/[0.04]" : "border-black/[0.05] bg-canvas-card"}`}
           >
-            <div className="w-6 h-6 rounded-md bg-acid-dim border border-acid-border flex items-center justify-center mb-3">
-              <div className="w-1.5 h-1.5 rounded-full bg-acid" />
+            <div className="flex items-center gap-2 mb-2">
+              <span className={`text-[10px] font-mono ${p.active ? "text-acid" : "text-ink-tertiary"}`}>
+                Phase {p.n}
+              </span>
+              {p.active && <AcidPill>Now</AcidPill>}
             </div>
-            <p className="text-ink text-[13px] font-semibold mb-1 tracking-tight group-hover:text-acid transition-colors">{m.name}</p>
-            <p className="text-ink-tertiary text-xs leading-relaxed">{m.desc}</p>
+            <p className={`text-sm font-semibold mb-1 ${p.active ? "text-acid" : "text-ink"}`}>{p.label}</p>
+            <p className="text-ink-tertiary text-xs leading-relaxed">{p.desc}</p>
           </div>
         ))}
+      </div>
+      <div
+        className="border border-acid/[0.15] rounded-xl px-6 py-4"
+        style={{ background: "rgba(76, 175, 80,0.03)" }}
+      >
+        <p className="text-ink text-sm font-medium">
+          Endgame:{" "}
+          <span className="text-ink-secondary font-normal">
+            The AI-native infrastructure layer for music rights, royalties and usage. Across every territory and revenue stream.
+          </span>
+        </p>
       </div>
     </div>
   );
@@ -444,12 +533,12 @@ function MVPSlide() {
   ];
 
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
-      <Eyebrow>09 — MVP</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-3">
-        Find royalty mistakes and missing money
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
+      <Eyebrow>09. MVP</Eyebrow>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-3">
+        Our MVP: Find royalty mistakes and missing money
       </H1>
-      <H1 className="text-4xl md:text-5xl mb-12 text-acid">
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-12 text-acid">
         before the royalty run.
       </H1>
       <div className="grid lg:grid-cols-3 gap-4">
@@ -485,7 +574,7 @@ function MVPSlide() {
           <span className="text-ink font-medium">
             "Send us last quarter's royalty mess. We'll show you what's wrong."
           </span>{" "}
-          — free diagnosis, converts to paid subscription.
+          Free diagnosis. Converts to paid subscription.
         </p>
       </div>
     </div>
@@ -505,9 +594,9 @@ const agents = [
 
 function AgenticSlide() {
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
-      <Eyebrow>10 — Architecture</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-10">Agentic by design.</H1>
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
+      <Eyebrow>10. Architecture</Eyebrow>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-10">Agentic by design.</H1>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-8">
         {agents.map((a, i) => (
           <div key={i} className="bg-canvas-card border border-black/[0.05] rounded-xl p-4 hover:border-acid/20 transition-colors group">
@@ -564,9 +653,9 @@ function BusinessModelSlide() {
   ];
 
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
-      <Eyebrow>11 — Business Model</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-10">B2B SaaS — clear monetisation path.</H1>
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
+      <Eyebrow>11. Business Model</Eyebrow>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-10">B2B SaaS. Clear monetisation path.</H1>
       <div className="grid lg:grid-cols-3 gap-4 mb-6">
         {tiers.map((t) => (
           <div
@@ -613,9 +702,9 @@ function GTMSlide() {
   ];
 
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
-      <Eyebrow>12 — Go-to-Market</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-10">Starting where the pain is deepest.</H1>
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
+      <Eyebrow>12. Go-to-Market</Eyebrow>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-10">Starting where the pain is deepest.</H1>
       <div className="grid lg:grid-cols-2 gap-10 flex-1 items-start">
         <div>
           <p className="text-ink text-sm font-semibold mb-4 tracking-wide text-xs">Beachhead segments</p>
@@ -648,7 +737,7 @@ function GTMSlide() {
           <div className="border border-black/[0.06] bg-canvas-card rounded-xl p-5">
             <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-2">Why they stay</p>
             <p className="text-ink-secondary text-sm leading-relaxed">
-              Once Debaser has ingested a catalogue, contracts and historical statements — switching cost is high. Royalty intelligence becomes institutional infrastructure.
+              Once Debaser has ingested a catalogue, contracts and historical statements, switching cost is high. Royalty intelligence becomes institutional infrastructure.
             </p>
           </div>
         </div>
@@ -660,48 +749,118 @@ function GTMSlide() {
 // ─── Slide 13 — Traction ───────────────────────────────────────────────────
 
 function TractionSlide() {
+  const milestones = [
+    {
+      period: "Q1–Q2 2026",
+      label: "Thesis validated",
+      detail: "Founding thesis built from deep royalty ops research, industry interviews and direct experience with the problem.",
+      status: "done",
+    },
+    {
+      period: "Q3 2026",
+      label: "Product in development",
+      detail: "Core ingestion, matching and exception detection pipeline in active build.",
+      status: "now",
+    },
+    {
+      period: "Q4 2026",
+      label: "Design partners onboard",
+      detail: "3–5 design partners from our beachhead segments co-developing the product and terms.",
+      status: "next",
+    },
+    {
+      period: "Q1 2027",
+      label: "MVP release",
+      detail: "Design partner release ships. First exception reports delivered live.",
+      status: "next",
+    },
+    {
+      period: "Q2 2027",
+      label: "Formal launch",
+      detail: "General release, first paying customers, Growth tier pricing validated.",
+      status: "next",
+    },
+  ];
+
+  const reachedCount = milestones.filter((m) => m.status !== "next").length;
+  const progressPct = ((reachedCount - 0.5) / milestones.length) * 100;
+
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
-      <Eyebrow>13 — Traction</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-3">
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
+      <Eyebrow>13. Traction</Eyebrow>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-3">
         Early stage.
       </H1>
-      <H1 className="text-4xl md:text-5xl mb-10 text-ink-secondary">
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-12 text-ink-secondary">
         Building with conviction.
       </H1>
-      <div className="grid lg:grid-cols-3 gap-4">
-        {[
-          {
-            label: "Thesis",
-            status: "Validated",
-            dot: "bg-acid",
-            content: "Founding thesis built from deep royalty operations research, industry interviews and direct experience with the problem space.",
-          },
-          {
-            label: "Product",
-            status: "In development",
-            dot: "bg-amber-400",
-            content: "Core ingestion, matching and exception detection pipeline in active development. MVP targeting design partner release.",
-          },
-          {
-            label: "Pipeline",
-            status: "Conversations active",
-            dot: "bg-amber-400",
-            content: "Early conversations with independent labels, label services companies and catalogue funds across UK and EU.",
-          },
-        ].map((t, i) => (
-          <div key={i} className="border border-black/[0.06] bg-canvas-card rounded-2xl p-6">
-            <div className="flex items-center justify-between mb-4">
-              <p className="text-ink text-sm font-semibold">{t.label}</p>
-              <div className="flex items-center gap-1.5">
-                <div className={`w-1.5 h-1.5 rounded-full ${t.dot}`} />
-                <span className="text-[10px] font-mono text-ink-tertiary">{t.status}</span>
-              </div>
+
+      {/* Mobile: vertical timeline, one milestone per row */}
+      <div className="flex flex-col sm:hidden">
+        {milestones.map((m, i) => (
+          <div key={i} className="flex gap-4">
+            <div className="flex flex-col items-center flex-shrink-0">
+              <div
+                className={`w-3.5 h-3.5 rounded-full border-2 flex-shrink-0 ${
+                  m.status === "done"
+                    ? "bg-acid border-acid"
+                    : m.status === "now"
+                    ? "bg-canvas border-acid"
+                    : "bg-canvas border-black/20"
+                }`}
+              />
+              {i < milestones.length - 1 && (
+                <div className={`w-px flex-1 mt-1 ${m.status === "next" ? "bg-black/[0.08]" : "bg-acid"}`} />
+              )}
             </div>
-            <p className="text-ink-secondary text-sm leading-relaxed">{t.content}</p>
+            <div className="pb-6">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-ink-tertiary text-[10px] font-mono">{m.period}</span>
+                {m.status === "now" && <AcidPill>Now</AcidPill>}
+              </div>
+              <p className={`text-sm font-semibold mb-1 ${m.status === "next" ? "text-ink-secondary" : "text-ink"}`}>
+                {m.label}
+              </p>
+              <p className="text-ink-tertiary text-xs leading-relaxed">{m.detail}</p>
+            </div>
           </div>
         ))}
       </div>
+
+      {/* Desktop/tablet: horizontal timeline with a progress spine */}
+      <div className="flex-1 hidden sm:flex flex-col justify-center">
+        <div className="relative">
+          <div className="absolute top-[7px] left-0 right-0 h-px bg-black/[0.08]" />
+          <div
+            className="absolute top-[7px] left-0 h-px bg-acid"
+            style={{ width: `${progressPct}%` }}
+          />
+          <div className="grid grid-cols-5 gap-4 relative">
+            {milestones.map((m, i) => (
+              <div key={i} className="flex flex-col items-start">
+                <div className="flex items-center gap-2 mb-4">
+                  <div
+                    className={`w-3.5 h-3.5 rounded-full border-2 flex-shrink-0 ${
+                      m.status === "done"
+                        ? "bg-acid border-acid"
+                        : m.status === "now"
+                        ? "bg-canvas border-acid"
+                        : "bg-canvas border-black/20"
+                    }`}
+                  />
+                  {m.status === "now" && <AcidPill>Now</AcidPill>}
+                </div>
+                <span className="text-ink-tertiary text-[10px] font-mono mb-1.5">{m.period}</span>
+                <p className={`text-sm font-semibold mb-1.5 ${m.status === "next" ? "text-ink-secondary" : "text-ink"}`}>
+                  {m.label}
+                </p>
+                <p className="text-ink-tertiary text-xs leading-relaxed">{m.detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       <div className="mt-6 border border-black/[0.05] bg-canvas-card rounded-xl p-5">
         <p className="text-ink-secondary text-sm">
           <span className="text-ink font-medium">Design partner programme:</span>{" "}
@@ -712,64 +871,13 @@ function TractionSlide() {
   );
 }
 
-// ─── Slide 14 — Vision ─────────────────────────────────────────────────────
-
-function VisionSlide() {
-  const phases = [
-    { n: "1", label: "Royalty Intelligence", desc: "AI-powered exception detection and explainability", active: true },
-    { n: "2", label: "Royalty Calculations", desc: "Deterministic engine for full royalty runs", active: false },
-    { n: "3", label: "Rights Graph", desc: "Connected song → recording → contract → income", active: false },
-    { n: "4", label: "Artist Portal", desc: "Transparent self-service for artists and writers", active: false },
-    { n: "5", label: "Usage Detection", desc: "Match usage signals to income across platforms", active: false },
-    { n: "6", label: "Direct Clearing", desc: "Semi-direct licensing and collection layer", active: false },
-  ];
-
-  return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
-      <Eyebrow>14 — Vision</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-3">The long game.</H1>
-      <Body className="text-base mb-10 max-w-xl">
-        Royalty intelligence is the wedge. The endgame is the AI-native infrastructure layer for music rights, royalties and usage.
-      </Body>
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 mb-8">
-        {phases.map((p) => (
-          <div
-            key={p.n}
-            className={`border rounded-xl p-4 ${p.active ? "border-acid/30 bg-acid/[0.04]" : "border-black/[0.05] bg-canvas-card"}`}
-          >
-            <div className="flex items-center gap-2 mb-2">
-              <span className={`text-[10px] font-mono ${p.active ? "text-acid" : "text-ink-tertiary"}`}>
-                Phase {p.n}
-              </span>
-              {p.active && <AcidPill>Now</AcidPill>}
-            </div>
-            <p className={`text-sm font-semibold mb-1 ${p.active ? "text-acid" : "text-ink"}`}>{p.label}</p>
-            <p className="text-ink-tertiary text-xs leading-relaxed">{p.desc}</p>
-          </div>
-        ))}
-      </div>
-      <div
-        className="border border-acid/[0.15] rounded-xl px-6 py-4"
-        style={{ background: "rgba(76, 175, 80,0.03)" }}
-      >
-        <p className="text-ink text-sm font-medium">
-          Endgame:{" "}
-          <span className="text-ink-secondary font-normal">
-            The AI-native infrastructure layer for music rights, royalties and usage — across every territory and revenue stream.
-          </span>
-        </p>
-      </div>
-    </div>
-  );
-}
-
-// ─── Slide 15 — Team ───────────────────────────────────────────────────────
+// ─── Slide 14 — Team ────────────────────────────────────────────────────────
 
 function TeamSlide() {
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
-      <Eyebrow>15 — Team</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-10">The team.</H1>
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
+      <Eyebrow>14. Team</Eyebrow>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-10">The team.</H1>
       <div className="grid lg:grid-cols-2 gap-8">
         <div className="flex flex-col gap-4">
           {/* Founder card */}
@@ -823,71 +931,70 @@ function TeamSlide() {
   );
 }
 
-// ─── Slide 16 — The Ask ────────────────────────────────────────────────────
+// ─── Slide 15 — The Ask ────────────────────────────────────────────────────
 
 function AskSlide() {
   const useOfFunds = [
-    { label: "Product & Engineering", pct: 55, color: "bg-acid" },
-    { label: "Commercial & GTM", pct: 25, color: "bg-acid/50" },
-    { label: "Operations & Legal", pct: 20, color: "bg-acid/25" },
+    { label: "Product & Engineering", pct: 55, amount: "£2.75m", color: "bg-acid" },
+    { label: "Commercial & GTM", pct: 25, amount: "£1.25m", color: "bg-acid/50" },
+    { label: "Operations & Legal", pct: 20, amount: "£1.0m", color: "bg-acid/25" },
   ];
 
-  const milestones = [
-    "Ship MVP with 3–5 design partners",
-    "First £X ARR / paying customers",
-    "Validate Growth tier pricing",
-    "Build rights graph prototype",
-    "Seed round ready",
+  const horizon = [
+    {
+      year: "Year 1",
+      period: "Months 1–12",
+      spend: "~£3.0m",
+      items: [
+        "Ship MVP with 3–5 design partners",
+        "Hire CTO / Head of Engineering + Head of Royalty Operations",
+        "First paying customers on Starter / Growth tiers",
+      ],
+    },
+    {
+      year: "Year 2",
+      period: "Months 13–24",
+      spend: "~£2.0m",
+      items: [
+        "Hire Commercial Lead, scale GTM motion",
+        "Build rights graph prototype (Phase 3)",
+        "Grow ARR across beachhead segments, seed round ready",
+      ],
+    },
   ];
 
   return (
-    <div className="w-full h-full flex flex-col px-16 py-14">
-      <Eyebrow>16 — The Ask</Eyebrow>
-      <H1 className="text-4xl md:text-5xl mb-10">Raising pre-seed.</H1>
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-8 lg:px-16 lg:py-11">
+      <Eyebrow>15. The Ask</Eyebrow>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-6">Raising pre-seed.</H1>
       <div className="grid lg:grid-cols-2 gap-8">
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3">
           <div
-            className="border border-acid/[0.25] rounded-2xl p-7"
+            className="border border-acid/[0.25] rounded-2xl p-6"
             style={{ background: "rgba(76, 175, 80,0.03)" }}
           >
             <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-2">Round</p>
-            <p className="text-acid text-4xl font-bold mb-1">£[TBD]</p>
-            <p className="text-ink-secondary text-sm">Pre-seed · SAFE or priced round</p>
-            <div className="mt-4 pt-4 border-t border-black/[0.06]">
+            <p className="text-acid text-4xl font-bold mb-1">£5m</p>
+            <p className="text-ink-secondary text-sm">Pre-seed · SAFE or priced round · 24-month runway</p>
+            <div className="mt-3 pt-3 border-t border-black/[0.06]">
               <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-3">Use of funds</p>
-              <div className="space-y-2">
+              <div className="space-y-3 sm:space-y-2.5">
                 {useOfFunds.map((f) => (
-                  <div key={f.label} className="flex items-center gap-3">
-                    <div className="flex-1 h-1.5 bg-black/[0.05] rounded-full overflow-hidden">
+                  <div key={f.label} className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3">
+                    <div className="flex items-center justify-between sm:contents">
+                      <span className="text-ink-secondary text-xs sm:w-28 sm:flex-shrink-0 sm:order-2">{f.label}</span>
+                      <span className="text-ink text-xs font-mono sm:w-14 sm:text-right sm:flex-shrink-0 sm:order-3">{f.amount}</span>
+                    </div>
+                    <div className="flex-1 h-1.5 bg-black/[0.05] rounded-full overflow-hidden sm:order-1">
                       <div
                         className={`h-full ${f.color} rounded-full`}
                         style={{ width: `${f.pct}%` }}
                       />
                     </div>
-                    <span className="text-ink-secondary text-xs w-24 flex-shrink-0">{f.label}</span>
-                    <span className="text-ink text-xs font-mono w-8 text-right">{f.pct}%</span>
                   </div>
                 ))}
               </div>
             </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-4">
-          <div className="border border-black/[0.06] bg-canvas-card rounded-2xl p-6">
-            <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-4">
-              What this round achieves
-            </p>
-            <ul className="space-y-2.5">
-              {milestones.map((m, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <div className="w-4 h-4 rounded-full bg-acid/10 border border-acid/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-acid text-[9px] font-mono">{i + 1}</span>
-                  </div>
-                  <span className="text-ink-secondary text-sm">{m}</span>
-                </li>
-              ))}
-            </ul>
           </div>
           <div className="border border-black/[0.05] bg-canvas-card rounded-xl p-5">
             <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-2">Contact</p>
@@ -900,6 +1007,27 @@ function AskSlide() {
             </a>
           </div>
         </div>
+
+        <div className="flex flex-col gap-4">
+          {horizon.map((h) => (
+            <div key={h.year} className="border border-black/[0.06] bg-canvas-card rounded-2xl p-6">
+              <div className="flex items-center justify-between mb-3">
+                <p className="text-ink text-sm font-semibold">
+                  {h.year} <span className="text-ink-tertiary font-normal text-xs">· {h.period}</span>
+                </p>
+                <span className="text-acid text-xs font-mono">{h.spend}</span>
+              </div>
+              <ul className="space-y-2">
+                {h.items.map((m, i) => (
+                  <li key={i} className="flex items-start gap-2.5">
+                    <div className="w-1 h-1 rounded-full bg-acid/60 flex-shrink-0 mt-1.5" />
+                    <span className="text-ink-secondary text-sm">{m}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -909,14 +1037,14 @@ function AskSlide() {
 
 function ClosingSlide() {
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center px-16 relative overflow-hidden">
+    <div className="w-full min-h-full flex flex-col items-center justify-center px-5 py-10 sm:px-10 sm:py-14 lg:px-16 relative overflow-hidden">
       <div className="absolute inset-0 bg-dot-grid opacity-40" />
-      <div className="relative text-center max-w-3xl">
+      <div className="relative w-full text-center max-w-3xl">
         <div className="flex items-center justify-center gap-2 mb-10">
           <GhostMark className="w-7 h-7 text-ink" />
           <span className="text-ink text-lg font-semibold">debaser</span>
         </div>
-        <H1 className="text-4xl md:text-5xl mb-8">
+        <H1 className="text-2xl sm:text-4xl md:text-5xl mb-8">
           Music royalties are a growing, multi-billion-dollar market trapped in broken metadata, manual workflows and opaque legacy systems.
         </H1>
         <div className="w-12 h-px bg-acid/30 mx-auto mb-8" />
@@ -941,13 +1069,12 @@ const SLIDES = [
   { id: "market",      label: "Market Size",            Component: MarketSizeSlide },
   { id: "landscape",   label: "Competitive Landscape",  Component: CompetitiveLandscapeSlide },
   { id: "insight",     label: "Insight",                Component: InsightSlide },
-  { id: "product",     label: "Product",                Component: ProductSlide },
+  { id: "product",     label: "Product & Vision",       Component: ProductSlide },
   { id: "mvp",         label: "MVP Wedge",              Component: MVPSlide },
   { id: "agentic",     label: "Agentic Layer",          Component: AgenticSlide },
   { id: "biz-model",   label: "Business Model",         Component: BusinessModelSlide },
   { id: "gtm",         label: "Go-to-Market",           Component: GTMSlide },
   { id: "traction",    label: "Traction",               Component: TractionSlide },
-  { id: "vision",      label: "Vision",                 Component: VisionSlide },
   { id: "team",        label: "Team",                   Component: TeamSlide },
   { id: "ask",         label: "The Ask",                Component: AskSlide },
   { id: "closing",     label: "Closing",                Component: ClosingSlide },
@@ -1000,41 +1127,29 @@ export default function PitchDeck({ onClose }: { onClose: () => void }) {
   }, []);
 
   const { Component } = SLIDES[current];
-  const pct = Math.round(((current + 1) / SLIDES.length) * 100);
 
   return (
     <div className="fixed inset-0 z-50 bg-canvas flex flex-col" style={{ fontFamily: "var(--font-inter)" }}>
       {/* ── Header ── */}
-      <div className="flex-shrink-0 flex items-center justify-between px-6 h-16 border-b border-black/[0.05] bg-canvas-subtle/60 backdrop-blur-sm">
-        <div className="flex items-center gap-2.5">
-          <a href="/" className="flex items-center gap-2.5">
-            <GhostMark className="w-6 h-6 text-ink" />
-            <span className="text-ink text-base font-semibold">debaser</span>
+      <div className="flex-shrink-0 flex items-center justify-between gap-3 px-3 sm:px-6 h-14 sm:h-16 border-b border-black/[0.05] bg-canvas-subtle/60 backdrop-blur-sm">
+        <div className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1">
+          <a href="/v1" className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
+            <GhostMark className="w-5 h-5 sm:w-6 sm:h-6 text-ink" />
+            <span className="hidden sm:inline text-ink text-base font-semibold">debaser</span>
           </a>
-          <div className="w-px h-4 bg-black/[0.08] mx-1" />
-          <span className="text-ink-tertiary text-sm">June 2026 Pitch Deck</span>
+          <div className="hidden sm:block w-px h-4 bg-black/[0.08] mx-1 flex-shrink-0" />
+          <span className="text-ink-tertiary text-xs sm:text-sm truncate min-w-0">
+            Introducing Debaser (Version 1)
+          </span>
         </div>
 
-        <div className="flex items-center gap-1">
-          {SLIDES.map((s, i) => (
-            <button
-              key={s.id}
-              onClick={() => goTo(i, i > current ? 1 : -1)}
-              title={s.label}
-              className={`w-4 h-1 rounded-full transition-all duration-200 ${
-                i === current ? "bg-acid" : "bg-black/[0.12] hover:bg-black/[0.22]"
-              }`}
-            />
-          ))}
-        </div>
-
-        <div className="flex items-center gap-4">
-          <span className="text-ink-tertiary text-sm font-mono">
+        <div className="flex items-center gap-3 sm:gap-4 flex-shrink-0">
+          <span className="text-ink-tertiary text-xs sm:text-sm font-mono whitespace-nowrap">
             {String(current + 1).padStart(2, "0")} / {String(SLIDES.length).padStart(2, "0")}
           </span>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-lg border border-black/[0.07] flex items-center justify-center hover:border-black/[0.16] hover:bg-canvas-card transition-all text-ink-secondary hover:text-ink"
+            className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg border border-black/[0.07] flex items-center justify-center hover:border-black/[0.16] hover:bg-canvas-card transition-all text-ink-secondary hover:text-ink flex-shrink-0"
             aria-label="Close"
           >
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -1044,9 +1159,9 @@ export default function PitchDeck({ onClose }: { onClose: () => void }) {
         </div>
       </div>
 
-      {/* ── Slide area ── */}
-      <div className="flex-1 relative overflow-hidden bg-black/[0.03] p-3 sm:p-4 lg:p-6">
-        <div className="relative w-full h-full max-w-[2000px] mx-auto rounded-xl border border-black/[0.06] bg-canvas shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] overflow-hidden">
+      {/* ── Slide area — scrolls internally, the page itself never does ── */}
+      <div className="flex-1 relative overflow-hidden bg-black/[0.03] sm:p-4 lg:p-6">
+        <div className="relative w-full h-full sm:max-w-[2000px] sm:mx-auto sm:rounded-xl sm:border border-black/[0.06] bg-canvas sm:shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] overflow-hidden">
           <AnimatePresence custom={direction} mode="wait">
             <motion.div
               key={current}
@@ -1055,7 +1170,7 @@ export default function PitchDeck({ onClose }: { onClose: () => void }) {
               initial="enter"
               animate="center"
               exit="exit"
-              className="absolute inset-0"
+              className="absolute inset-0 overflow-y-auto overflow-x-hidden overscroll-contain"
             >
               <Component />
             </motion.div>
@@ -1064,38 +1179,28 @@ export default function PitchDeck({ onClose }: { onClose: () => void }) {
       </div>
 
       {/* ── Footer nav ── */}
-      <div className="flex-shrink-0 flex items-center justify-between px-6 h-16 border-t border-black/[0.05] bg-canvas-subtle/60 backdrop-blur-sm">
-        <div className="flex items-center gap-2 w-56">
-          <div className="flex-1 h-px bg-black/[0.06] rounded-full overflow-hidden">
-            <div
-              className="h-full bg-acid/50 rounded-full transition-all duration-300"
-              style={{ width: `${pct}%` }}
-            />
-          </div>
-          <span className="text-ink-tertiary text-xs font-mono flex-shrink-0">{pct}%</span>
-        </div>
-
-        <p className="text-ink-tertiary text-sm font-mono hidden sm:block">
+      <div className="flex-shrink-0 flex items-center justify-between gap-3 px-3 sm:px-6 h-14 sm:h-16 border-t border-black/[0.05] bg-canvas-subtle/60 backdrop-blur-sm">
+        <p className="text-ink-tertiary text-xs sm:text-sm font-mono truncate min-w-0 flex-1">
           {SLIDES[current].label}
         </p>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-shrink-0">
           <button
             onClick={prev}
             disabled={current === 0}
-            className="flex items-center gap-1.5 text-sm text-ink-secondary border border-black/[0.07] rounded-lg px-4 py-2 hover:border-black/[0.14] hover:text-ink transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+            aria-label="Previous slide"
+            className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 text-ink-secondary border border-black/[0.07] rounded-lg hover:border-black/[0.14] hover:text-ink transition-all disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
               <path d="M8 10L4 6l4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            Prev
           </button>
           <button
             onClick={next}
             disabled={current === SLIDES.length - 1}
-            className="flex items-center gap-1.5 text-sm text-ink border border-black/[0.1] rounded-lg px-4 py-2 bg-canvas-card hover:border-black/[0.18] hover:bg-canvas-elevated transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+            aria-label="Next slide"
+            className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 text-ink border border-black/[0.1] rounded-lg bg-canvas-card hover:border-black/[0.18] hover:bg-canvas-elevated transition-all disabled:opacity-30 disabled:cursor-not-allowed"
           >
-            Next
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
               <path d="M4 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>

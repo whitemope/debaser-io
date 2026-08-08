@@ -125,7 +125,6 @@ function GapVisual() {
 
 export default function MissingMoney() {
   const { variant } = useHomepageVariant();
-  const isV2 = variant === "v2";
   const content = getHomepageContent(variant).missingMoney;
   const features = content.features;
 
@@ -181,7 +180,7 @@ export default function MissingMoney() {
                 </motion.li>
               ))}
             </ul>
-            {isV2 && content.ctaLabel && (
+            {content.ctaLabel && (
               <a
                 href="#access"
                 className="inline-flex items-center gap-2 mt-10 text-acid text-sm font-semibold hover:underline underline-offset-2"

@@ -8,7 +8,6 @@ import Editable from "@/components/Editable";
 
 export default function Problem() {
   const { variant } = useHomepageVariant();
-  const isV2 = variant === "v2";
   const content = getHomepageContent(variant).problem;
   const problems = content.items;
 
@@ -69,7 +68,7 @@ export default function Problem() {
           ))}
         </motion.div>
 
-        {isV2 && content.closingLine && (
+        {content.closingLine && (
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}

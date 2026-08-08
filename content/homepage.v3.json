@@ -1,0 +1,268 @@
+{
+  "hero": {
+    "eyebrow": "Now in early access",
+    "headline": "Debuilding the global music economy.",
+    "subhead": "The infrastructure behind music royalties hasn't changed since before streaming existed. Collection societies, label back offices and paper contracts still run the money that's owed to the people who made it. Debaser is new agentic rails for a new generation of catalogue owners.",
+    "ctaPrimary": "Request early access",
+    "ctaSecondary": "See how it works",
+    "note": "Built for the owners and operators of the asset class."
+  },
+  "problem": {
+    "eyebrow": "The old rails",
+    "headline": "A trillion-dollar industry, still running on decades-old plumbing.",
+    "items": [
+      {
+        "title": "Collection societies were built for radio, not streaming.",
+        "description": "CMOs across dozens of territories still reconcile usage with rules and reporting formats designed long before a stream existed. Claims can sit in queues for years."
+      },
+      {
+        "title": "Label back offices run on ledgers, not logic.",
+        "description": "Statements, splits and recoupment schedules live in systems patched for forty years, held together by people who remember why."
+      },
+      {
+        "title": "Contracts are still paper, functionally.",
+        "description": "Rates, territories and deductions sit in a PDF no machine has read. Every re-key is a chance for money to quietly end up somewhere it shouldn't."
+      },
+      {
+        "title": "Metadata was never built for this much scale.",
+        "description": "A missing ISRC or a mismatched title still routes real money into the wrong hands, or nowhere at all, across a catalogue that's supposed to be an asset."
+      },
+      {
+        "title": "No single party owns the whole picture.",
+        "description": "Every intermediary was built for their own slice of the process. Nobody sees it end to end, so nobody's been in a position to rebuild it — and the artist waiting on the other end just has to trust the queue."
+      }
+    ],
+    "closingLine": "None of this is a scandal. It's just infrastructure nobody's rebuilt since the industry was analogue — and somewhere at the end of it, an artist is still waiting on a statement that doesn't add up."
+  },
+  "productFlow": {
+    "eyebrow": "The new rails",
+    "headline": "From decades of plumbing to a straight answer.",
+    "subhead": "Debaser doesn't patch the old system. It gives modern catalogue owners a layer built for how music rights actually move today, and how the artists behind them actually get paid.",
+    "steps": [
+      {
+        "label": "Ingest",
+        "description": "Statements, contracts and catalogue data, in whatever decades-old format they still arrive in.",
+        "detail": "DSPs · CMOs · Portals · PDFs · APIs"
+      },
+      {
+        "label": "Match",
+        "description": "Every payment linked to the ISRC, work, writer and split it actually belongs to, not the one a spreadsheet guessed.",
+        "detail": "ISRC · ISWC · Work codes · Party IDs"
+      },
+      {
+        "label": "Investigate",
+        "description": "Anomalies, missing income and contract conflicts surfaced before they quietly become somebody else's margin.",
+        "detail": "Variance · Anomalies · Gaps · Conflicts"
+      },
+      {
+        "label": "Explain",
+        "description": "Every answer traced back to the row, the clause or the file. Not a black box.",
+        "detail": "Source rows · Contract clauses · Audit trail"
+      },
+      {
+        "label": "Resolve",
+        "description": "Every issue becomes a claim, an approval or an export, before the old system has finished reconciling last quarter.",
+        "detail": "Actions · Claims · Approvals · Exports"
+      }
+    ]
+  },
+  "agents": {
+    "eyebrow": "The specialists",
+    "headline": "AI built for the parts of the industry that never got modernised.",
+    "items": [
+      {
+        "name": "Ingestion Agent",
+        "description": "Reads whatever format decades of legacy systems still export, and maps it into one clean schema.",
+        "tags": [
+          "CSV · PDF · Portal",
+          "Schema normalisation"
+        ]
+      },
+      {
+        "name": "Contract Agent",
+        "description": "Reads the contract nobody digitised: rates, splits, territories, recoupment... the lot.",
+        "tags": [
+          "Rate extraction",
+          "Clause indexing"
+        ]
+      },
+      {
+        "name": "Matching Agent",
+        "description": "Matches income to the right ISRC, work, writer and recording, across a catalogue nobody fully mapped.",
+        "tags": [
+          "ISRC · ISWC · Works",
+          "Multi-source matching"
+        ]
+      },
+      {
+        "name": "Exception Agent",
+        "description": "Catches the duplicate, the missing split, the income that quietly disappeared into someone else's process.",
+        "tags": [
+          "Anomaly detection",
+          "Income variance"
+        ]
+      },
+      {
+        "name": "Audit Agent",
+        "description": "Checks what you expected against what actually landed, territory by territory, and builds the case for what's missing.",
+        "tags": [
+          "Statement variance",
+          "Claim evidence"
+        ]
+      },
+      {
+        "name": "Ops Agent",
+        "description": "Turns a royalty run into a queue your team can actually clear, not another spreadsheet to inherit.",
+        "tags": [
+          "Action list",
+          "Run management"
+        ]
+      }
+    ],
+    "note": "Every agent works from the same rights graph — the record the rest of the industry never built.",
+    "principle": {
+      "lead": "Debaser investigates.",
+      "mid": "Humans approve.",
+      "tail": "The old systems just calculate."
+    }
+  },
+  "useCases": {
+    "headline": "Built for the people modernising the catalogue economy.",
+    "items": [
+      {
+        "category": "Labels",
+        "headline": "Reconcile before legacy statements go out.",
+        "description": "Catch what the old back office would have missed, before it ever reaches an artist."
+      },
+      {
+        "category": "Publishers",
+        "headline": "Contracts and income, finally in one place.",
+        "description": "Read against the actual agreement, not a collection society's best guess at it."
+      },
+      {
+        "category": "Catalogue funds",
+        "headline": "Underwrite acquisitions like the assets they are.",
+        "description": "Real visibility into performance and risk, at the speed modern catalogue investing actually happens — because being a steward of someone else's songs is easier when the numbers actually make sense."
+      },
+      {
+        "category": "Artist management",
+        "headline": "Audit income with evidence, not a hunch.",
+        "description": "Challenge a statement from a system built decades before your artist was ever signed."
+      },
+      {
+        "category": "Neighbouring rights",
+        "headline": "Chase what collection societies leave behind.",
+        "description": "See the gap between what was claimed and what a legacy system actually paid out, territory by territory."
+      }
+    ]
+  },
+  "missingMoney": {
+    "eyebrow": "Gap detection",
+    "headline": "Find the money the old system was never built to find.",
+    "subhead": "Debaser compares what your catalogue should be earning against what forty-year-old infrastructure actually delivered, and shows you exactly where it broke down.",
+    "features": [
+      "Statement variance, caught automatically",
+      "Usage compared against income, line by line",
+      "Missing territories, flagged before a CMO admits it",
+      "Unmatched assets, surfaced instead of buried in a queue",
+      "Claim-ready evidence packs",
+      "Collection-society gaps, alerted in weeks not years"
+    ],
+    "ctaLabel": "See what the old rails are missing"
+  },
+  "explainability": {
+    "headline": "Every number should be able to defend itself.",
+    "body1": "Ask why a number changed, and Debaser traces the answer back to the row, the metadata, the clause, not a collection society's version of events.",
+    "body2": "Not a summary. Not a guess dressed up as an answer. A structured explanation with the evidence attached, so your team can check it, not just trust it.",
+    "chatUserMessage": "Why did this artist earn less this quarter?",
+    "chatAiResponse": "Spotify UK income dropped 31% versus Q1. Two tracks were unmatched due to missing ISRCs, accounting for roughly £3,100 in unattributed income. The producer deduction was also applied before the recoupment threshold, which conflicts with clause 4.2(b) of the recording agreement.",
+    "sources": [
+      {
+        "label": "Spotify Q2 Statement",
+        "detail": "rows 2,847–2,851 · ISRC gap"
+      },
+      {
+        "label": "Recording metadata",
+        "detail": "ISRC validation report"
+      },
+      {
+        "label": "Contract §4.2(b)",
+        "detail": "Producer deduction clause"
+      }
+    ]
+  },
+  "trust": {
+    "eyebrow": "Trust and security",
+    "headline": "Built for data the old system was never careful with.",
+    "subhead": "Royalty data is some of the most commercially sensitive information in music. Decades of spreadsheets and portals were never built to protect it properly. We were.",
+    "items": [
+      {
+        "title": "Role-based access",
+        "description": "Control exactly who sees what; by catalogue, territory, deal type or run stage."
+      },
+      {
+        "title": "Audit trails",
+        "description": "Every action is logged with a timestamp and a name. Every output traces back to its source."
+      },
+      {
+        "title": "Every answer, sourced",
+        "description": "Nothing ships without evidence. Every answer points back to the row, document or clause it came from."
+      },
+      {
+        "title": "Human approval workflows",
+        "description": "Software flags and investigates. A human reviews and approves. No royalty run goes out without sign-off."
+      },
+      {
+        "title": "Private workspaces",
+        "description": "Your data stays yours. Isolated tenancy, no cross-client data access by design."
+      },
+      {
+        "title": "Exportable evidence",
+        "description": "Every claim and discrepancy exports in a format your legal and finance teams can actually use."
+      },
+      {
+        "title": "Designed for compliance",
+        "description": "Built to the governance standards serious music companies already expect."
+      },
+      {
+        "title": "Transparent outputs",
+        "description": "Every recommendation comes with its confidence level, its reasoning, and the raw source behind it."
+      }
+    ]
+  },
+  "vision": {
+    "eyebrow": "A Vision to Debase",
+    "headline": "Debase, debuild, defrag, democratise.",
+    "body1": "A century of ceremony... debased. We see a world where a single graph connects every song, recording, release, contract, owner, use and payment, everywhere, for every revenue stream.",
+    "body2": "We're starting on the operational layer, where statements pile up, income goes missing, and teams are buried in work that shouldn't need a human at all.",
+    "graphCaption": "Songs → Recordings → Contracts → Income → Ownership → Usage"
+  },
+  "earlyAccess": {
+    "eyebrow": "Early access",
+    "headline": "Too much money moves through here to run it on infrastructure this old.",
+    "body": "We're working with a small group of labels, publishers and catalogue owners who are done waiting for the old system to modernise itself. If you're acquiring, managing or defending a catalogue because you actually care what happens to the songs in it, not just the spreadsheet, talk to us.",
+    "valueProps": [
+      {
+        "title": "Direct access to the team",
+        "text": "You'll work with us directly while we build this, not a support queue inherited from someone else's system."
+      },
+      {
+        "title": "Shape what we build",
+        "text": "Your royalty problems, not the old industry's assumptions, become our roadmap."
+      },
+      {
+        "title": "Founding customer terms",
+        "text": "Early partners keep their terms as we grow. That doesn't change later."
+      }
+    ],
+    "problemLabel": "What's the old system costing you?",
+    "cta": "Request early access",
+    "disclaimer": "No spam. We'll reach out directly, one human to another.",
+    "successHeadline": "Request received.",
+    "successBody": "Thanks — we'll be in touch shortly to learn about your royalty operations and how we can help you leave the old rails behind."
+  },
+  "footer": {
+    "tagline": "Rebuilding the back office, so the money finds its way back to the people who made the music.",
+    "principle": "Debaser investigates. Humans approve. The old systems just calculate."
+  }
+}

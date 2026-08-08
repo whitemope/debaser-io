@@ -88,7 +88,7 @@ export async function POST(request: Request) {
 
   if (
     !KNOWN_DOCS.includes(doc) ||
-    (variant !== "v1" && variant !== "v2") ||
+    (variant !== "v1" && variant !== "v2" && variant !== "v3") ||
     typeof fieldPath !== "string" ||
     typeof value !== "string"
   ) {

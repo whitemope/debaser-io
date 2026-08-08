@@ -16,16 +16,18 @@ export default function Nav() {
   const bgOpacity = useTransform(scrollY, [0, 60], [0, 0.92]);
   const pathname = usePathname();
 
-  // When not on the homepage, anchor links need the / prefix so they
-  // navigate home first, then scroll to the section.
-  const a = pathname === "/" ? "" : "/";
+  // When not on the version's homepage, anchor links need the version
+  // prefix so they navigate home first, then scroll to the section.
+  const isHome = pathname === `/${variant}`;
+  const homeBase = isHome ? "" : `/${variant}`;
+  const featuresHref = `/${variant}/features`;
 
   const mainLinks = [
-    { label: "Product",   href: `${a}#product` },
-    { label: "Agents",    href: `${a}#agents` },
-    { label: "Use cases", href: `${a}#use-cases` },
-    { label: "Vision",    href: `${a}#vision` },
-    { label: "Features",  href: "/features" },
+    { label: "Product",   href: `${homeBase}#product` },
+    { label: "Agents",    href: `${homeBase}#agents` },
+    { label: "Use cases", href: `${homeBase}#use-cases` },
+    { label: "Vision",    href: `${homeBase}#vision` },
+    { label: "Features",  href: featuresHref },
   ];
 
   return (
@@ -46,18 +48,22 @@ export default function Nav() {
       />
       <div className="relative max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <a href="/" className="flex items-center gap-2 group">
+          <a href={`/${variant}`} className="flex items-center gap-2 group">
             <GhostMark className="w-6 h-6 text-ink flex-shrink-0" />
             <span className="text-ink font-semibold tracking-tight text-base">
               debaser
             </span>
           </a>
           <button
-            onClick={() => setVariant(variant === "v1" ? "v2" : "v1")}
+            onClick={() =>
+              setVariant(
+                variant === "v1" ? "v2" : variant === "v2" ? "v3" : "v1"
+              )
+            }
             aria-label="Toggle homepage copy variant"
             className="px-1.5 py-1 rounded-[4px] bg-black/[0.04] text-ink-tertiary text-[10px] font-mono tracking-tight leading-none hover:bg-black/[0.07] hover:text-ink-secondary transition-colors"
           >
-            {variant === "v1" ? "Option 1" : "Option 2"}
+            {variant === "v1" ? "Version 1" : variant === "v2" ? "Version 2" : "Version 3"}
           </button>
           <button
             onClick={toggleEditMode}
@@ -90,7 +96,7 @@ export default function Nav() {
               key={link.label}
               href={link.href}
               className={`text-sm transition-colors ${
-                link.label === "Features" && pathname === "/features"
+                link.label === "Features" && pathname === featuresHref
                   ? "text-ink"
                   : "text-ink-secondary hover:text-ink"
               }`}
@@ -108,7 +114,7 @@ export default function Nav() {
             Sign in
           </a>
           <a
-            href={`${a}#access`}
+            href={`${homeBase}#access`}
             className="bg-btn-primary text-btn-primary-fg text-sm font-medium px-4 py-2 rounded-lg hover:bg-btn-primary/90 transition-colors"
           >
             Request access
