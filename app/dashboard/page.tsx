@@ -13,14 +13,34 @@ type DeckMeta = {
   date: string;
   slides: number;
   status: "ready" | "skeleton";
-  /** Hero headline from the deck's own cover slide, shown on the thumbnail. */
-  heroText: string;
+  /** Screenshot of the deck's own title slide, shown on the thumbnail. */
+  thumbnail: string;
 };
 
 // Always reflects the current month/year. No manual date bumps between updates.
 const DECK_DATE_SHORT = new Date().toLocaleDateString("en-US", { month: "short", year: "numeric" });
 
 const DECKS: DeckMeta[] = [
+  {
+    id: "aug-2026-publishing",
+    slug: "publishing-concept",
+    title: "Publishing Concept",
+    subtitle: "Investor deck · Song rights mid-market",
+    date: DECK_DATE_SHORT,
+    slides: 7,
+    status: "ready",
+    thumbnail: "/deck-thumbs/publishing-concept.png",
+  },
+  {
+    id: "aug-2026-asset-class",
+    slug: "asset-class-concept",
+    title: "Asset Class Concept",
+    subtitle: "Investor deck · Music IP mid-market",
+    date: DECK_DATE_SHORT,
+    slides: 7,
+    status: "ready",
+    thumbnail: "/deck-thumbs/asset-class-concept.png",
+  },
   {
     id: "july-2026-harness",
     slug: "introducing-debaser-version-2",
@@ -29,7 +49,7 @@ const DECKS: DeckMeta[] = [
     date: DECK_DATE_SHORT,
     slides: 16,
     status: "ready",
-    heroText: "The intelligence layer for music royalties.",
+    thumbnail: "/deck-thumbs/v2.png",
   },
   {
     id: "june-2026",
@@ -39,12 +59,12 @@ const DECKS: DeckMeta[] = [
     date: DECK_DATE_SHORT,
     slides: 15,
     status: "ready",
-    heroText: "The AI royalty operations platform for the modern music rights economy.",
+    thumbnail: "/deck-thumbs/v1.png",
   },
-  { id: "sk1", slug: "", title: "", subtitle: "", date: "", slides: 0, status: "skeleton", heroText: "" },
-  { id: "sk2", slug: "", title: "", subtitle: "", date: "", slides: 0, status: "skeleton", heroText: "" },
-  { id: "sk3", slug: "", title: "", subtitle: "", date: "", slides: 0, status: "skeleton", heroText: "" },
-  { id: "sk4", slug: "", title: "", subtitle: "", date: "", slides: 0, status: "skeleton", heroText: "" },
+  { id: "sk1", slug: "", title: "", subtitle: "", date: "", slides: 0, status: "skeleton", thumbnail: "" },
+  { id: "sk2", slug: "", title: "", subtitle: "", date: "", slides: 0, status: "skeleton", thumbnail: "" },
+  { id: "sk3", slug: "", title: "", subtitle: "", date: "", slides: 0, status: "skeleton", thumbnail: "" },
+  { id: "sk4", slug: "", title: "", subtitle: "", date: "", slides: 0, status: "skeleton", thumbnail: "" },
 ];
 
 function DeckCard({ deck, onClick }: { deck: DeckMeta; onClick?: () => void }) {
@@ -64,17 +84,14 @@ function DeckCard({ deck, onClick }: { deck: DeckMeta; onClick?: () => void }) {
       onClick={onClick}
       className="group bg-canvas-card border border-black/[0.05] rounded-2xl overflow-hidden text-left hover:border-black/[0.12] transition-all duration-300 hover:shadow-panel"
     >
-      {/* Preview thumbnail */}
-      <div className="relative overflow-hidden bg-canvas flex flex-col items-center justify-center gap-2 px-6" style={{ height: "144px" }}>
-        <div className="absolute inset-0 bg-dot-grid opacity-50" />
-        <div className="relative flex items-center gap-1.5">
-          <GhostMark className="w-4 h-4 text-ink" />
-          <span className="text-ink text-xs font-semibold tracking-tight">debaser</span>
-        </div>
-        <p className="relative text-ink font-bold text-[11px] leading-snug text-center tracking-tight">
-          {deck.heroText}
-        </p>
-        <p className="relative text-ink-tertiary text-[9px] font-mono">{deck.subtitle}</p>
+      {/* Preview thumbnail — screenshot of the deck's own title slide */}
+      <div className="relative overflow-hidden bg-canvas" style={{ height: "144px" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={deck.thumbnail}
+          alt={`${deck.title} title slide`}
+          className="absolute inset-0 w-full h-full object-cover object-top"
+        />
         {/* Hover overlay */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
           <div className="bg-btn-primary text-btn-primary-fg text-xs font-medium px-4 py-1.5 rounded-full">

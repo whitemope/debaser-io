@@ -12,7 +12,7 @@ const DECK_DATE = new Date().toLocaleDateString("en-US", { month: "long", year: 
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-5">
+    <p className="text-[#1a1a1a] text-[10px] font-mono tracking-wide mb-5">
       {children}
     </p>
   );
@@ -21,7 +21,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 function H1({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <h2
-      className={`font-bold text-ink tracking-tight leading-[1.06] text-balance ${className}`}
+      className={`font-bold text-[#1a1a1a] tracking-tight leading-[1.06] text-balance ${className}`}
     >
       {children}
     </h2>
@@ -30,13 +30,13 @@ function H1({ children, className = "" }: { children: React.ReactNode; className
 
 function Body({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <p className={`text-ink-secondary leading-relaxed ${className}`}>{children}</p>
+    <p className={`text-[#1a1a1a] leading-relaxed ${className}`}>{children}</p>
   );
 }
 
 function AcidPill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center text-[10px] font-mono text-acid tracking-wide bg-acid/[0.08] border border-acid/[0.18] rounded-full px-2.5 py-1">
+    <span className="inline-flex items-center text-[10px] font-mono text-[#3D5AFE] tracking-wide bg-[#3D5AFE]/[0.08] border border-[#3D5AFE]/35 rounded-full px-2.5 py-1">
       {children}
     </span>
   );
@@ -50,17 +50,17 @@ function CoverSlide() {
       <div className="absolute inset-0 bg-dot-grid opacity-50" />
       <div className="relative w-full text-center px-5 py-10 sm:px-10 sm:py-14 lg:px-16 max-w-3xl">
         <div className="flex items-center justify-center gap-2.5 mb-14">
-          <GhostMark className="w-9 h-9 text-ink" />
-          <span className="text-ink text-2xl font-semibold tracking-tight">debaser</span>
+          <GhostMark className="w-9 h-9 text-[#1a1a1a]" />
+          <span className="text-[#1a1a1a] text-2xl font-semibold tracking-tight">debaser</span>
         </div>
         <H1 className="text-3xl sm:text-5xl md:text-6xl mb-8">
           The AI royalty operations platform for the modern music rights economy.
         </H1>
         <div className="w-12 h-px bg-black/[0.1] mx-auto mb-8" />
-        <p className="text-ink-secondary text-sm font-mono mb-1">
+        <p className="text-[#1a1a1a] text-sm font-mono mb-1">
           Introducing Debaser · {DECK_DATE}
         </p>
-        <p className="text-ink-tertiary text-xs font-mono">Strictly Confidential</p>
+        <p className="text-[#1a1a1a] text-xs font-mono">Strictly Confidential</p>
       </div>
     </div>
   );
@@ -99,9 +99,9 @@ function ProblemSlide() {
               key={p.n}
               className="bg-canvas-card border border-black/[0.05] rounded-xl p-4 hover:border-black/[0.1] transition-colors"
             >
-              <span className="text-ink-tertiary text-[10px] font-mono block mb-2">{p.n}</span>
-              <p className="text-ink text-sm font-semibold mb-1 tracking-tight">{p.label}</p>
-              <p className="text-ink-secondary text-xs leading-relaxed">{p.detail}</p>
+              <span className="text-[#1a1a1a] text-[10px] font-mono block mb-2">{p.n}</span>
+              <p className="text-[#1a1a1a] text-sm font-semibold mb-1 tracking-tight">{p.label}</p>
+              <p className="text-[#1a1a1a] text-xs leading-relaxed">{p.detail}</p>
             </div>
           ))}
         </div>
@@ -126,21 +126,21 @@ function WhyNowSlide() {
             label: "Music revenue growing",
             detail:
               "Recorded music hit $31.7bn in 2025, up 6.4% YoY. The rights economy keeps expanding. So does the ops complexity behind it.",
-            color: "text-acid",
+            color: "text-[#3D5AFE]",
           },
           {
             stat: "×7",
             label: "Royalty complexity exploding",
             detail:
               "Streaming, UGC, short-form, sync, social, live, neighbouring rights. Each with different rules, rates and reporting standards.",
-            color: "text-ink",
+            color: "text-[#1a1a1a]",
           },
           {
             stat: "Now",
             label: "AI is finally capable",
             detail:
               "LLMs can extract, match and explain at the level royalty ops demands. But royalty systems are still mostly workflow and accounting tools.",
-            color: "text-acid",
+            color: "text-[#3D5AFE]",
           },
         ].map((t, i) => (
           <div
@@ -151,14 +151,14 @@ function WhyNowSlide() {
               {t.stat}
             </span>
             <div>
-              <p className="text-ink text-sm font-semibold mb-1">{t.label}</p>
-              <p className="text-ink-secondary text-xs leading-relaxed">{t.detail}</p>
+              <p className="text-[#1a1a1a] text-sm font-semibold mb-1">{t.label}</p>
+              <p className="text-[#1a1a1a] text-xs leading-relaxed">{t.detail}</p>
             </div>
           </div>
         ))}
       </div>
       <div className="mt-3 border border-black/[0.06] bg-canvas-card rounded-2xl p-4">
-        <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-2.5">
+        <p className="text-[#1a1a1a] text-[10px] font-mono tracking-wide mb-2.5">
           Capital is already betting big on catalogues
         </p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -181,12 +181,12 @@ function WhyNowSlide() {
             },
           ].map((c) => (
             <div key={c.name}>
-              <p className="text-ink text-xs font-semibold mb-1 leading-snug">{c.name}</p>
-              <p className="text-ink-tertiary text-[11px] leading-relaxed">{c.detail}</p>
+              <p className="text-[#1a1a1a] text-xs font-semibold mb-1 leading-snug">{c.name}</p>
+              <p className="text-[#1a1a1a] text-[11px] leading-relaxed">{c.detail}</p>
             </div>
           ))}
         </div>
-        <p className="text-ink-tertiary text-[10px] font-mono mt-2.5">
+        <p className="text-[#1a1a1a] text-[10px] font-mono mt-2.5">
           Sources: Billboard, Music Business Worldwide, Music Week, Variety (2024–2026).
         </p>
       </div>
@@ -202,15 +202,15 @@ function MarketFailureSlide() {
       value: "$2.9bn",
       label: "IFPI performance rights",
       detail: "Recorded music performance rights reached $2.9bn globally in 2025.",
-      accent: "text-acid",
-      dot: "bg-acid",
+      accent: "text-[#3D5AFE]",
+      dot: "bg-[#3D5AFE]",
     },
     {
       value: "€13.97bn",
       label: "CISAC creator collections",
       detail: "Global creator collection society income, CISAC 2025 Global Collections Report.",
-      accent: "text-acid",
-      dot: "bg-acid",
+      accent: "text-[#3D5AFE]",
+      dot: "bg-[#3D5AFE]",
     },
     {
       value: "$424m",
@@ -236,7 +236,7 @@ function MarketFailureSlide() {
       <H1 className="text-2xl sm:text-4xl md:text-5xl mb-1">
         Rights income exists.
       </H1>
-      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-10 text-ink-secondary">
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-10 text-[#1a1a1a]">
         The allocation is broken.
       </H1>
 
@@ -249,8 +249,8 @@ function MarketFailureSlide() {
               <span className={`text-2xl font-bold tabular-nums tracking-tight block ${s.accent}`}>
                 {s.value}
               </span>
-              <p className="text-ink text-xs font-semibold mt-1.5 mb-1">{s.label}</p>
-              <p className="text-ink-tertiary text-[11px] leading-relaxed">{s.detail}</p>
+              <p className="text-[#1a1a1a] text-xs font-semibold mt-1.5 mb-1">{s.label}</p>
+              <p className="text-[#1a1a1a] text-[11px] leading-relaxed">{s.detail}</p>
             </div>
           </div>
         ))}
@@ -266,14 +266,14 @@ function MarketFailureSlide() {
               <span className={`text-3xl font-bold tabular-nums tracking-tight ${s.accent}`}>
                 {s.value}
               </span>
-              <p className="text-ink text-xs font-semibold mt-2 mb-1.5">{s.label}</p>
-              <p className="text-ink-tertiary text-[11px] leading-relaxed">{s.detail}</p>
+              <p className="text-[#1a1a1a] text-xs font-semibold mt-2 mb-1.5">{s.label}</p>
+              <p className="text-[#1a1a1a] text-[11px] leading-relaxed">{s.detail}</p>
             </div>
           ))}
         </div>
       </div>
 
-      <p className="text-ink-tertiary text-xs font-mono mt-8">
+      <p className="text-[#1a1a1a] text-xs font-mono mt-8">
         These are not edge cases. They are systemic, repeating, and addressable.
       </p>
     </div>
@@ -289,9 +289,9 @@ function MarketSizeSlide() {
       amount: "~$10bn+",
       desc: "Global royalty operations. Software, services and labour across all labels, publishers, CMOs, distributors and management companies worldwide.",
       width: "sm:w-full",
-      opacity: "bg-acid/[0.06]",
-      border: "border-acid/[0.15]",
-      textColor: "text-acid",
+      opacity: "bg-[#3D5AFE]/[0.06]",
+      border: "border-[#3D5AFE]/35",
+      textColor: "text-[#3D5AFE]",
       ringSize: 46,
     },
     {
@@ -299,9 +299,9 @@ function MarketSizeSlide() {
       amount: "~$2.5bn",
       desc: "Mid-market and independent labels, publishers, catalogue funds and management in US, UK, EU, AU. Annual software + outsourced services spend.",
       width: "sm:w-4/5",
-      opacity: "bg-acid/[0.1]",
-      border: "border-acid/[0.22]",
-      textColor: "text-acid",
+      opacity: "bg-[#3D5AFE]/[0.1]",
+      border: "border-[#3D5AFE]/35",
+      textColor: "text-[#3D5AFE]",
       ringSize: 32,
     },
     {
@@ -309,9 +309,9 @@ function MarketSizeSlide() {
       amount: "~£80m",
       desc: "Beachhead. UK + Western EU independent music companies. Year 1–3 target with direct sales and partner channels.",
       width: "sm:w-3/5",
-      opacity: "bg-acid/[0.16]",
-      border: "border-acid/[0.3]",
-      textColor: "text-acid",
+      opacity: "bg-[#3D5AFE]/[0.16]",
+      border: "border-[#3D5AFE]/35",
+      textColor: "text-[#3D5AFE]",
       ringSize: 18,
     },
   ];
@@ -320,7 +320,7 @@ function MarketSizeSlide() {
     <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-8 lg:px-16 lg:py-12">
       <Eyebrow>05. Market</Eyebrow>
       <H1 className="text-2xl sm:text-4xl md:text-5xl mb-2">A large and growing opportunity.</H1>
-      <p className="text-ink-tertiary text-xs font-mono mb-4">
+      <p className="text-[#1a1a1a] text-xs font-mono mb-4">
         TAM = Total Addressable Market, the whole prize · SAM = Serviceable Addressable Market, who we can realistically
         reach · SOM = Serviceable Obtainable Market, what we can capture first.
       </p>
@@ -331,12 +331,12 @@ function MarketSizeSlide() {
             className={`w-full ${t.width} border ${t.border} ${t.opacity} rounded-xl px-4 py-3 sm:px-6 sm:py-4 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-8`}
           >
             <div className="flex items-baseline gap-3 sm:contents">
-              <span className="text-[10px] font-mono text-ink-tertiary tracking-wide flex-shrink-0 sm:w-12">{t.label}</span>
+              <span className="text-[10px] font-mono text-[#1a1a1a] tracking-wide flex-shrink-0 sm:w-12">{t.label}</span>
               <span className={`text-xl sm:text-2xl font-bold tabular-nums ${t.textColor} flex-shrink-0 sm:w-28`}>
                 {t.amount}
               </span>
             </div>
-            <p className="text-ink-secondary text-sm leading-relaxed flex-1">{t.desc}</p>
+            <p className="text-[#1a1a1a] text-sm leading-relaxed flex-1">{t.desc}</p>
             <div className="hidden sm:flex flex-shrink-0 w-14 h-14 items-center justify-center">
               <div
                 className={`rounded-full border ${t.border} ${t.opacity}`}
@@ -346,7 +346,7 @@ function MarketSizeSlide() {
           </div>
         ))}
       </div>
-      <p className="text-ink-tertiary text-[10px] font-mono">
+      <p className="text-[#1a1a1a] text-[10px] font-mono">
         Preliminary estimates. Deeper TAM/SAM/SOM research in progress. Adjacent revenue ops opportunity extends total market significantly.
       </p>
     </div>
@@ -374,7 +374,7 @@ function CompetitiveLandscapeSlide() {
   ];
 
   const Cell = ({ val }: { val: boolean | string | undefined }) => {
-    if (val === true) return <span className="text-acid text-base">✓</span>;
+    if (val === true) return <span className="text-[#3D5AFE] text-base">✓</span>;
     if (val === "partial") return <span className="text-amber-400/70 text-xs font-mono">partial</span>;
     return <span className="text-black/20 text-base">–</span>;
   };
@@ -389,10 +389,10 @@ function CompetitiveLandscapeSlide() {
         <table className="w-full min-w-[720px] text-sm">
           <thead>
             <tr className="border-b border-black/[0.06]">
-              <th className="text-left text-ink-tertiary text-[10px] font-mono tracking-wide pb-2 pr-6 w-48">Company</th>
-              <th className="text-left text-ink-tertiary text-[10px] font-mono tracking-wide pb-2 pr-8">Type</th>
+              <th className="text-left text-[#1a1a1a] text-[10px] font-mono tracking-wide pb-2 pr-6 w-48">Company</th>
+              <th className="text-left text-[#1a1a1a] text-[10px] font-mono tracking-wide pb-2 pr-8">Type</th>
               {cols.map((c) => (
-                <th key={c.key} className="text-center text-ink-tertiary text-[10px] font-mono tracking-wide pb-2 px-4">
+                <th key={c.key} className="text-center text-[#1a1a1a] text-[10px] font-mono tracking-wide pb-2 px-4">
                   {c.label}
                 </th>
               ))}
@@ -404,19 +404,19 @@ function CompetitiveLandscapeSlide() {
                 key={row.name}
                 className={`border-b border-black/[0.04] ${
                   row.highlight
-                    ? "bg-acid/[0.04] border-acid/[0.1]"
+                    ? "bg-[#3D5AFE]/[0.04] border-[#3D5AFE]/35"
                     : "hover:bg-canvas-elevated"
                 } transition-colors`}
               >
                 <td className="py-2.5 pr-6">
-                  <span className={`font-semibold text-sm ${row.highlight ? "text-acid" : "text-ink"}`}>
+                  <span className={`font-semibold text-sm ${row.highlight ? "text-[#3D5AFE]" : "text-[#1a1a1a]"}`}>
                     {row.name}
                   </span>
                   {row.highlight && (
-                    <span className="ml-2 text-[9px] font-mono text-acid tracking-wide bg-acid/10 rounded-full px-2 py-0.5">us</span>
+                    <span className="ml-2 text-[9px] font-mono text-[#3D5AFE] tracking-wide bg-[#3D5AFE]/10 rounded-full px-2 py-0.5">us</span>
                   )}
                 </td>
-                <td className="py-2.5 pr-8 text-ink-secondary text-xs">{row.type}</td>
+                <td className="py-2.5 pr-8 text-[#1a1a1a] text-xs">{row.type}</td>
                 {cols.map((c) => (
                   <td key={c.key} className="py-2.5 px-4 text-center">
                     <Cell val={row[c.key as keyof typeof row] as boolean | string | undefined} />
@@ -441,10 +441,10 @@ function InsightSlide() {
         <H1 className="text-3xl sm:text-5xl md:text-6xl mb-8">
           The market does not need another royalty calculator.
         </H1>
-        <div className="w-12 h-px bg-acid/30 mx-auto mb-8" />
+        <div className="w-12 h-px bg-[#3D5AFE]/30 mx-auto mb-8" />
         <Body className="text-xl max-w-2xl mx-auto">
           It needs a{" "}
-          <span className="text-ink font-semibold">trusted AI analyst</span> that
+          <span className="text-[#1a1a1a] font-semibold">trusted AI analyst</span> that
           understands contracts, catalogues, statements and missing income, and
           explains every answer with source-level evidence.
         </Body>
@@ -470,7 +470,7 @@ function ProductSlide() {
       <Eyebrow>08. Product</Eyebrow>
       <div className="flex items-baseline gap-4 mb-3">
         <H1 className="text-2xl sm:text-4xl md:text-5xl">Debaser</H1>
-        <span className="text-ink-secondary text-lg">the long game.</span>
+        <span className="text-[#1a1a1a] text-lg">the long game.</span>
       </div>
       <Body className="text-base mb-6 max-w-xl">
         Royalty intelligence is the wedge. The product we ship first. The endgame is the
@@ -480,26 +480,26 @@ function ProductSlide() {
         {phases.map((p) => (
           <div
             key={p.n}
-            className={`border rounded-xl p-4 ${p.active ? "border-acid/30 bg-acid/[0.04]" : "border-black/[0.05] bg-canvas-card"}`}
+            className={`border rounded-xl p-4 ${p.active ? "border-[#3D5AFE]/35 bg-[#3D5AFE]/[0.04]" : "border-black/[0.05] bg-canvas-card"}`}
           >
             <div className="flex items-center gap-2 mb-2">
-              <span className={`text-[10px] font-mono ${p.active ? "text-acid" : "text-ink-tertiary"}`}>
+              <span className={`text-[10px] font-mono ${p.active ? "text-[#3D5AFE]" : "text-[#1a1a1a]"}`}>
                 Phase {p.n}
               </span>
               {p.active && <AcidPill>Now</AcidPill>}
             </div>
-            <p className={`text-sm font-semibold mb-1 ${p.active ? "text-acid" : "text-ink"}`}>{p.label}</p>
-            <p className="text-ink-tertiary text-xs leading-relaxed">{p.desc}</p>
+            <p className={`text-sm font-semibold mb-1 ${p.active ? "text-[#3D5AFE]" : "text-[#1a1a1a]"}`}>{p.label}</p>
+            <p className="text-[#1a1a1a] text-xs leading-relaxed">{p.desc}</p>
           </div>
         ))}
       </div>
       <div
-        className="border border-acid/[0.15] rounded-xl px-6 py-4"
-        style={{ background: "rgba(76, 175, 80,0.03)" }}
+        className="border border-[#3D5AFE]/35 rounded-xl px-6 py-4"
+        style={{ background: "rgba(61,90,254,0.05)" }}
       >
-        <p className="text-ink text-sm font-medium">
+        <p className="text-[#1a1a1a] text-sm font-medium">
           Endgame:{" "}
-          <span className="text-ink-secondary font-normal">
+          <span className="text-[#1a1a1a] font-normal">
             The AI-native infrastructure layer for music rights, royalties and usage. Across every territory and revenue stream.
           </span>
         </p>
@@ -522,13 +522,13 @@ function MVPSlide() {
       n: "02",
       label: "Detect",
       items: ["Unmatched recordings", "Missing splits", "Unexplained drops", "Duplicate income"],
-      color: "border-acid/[0.2]",
+      color: "border-[#3D5AFE]/35",
     },
     {
       n: "03",
       label: "Report",
       items: ["Exceptions report", "Source evidence", "AI explanations", "Claim-ready packs"],
-      color: "border-acid/[0.35]",
+      color: "border-[#3D5AFE]/35",
     },
   ];
 
@@ -538,7 +538,7 @@ function MVPSlide() {
       <H1 className="text-2xl sm:text-4xl md:text-5xl mb-3">
         Our MVP: Find royalty mistakes and missing money
       </H1>
-      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-12 text-acid">
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-12">
         before the royalty run.
       </H1>
       <div className="grid lg:grid-cols-3 gap-4">
@@ -547,12 +547,12 @@ function MVPSlide() {
             key={i}
             className={`border ${s.color} bg-canvas-card rounded-2xl p-6 relative`}
           >
-            <span className="text-ink-tertiary text-[10px] font-mono block mb-4">{s.n}</span>
-            <p className="text-ink text-base font-semibold mb-4 tracking-tight">{s.label}</p>
+            <span className="text-[#1a1a1a] text-[10px] font-mono block mb-4">{s.n}</span>
+            <p className="text-[#1a1a1a] text-base font-semibold mb-4 tracking-tight">{s.label}</p>
             <ul className="space-y-2">
               {s.items.map((item) => (
-                <li key={item} className="flex items-center gap-2.5 text-sm text-ink-secondary">
-                  <div className="w-1 h-1 rounded-full bg-acid/60 flex-shrink-0" />
+                <li key={item} className="flex items-center gap-2.5 text-sm text-[#1a1a1a]">
+                  <div className="w-1 h-1 rounded-full bg-[#3D5AFE]/60 flex-shrink-0" />
                   {item}
                 </li>
               ))}
@@ -567,11 +567,11 @@ function MVPSlide() {
           </div>
         ))}
       </div>
-      <div className="mt-6 bg-canvas-card border border-acid/10 rounded-xl p-4 flex items-center gap-3">
-        <div className="w-1.5 h-1.5 rounded-full bg-acid flex-shrink-0" />
-        <p className="text-ink-secondary text-sm">
+      <div className="mt-6 bg-canvas-card border border-[#3D5AFE]/35 rounded-xl p-4 flex items-center gap-3">
+        <div className="w-1.5 h-1.5 rounded-full bg-[#3D5AFE] flex-shrink-0" />
+        <p className="text-[#1a1a1a] text-sm">
           Initial offer:{" "}
-          <span className="text-ink font-medium">
+          <span className="text-[#1a1a1a] font-medium">
             "Send us last quarter's royalty mess. We'll show you what's wrong."
           </span>{" "}
           Free diagnosis. Converts to paid subscription.
@@ -599,22 +599,22 @@ function AgenticSlide() {
       <H1 className="text-2xl sm:text-4xl md:text-5xl mb-10">Agentic by design.</H1>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-8">
         {agents.map((a, i) => (
-          <div key={i} className="bg-canvas-card border border-black/[0.05] rounded-xl p-4 hover:border-acid/20 transition-colors group">
+          <div key={i} className="bg-canvas-card border border-black/[0.05] rounded-xl p-4 hover:border-[#3D5AFE]/35 transition-colors group">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-5 h-5 rounded-md bg-acid-dim border border-acid-border flex items-center justify-center">
-                <div className="w-1 h-1 rounded-full bg-acid" />
+              <div className="w-5 h-5 rounded-md bg-[#3D5AFE]/10 border border-[#3D5AFE]/30 flex items-center justify-center">
+                <div className="w-1 h-1 rounded-full bg-[#3D5AFE]" />
               </div>
-              <p className="text-ink text-[12px] font-semibold tracking-tight">{a.name}</p>
+              <p className="text-[#1a1a1a] text-[12px] font-semibold tracking-tight">{a.name}</p>
             </div>
-            <p className="text-ink-secondary text-xs leading-relaxed">{a.desc}</p>
+            <p className="text-[#1a1a1a] text-xs leading-relaxed">{a.desc}</p>
           </div>
         ))}
       </div>
       <div className="border border-black/[0.07] bg-canvas-card rounded-xl px-6 py-4">
-        <p className="text-ink text-sm font-medium text-center tracking-tight">
+        <p className="text-[#1a1a1a] text-sm font-medium text-center tracking-tight">
           AI investigates.{" "}
-          <span className="text-ink-secondary">Humans approve.</span>{" "}
-          <span className="text-ink-tertiary">Deterministic engines calculate.</span>
+          <span className="text-[#1a1a1a]">Humans approve.</span>{" "}
+          <span className="text-[#1a1a1a]">Deterministic engines calculate.</span>
         </p>
       </div>
     </div>
@@ -639,7 +639,7 @@ function BusinessModelSlide() {
       period: "/mo",
       target: "Publishers, label services, multi-catalogue",
       features: ["Multiple catalogues", "Unlimited statements", "Contract extraction", "Audit workflows", "Priority support"],
-      accent: "border-acid/[0.3]",
+      accent: "border-[#3D5AFE]/35",
       featured: true,
     },
     {
@@ -660,21 +660,21 @@ function BusinessModelSlide() {
         {tiers.map((t) => (
           <div
             key={t.name}
-            className={`border ${t.accent} rounded-2xl p-6 bg-canvas-card ${t.featured ? "bg-acid/[0.03]" : ""} flex flex-col gap-4`}
+            className={`border ${t.accent} rounded-2xl p-6 bg-canvas-card ${t.featured ? "bg-[#3D5AFE]/[0.03]" : ""} flex flex-col gap-4`}
           >
             <div>
               {t.featured && <AcidPill>Most common</AcidPill>}
-              <p className={`text-sm font-semibold mt-2 ${t.featured ? "text-acid" : "text-ink"}`}>{t.name}</p>
+              <p className={`text-sm font-semibold mt-2 ${t.featured ? "text-[#3D5AFE]" : "text-[#1a1a1a]"}`}>{t.name}</p>
               <div className="flex items-baseline gap-0.5 mt-1">
-                <span className="text-2xl font-bold text-ink">{t.price}</span>
-                <span className="text-ink-tertiary text-xs">{t.period}</span>
+                <span className="text-2xl font-bold text-[#1a1a1a]">{t.price}</span>
+                <span className="text-[#1a1a1a] text-xs">{t.period}</span>
               </div>
-              <p className="text-ink-secondary text-xs mt-1">{t.target}</p>
+              <p className="text-[#1a1a1a] text-xs mt-1">{t.target}</p>
             </div>
             <ul className="space-y-1.5 mt-auto">
               {t.features.map((f) => (
-                <li key={f} className="flex items-center gap-2 text-xs text-ink-secondary">
-                  <div className={`w-1 h-1 rounded-full flex-shrink-0 ${t.featured ? "bg-acid" : "bg-black/20"}`} />
+                <li key={f} className="flex items-center gap-2 text-xs text-[#1a1a1a]">
+                  <div className={`w-1 h-1 rounded-full flex-shrink-0 ${t.featured ? "bg-[#3D5AFE]" : "bg-black/20"}`} />
                   {f}
                 </li>
               ))}
@@ -682,7 +682,7 @@ function BusinessModelSlide() {
           </div>
         ))}
       </div>
-      <p className="text-ink-tertiary text-xs font-mono">
+      <p className="text-[#1a1a1a] text-xs font-mono">
         + Historical backfill projects (one-off revenue) · + Usage detection partnerships (future) · All pricing subject to market validation
       </p>
     </div>
@@ -707,36 +707,36 @@ function GTMSlide() {
       <H1 className="text-2xl sm:text-4xl md:text-5xl mb-10">Starting where the pain is deepest.</H1>
       <div className="grid lg:grid-cols-2 gap-10 flex-1 items-start">
         <div>
-          <p className="text-ink text-sm font-semibold mb-4 tracking-wide text-xs">Beachhead segments</p>
+          <p className="text-[#1a1a1a] text-sm font-semibold mb-4 tracking-wide text-xs">Beachhead segments</p>
           <div className="space-y-2">
             {segments.map((s, i) => (
               <div key={i} className="flex items-center gap-3 border border-black/[0.05] rounded-lg px-4 py-2.5 bg-canvas-card">
-                <div className="w-5 h-5 rounded-full bg-acid/10 border border-acid/20 flex items-center justify-center flex-shrink-0">
-                  <span className="text-acid text-[9px] font-mono">{String(i + 1).padStart(2, "0")}</span>
+                <div className="w-5 h-5 rounded-full bg-[#3D5AFE]/10 border border-[#3D5AFE]/35 flex items-center justify-center flex-shrink-0">
+                  <span className="text-[#3D5AFE] text-[9px] font-mono">{String(i + 1).padStart(2, "0")}</span>
                 </div>
-                <span className="text-ink-secondary text-sm">{s}</span>
+                <span className="text-[#1a1a1a] text-sm">{s}</span>
               </div>
             ))}
           </div>
         </div>
         <div className="flex flex-col gap-4">
-          <div className="border border-acid/[0.2] bg-acid/[0.04] rounded-2xl p-6">
-            <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-3">Sales motion</p>
-            <p className="text-ink text-lg font-semibold leading-snug mb-3 tracking-tight">
+          <div className="border border-[#3D5AFE]/35 bg-[#3D5AFE]/[0.04] rounded-2xl p-6">
+            <p className="text-[#1a1a1a] text-[10px] font-mono tracking-wide mb-3">Sales motion</p>
+            <p className="text-[#1a1a1a] text-lg font-semibold leading-snug mb-3 tracking-tight">
               "Send us last quarter's royalty mess. We'll show you what's wrong."
             </p>
             <div className="space-y-2 mt-4">
               {["Free diagnosis → converts to paid", "High-value wedge, low sales friction", "Proof of value before commitment"].map((p) => (
                 <div key={p} className="flex items-center gap-2">
-                  <div className="w-1 h-1 rounded-full bg-acid flex-shrink-0" />
-                  <span className="text-ink-secondary text-sm">{p}</span>
+                  <div className="w-1 h-1 rounded-full bg-[#3D5AFE] flex-shrink-0" />
+                  <span className="text-[#1a1a1a] text-sm">{p}</span>
                 </div>
               ))}
             </div>
           </div>
           <div className="border border-black/[0.06] bg-canvas-card rounded-xl p-5">
-            <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-2">Why they stay</p>
-            <p className="text-ink-secondary text-sm leading-relaxed">
+            <p className="text-[#1a1a1a] text-[10px] font-mono tracking-wide mb-2">Why they stay</p>
+            <p className="text-[#1a1a1a] text-sm leading-relaxed">
               Once Debaser has ingested a catalogue, contracts and historical statements, switching cost is high. Royalty intelligence becomes institutional infrastructure.
             </p>
           </div>
@@ -791,7 +791,7 @@ function TractionSlide() {
       <H1 className="text-2xl sm:text-4xl md:text-5xl mb-3">
         Early stage.
       </H1>
-      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-12 text-ink-secondary">
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-12 text-[#1a1a1a]">
         Building with conviction.
       </H1>
 
@@ -803,25 +803,25 @@ function TractionSlide() {
               <div
                 className={`w-3.5 h-3.5 rounded-full border-2 flex-shrink-0 ${
                   m.status === "done"
-                    ? "bg-acid border-acid"
+                    ? "bg-[#3D5AFE] border-[#3D5AFE]/35"
                     : m.status === "now"
-                    ? "bg-canvas border-acid"
+                    ? "bg-canvas border-[#3D5AFE]/35"
                     : "bg-canvas border-black/20"
                 }`}
               />
               {i < milestones.length - 1 && (
-                <div className={`w-px flex-1 mt-1 ${m.status === "next" ? "bg-black/[0.08]" : "bg-acid"}`} />
+                <div className={`w-px flex-1 mt-1 ${m.status === "next" ? "bg-black/[0.08]" : "bg-[#3D5AFE]"}`} />
               )}
             </div>
             <div className="pb-6">
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-ink-tertiary text-[10px] font-mono">{m.period}</span>
+                <span className="text-[#1a1a1a] text-[10px] font-mono">{m.period}</span>
                 {m.status === "now" && <AcidPill>Now</AcidPill>}
               </div>
-              <p className={`text-sm font-semibold mb-1 ${m.status === "next" ? "text-ink-secondary" : "text-ink"}`}>
+              <p className={`text-sm font-semibold mb-1 ${m.status === "next" ? "text-[#1a1a1a]" : "text-[#1a1a1a]"}`}>
                 {m.label}
               </p>
-              <p className="text-ink-tertiary text-xs leading-relaxed">{m.detail}</p>
+              <p className="text-[#1a1a1a] text-xs leading-relaxed">{m.detail}</p>
             </div>
           </div>
         ))}
@@ -832,7 +832,7 @@ function TractionSlide() {
         <div className="relative">
           <div className="absolute top-[7px] left-0 right-0 h-px bg-black/[0.08]" />
           <div
-            className="absolute top-[7px] left-0 h-px bg-acid"
+            className="absolute top-[7px] left-0 h-px bg-[#3D5AFE]"
             style={{ width: `${progressPct}%` }}
           />
           <div className="grid grid-cols-5 gap-4 relative">
@@ -842,19 +842,19 @@ function TractionSlide() {
                   <div
                     className={`w-3.5 h-3.5 rounded-full border-2 flex-shrink-0 ${
                       m.status === "done"
-                        ? "bg-acid border-acid"
+                        ? "bg-[#3D5AFE] border-[#3D5AFE]/35"
                         : m.status === "now"
-                        ? "bg-canvas border-acid"
+                        ? "bg-canvas border-[#3D5AFE]/35"
                         : "bg-canvas border-black/20"
                     }`}
                   />
                   {m.status === "now" && <AcidPill>Now</AcidPill>}
                 </div>
-                <span className="text-ink-tertiary text-[10px] font-mono mb-1.5">{m.period}</span>
-                <p className={`text-sm font-semibold mb-1.5 ${m.status === "next" ? "text-ink-secondary" : "text-ink"}`}>
+                <span className="text-[#1a1a1a] text-[10px] font-mono mb-1.5">{m.period}</span>
+                <p className={`text-sm font-semibold mb-1.5 ${m.status === "next" ? "text-[#1a1a1a]" : "text-[#1a1a1a]"}`}>
                   {m.label}
                 </p>
-                <p className="text-ink-tertiary text-xs leading-relaxed">{m.detail}</p>
+                <p className="text-[#1a1a1a] text-xs leading-relaxed">{m.detail}</p>
               </div>
             ))}
           </div>
@@ -862,8 +862,8 @@ function TractionSlide() {
       </div>
 
       <div className="mt-6 border border-black/[0.05] bg-canvas-card rounded-xl p-5">
-        <p className="text-ink-secondary text-sm">
-          <span className="text-ink font-medium">Design partner programme:</span>{" "}
+        <p className="text-[#1a1a1a] text-sm">
+          <span className="text-[#1a1a1a] font-medium">Design partner programme:</span>{" "}
           We are actively recruiting 3–5 design partners from our beachhead segments to co-develop the product and validate commercial terms before formal launch.
         </p>
       </div>
@@ -883,26 +883,26 @@ function TeamSlide() {
           {/* Founder card */}
           <div className="border border-black/[0.06] bg-canvas-card rounded-2xl p-6">
             <div className="flex items-start gap-4 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-acid/10 border border-acid/20 flex items-center justify-center flex-shrink-0">
-                <span className="text-acid text-lg font-bold">D</span>
+              <div className="w-12 h-12 rounded-xl bg-[#3D5AFE]/10 border border-[#3D5AFE]/35 flex items-center justify-center flex-shrink-0">
+                <span className="text-[#3D5AFE] text-lg font-bold">D</span>
               </div>
               <div>
-                <p className="text-ink font-semibold">David Rennick</p>
-                <p className="text-ink-secondary text-xs mt-0.5">Founder & CEO</p>
+                <p className="text-[#1a1a1a] font-semibold">David Rennick</p>
+                <p className="text-[#1a1a1a] text-xs mt-0.5">Founder & CEO</p>
               </div>
             </div>
-            <p className="text-ink-secondary text-sm leading-relaxed">
+            <p className="text-[#1a1a1a] text-sm leading-relaxed">
               Founder with deep experience at the intersection of music, technology and product. Building Debaser to solve the royalty operations problem from the inside out.
             </p>
           </div>
           {/* Recruiting */}
           <div className="border border-black/[0.05] border-dashed bg-canvas-card rounded-2xl p-5">
-            <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-3">Recruiting</p>
+            <p className="text-[#1a1a1a] text-[10px] font-mono tracking-wide mb-3">Recruiting</p>
             <div className="space-y-2">
               {["CTO / Head of Engineering", "Head of Royalty Operations", "Commercial Lead"].map((r) => (
                 <div key={r} className="flex items-center gap-2">
                   <div className="w-1 h-1 rounded-full bg-black/20 flex-shrink-0" />
-                  <span className="text-ink-secondary text-sm">{r}</span>
+                  <span className="text-[#1a1a1a] text-sm">{r}</span>
                 </div>
               ))}
             </div>
@@ -911,17 +911,17 @@ function TeamSlide() {
 
         <div className="flex flex-col gap-4">
           <div className="border border-black/[0.05] bg-canvas-card rounded-2xl p-6">
-            <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-4">Advisory board</p>
-            <p className="text-ink-secondary text-sm leading-relaxed mb-4">
+            <p className="text-[#1a1a1a] text-[10px] font-mono tracking-wide mb-4">Advisory board</p>
+            <p className="text-[#1a1a1a] text-sm leading-relaxed mb-4">
               We are building an advisory board of senior operators, royalty lawyers, DSP executives and rights data specialists.
             </p>
-            <p className="text-ink-secondary text-sm">
-              Target advisors span: <span className="text-ink">royalty accounting</span>, <span className="text-ink">music publishing ops</span>, <span className="text-ink">DSP licensing</span>, and <span className="text-ink">AI infrastructure</span>.
+            <p className="text-[#1a1a1a] text-sm">
+              Target advisors span: <span className="text-[#1a1a1a]">royalty accounting</span>, <span className="text-[#1a1a1a]">music publishing ops</span>, <span className="text-[#1a1a1a]">DSP licensing</span>, and <span className="text-[#1a1a1a]">AI infrastructure</span>.
             </p>
           </div>
-          <div className="border border-acid/[0.12] bg-acid/[0.03] rounded-xl p-5">
-            <p className="text-ink-secondary text-sm leading-relaxed">
-              <span className="text-ink font-medium">Domain advantage:</span>{" "}
+          <div className="border border-[#3D5AFE]/35 bg-[#3D5AFE]/[0.03] rounded-xl p-5">
+            <p className="text-[#1a1a1a] text-sm leading-relaxed">
+              <span className="text-[#1a1a1a] font-medium">Domain advantage:</span>{" "}
               The team that understands both the royalty operations problem and modern AI architecture is rare. That combination is the moat.
             </p>
           </div>
@@ -935,9 +935,9 @@ function TeamSlide() {
 
 function AskSlide() {
   const useOfFunds = [
-    { label: "Product & Engineering", pct: 55, amount: "£2.75m", color: "bg-acid" },
-    { label: "Commercial & GTM", pct: 25, amount: "£1.25m", color: "bg-acid/50" },
-    { label: "Operations & Legal", pct: 20, amount: "£1.0m", color: "bg-acid/25" },
+    { label: "Product & Engineering", pct: 55, amount: "£2.75m", color: "bg-[#3D5AFE]" },
+    { label: "Commercial & GTM", pct: 25, amount: "£1.25m", color: "bg-[#3D5AFE]/50" },
+    { label: "Operations & Legal", pct: 20, amount: "£1.0m", color: "bg-[#3D5AFE]/25" },
   ];
 
   const horizon = [
@@ -970,20 +970,20 @@ function AskSlide() {
       <div className="grid lg:grid-cols-2 gap-8">
         <div className="flex flex-col gap-3">
           <div
-            className="border border-acid/[0.25] rounded-2xl p-6"
-            style={{ background: "rgba(76, 175, 80,0.03)" }}
+            className="border border-[#3D5AFE]/35 rounded-2xl p-6"
+            style={{ background: "rgba(61,90,254,0.05)" }}
           >
-            <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-2">Round</p>
-            <p className="text-acid text-4xl font-bold mb-1">£5m</p>
-            <p className="text-ink-secondary text-sm">Pre-seed · SAFE or priced round · 24-month runway</p>
+            <p className="text-[#1a1a1a] text-[10px] font-mono tracking-wide mb-2">Round</p>
+            <p className="text-[#3D5AFE] text-4xl font-bold mb-1">£5m</p>
+            <p className="text-[#1a1a1a] text-sm">Pre-seed · SAFE or priced round · 24-month runway</p>
             <div className="mt-3 pt-3 border-t border-black/[0.06]">
-              <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-3">Use of funds</p>
+              <p className="text-[#1a1a1a] text-[10px] font-mono tracking-wide mb-3">Use of funds</p>
               <div className="space-y-3 sm:space-y-2.5">
                 {useOfFunds.map((f) => (
                   <div key={f.label} className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3">
                     <div className="flex items-center justify-between sm:contents">
-                      <span className="text-ink-secondary text-xs sm:w-28 sm:flex-shrink-0 sm:order-2">{f.label}</span>
-                      <span className="text-ink text-xs font-mono sm:w-14 sm:text-right sm:flex-shrink-0 sm:order-3">{f.amount}</span>
+                      <span className="text-[#1a1a1a] text-xs sm:w-28 sm:flex-shrink-0 sm:order-2">{f.label}</span>
+                      <span className="text-[#1a1a1a] text-xs font-mono sm:w-14 sm:text-right sm:flex-shrink-0 sm:order-3">{f.amount}</span>
                     </div>
                     <div className="flex-1 h-1.5 bg-black/[0.05] rounded-full overflow-hidden sm:order-1">
                       <div
@@ -997,11 +997,11 @@ function AskSlide() {
             </div>
           </div>
           <div className="border border-black/[0.05] bg-canvas-card rounded-xl p-5">
-            <p className="text-ink-tertiary text-[10px] font-mono tracking-wide mb-2">Contact</p>
-            <p className="text-ink text-sm font-medium">David Rennick</p>
+            <p className="text-[#1a1a1a] text-[10px] font-mono tracking-wide mb-2">Contact</p>
+            <p className="text-[#1a1a1a] text-sm font-medium">David Rennick</p>
             <a
               href="mailto:daverennick@gmail.com"
-              className="text-acid text-sm hover:underline underline-offset-2"
+              className="text-[#3D5AFE] text-sm hover:underline underline-offset-2"
             >
               daverennick@gmail.com
             </a>
@@ -1012,16 +1012,16 @@ function AskSlide() {
           {horizon.map((h) => (
             <div key={h.year} className="border border-black/[0.06] bg-canvas-card rounded-2xl p-6">
               <div className="flex items-center justify-between mb-3">
-                <p className="text-ink text-sm font-semibold">
-                  {h.year} <span className="text-ink-tertiary font-normal text-xs">· {h.period}</span>
+                <p className="text-[#1a1a1a] text-sm font-semibold">
+                  {h.year} <span className="text-[#1a1a1a] font-normal text-xs">· {h.period}</span>
                 </p>
-                <span className="text-acid text-xs font-mono">{h.spend}</span>
+                <span className="text-[#3D5AFE] text-xs font-mono">{h.spend}</span>
               </div>
               <ul className="space-y-2">
                 {h.items.map((m, i) => (
                   <li key={i} className="flex items-start gap-2.5">
-                    <div className="w-1 h-1 rounded-full bg-acid/60 flex-shrink-0 mt-1.5" />
-                    <span className="text-ink-secondary text-sm">{m}</span>
+                    <div className="w-1 h-1 rounded-full bg-[#3D5AFE]/60 flex-shrink-0 mt-1.5" />
+                    <span className="text-[#1a1a1a] text-sm">{m}</span>
                   </li>
                 ))}
               </ul>
@@ -1041,18 +1041,18 @@ function ClosingSlide() {
       <div className="absolute inset-0 bg-dot-grid opacity-40" />
       <div className="relative w-full text-center max-w-3xl">
         <div className="flex items-center justify-center gap-2 mb-10">
-          <GhostMark className="w-7 h-7 text-ink" />
-          <span className="text-ink text-lg font-semibold">debaser</span>
+          <GhostMark className="w-7 h-7 text-[#1a1a1a]" />
+          <span className="text-[#1a1a1a] text-lg font-semibold">debaser</span>
         </div>
         <H1 className="text-2xl sm:text-4xl md:text-5xl mb-8">
           Music royalties are a growing, multi-billion-dollar market trapped in broken metadata, manual workflows and opaque legacy systems.
         </H1>
-        <div className="w-12 h-px bg-acid/30 mx-auto mb-8" />
+        <div className="w-12 h-px bg-[#3D5AFE]/30 mx-auto mb-8" />
         <Body className="text-lg max-w-2xl mx-auto">
           We are building the AI-native royalty operations layer that{" "}
-          <span className="text-ink font-medium">finds missing money</span>,{" "}
-          <span className="text-ink font-medium">explains every payment</span>, and becomes{" "}
-          <span className="text-acid font-medium">the rights graph of record</span>.
+          <span className="text-[#1a1a1a] font-medium">finds missing money</span>,{" "}
+          <span className="text-[#1a1a1a] font-medium">explains every payment</span>, and becomes{" "}
+          <span className="text-[#3D5AFE] font-medium">the rights graph of record</span>.
         </Body>
       </div>
     </div>
@@ -1134,22 +1134,22 @@ export default function PitchDeck({ onClose }: { onClose: () => void }) {
       <div className="flex-shrink-0 flex items-center justify-between gap-3 px-3 sm:px-6 h-14 sm:h-16 border-b border-black/[0.05] bg-canvas-subtle/60 backdrop-blur-sm">
         <div className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1">
           <a href="/v1" className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
-            <GhostMark className="w-5 h-5 sm:w-6 sm:h-6 text-ink" />
-            <span className="hidden sm:inline text-ink text-base font-semibold">debaser</span>
+            <GhostMark className="w-5 h-5 sm:w-6 sm:h-6 text-[#1a1a1a]" />
+            <span className="hidden sm:inline text-[#1a1a1a] text-base font-semibold">debaser</span>
           </a>
           <div className="hidden sm:block w-px h-4 bg-black/[0.08] mx-1 flex-shrink-0" />
-          <span className="text-ink-tertiary text-xs sm:text-sm truncate min-w-0">
+          <span className="text-[#1a1a1a] text-xs sm:text-sm truncate min-w-0">
             Introducing Debaser (Version 1)
           </span>
         </div>
 
         <div className="flex items-center gap-3 sm:gap-4 flex-shrink-0">
-          <span className="text-ink-tertiary text-xs sm:text-sm font-mono whitespace-nowrap">
+          <span className="text-[#1a1a1a] text-xs sm:text-sm font-mono whitespace-nowrap">
             {String(current + 1).padStart(2, "0")} / {String(SLIDES.length).padStart(2, "0")}
           </span>
           <button
             onClick={onClose}
-            className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg border border-black/[0.07] flex items-center justify-center hover:border-black/[0.16] hover:bg-canvas-card transition-all text-ink-secondary hover:text-ink flex-shrink-0"
+            className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg border border-black/[0.07] flex items-center justify-center hover:border-black/[0.16] hover:bg-canvas-card transition-all text-[#1a1a1a] hover:text-[#1a1a1a] flex-shrink-0"
             aria-label="Close"
           >
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -1180,7 +1180,7 @@ export default function PitchDeck({ onClose }: { onClose: () => void }) {
 
       {/* ── Footer nav ── */}
       <div className="flex-shrink-0 flex items-center justify-between gap-3 px-3 sm:px-6 h-14 sm:h-16 border-t border-black/[0.05] bg-canvas-subtle/60 backdrop-blur-sm">
-        <p className="text-ink-tertiary text-xs sm:text-sm font-mono truncate min-w-0 flex-1">
+        <p className="text-[#1a1a1a] text-xs sm:text-sm font-mono truncate min-w-0 flex-1">
           {SLIDES[current].label}
         </p>
 
@@ -1189,7 +1189,7 @@ export default function PitchDeck({ onClose }: { onClose: () => void }) {
             onClick={prev}
             disabled={current === 0}
             aria-label="Previous slide"
-            className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 text-ink-secondary border border-black/[0.07] rounded-lg hover:border-black/[0.14] hover:text-ink transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+            className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 text-[#1a1a1a] border border-black/[0.07] rounded-lg hover:border-black/[0.14] hover:text-[#1a1a1a] transition-all disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
               <path d="M8 10L4 6l4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -1199,7 +1199,7 @@ export default function PitchDeck({ onClose }: { onClose: () => void }) {
             onClick={next}
             disabled={current === SLIDES.length - 1}
             aria-label="Next slide"
-            className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 text-ink border border-black/[0.1] rounded-lg bg-canvas-card hover:border-black/[0.18] hover:bg-canvas-elevated transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+            className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 text-[#1a1a1a] border border-black/[0.1] rounded-lg bg-canvas-card hover:border-black/[0.18] hover:bg-canvas-elevated transition-all disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
               <path d="M4 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
