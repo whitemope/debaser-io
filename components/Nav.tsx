@@ -1,9 +1,9 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import GhostMark from "@/components/GhostMark";
+import BrandMark from "@/components/BrandMark";
 import { useHomepageVariant } from "@/components/HomepageVariantContext";
 import { useEditMode } from "@/components/EditModeContext";
 
@@ -11,9 +11,6 @@ export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { variant, setVariant } = useHomepageVariant();
   const { editMode, toggleEditMode } = useEditMode();
-  const { scrollY } = useScroll();
-  const borderOpacity = useTransform(scrollY, [0, 60], [0, 1]);
-  const bgOpacity = useTransform(scrollY, [0, 60], [0, 0.92]);
   const pathname = usePathname();
 
   // When not on the version's homepage, anchor links need the version
@@ -31,29 +28,10 @@ export default function Nav() {
   ];
 
   return (
-    <motion.nav
-      className="fixed top-0 left-0 right-0 z-50"
-      style={{
-        backdropFilter: "blur(16px)",
-        WebkitBackdropFilter: "blur(16px)",
-      }}
-    >
-      <motion.div
-        className="absolute inset-0 bg-canvas"
-        style={{ opacity: bgOpacity }}
-      />
-      <motion.div
-        className="absolute bottom-0 left-0 right-0 h-px bg-black/[0.06]"
-        style={{ opacity: borderOpacity }}
-      />
-      <div className="relative max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-canvas">
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <a href={`/${variant}`} className="flex items-center gap-2 group">
-            <GhostMark className="w-6 h-6 text-ink flex-shrink-0" />
-            <span className="text-ink font-semibold tracking-tight text-base">
-              debaser
-            </span>
-          </a>
+          <BrandMark href={`/${variant}`} />
           <button
             onClick={() =>
               setVariant(
@@ -108,10 +86,10 @@ export default function Nav() {
 
         <div className="flex items-center gap-3">
           <a
-            href="/signin"
+            href="/investors"
             className="hidden md:block text-sm text-ink-secondary hover:text-ink transition-colors"
           >
-            Sign in
+            Investors
           </a>
           <a
             href={`${homeBase}#access`}
@@ -157,6 +135,6 @@ export default function Nav() {
           ))}
         </motion.div>
       )}
-    </motion.nav>
+    </nav>
   );
 }

@@ -17,7 +17,7 @@ const HomepageVariantContext = createContext<{
 
 /**
  * The version is the URL, not client state: /v1, /v1/features, /v2, etc.
- * Pages outside the [version] tree (dashboard, decks, sign in) have no
+ * Pages outside the [version] tree (investors, decks, sign in) have no
  * version segment, so they fall back to "v1" here — none of them actually
  * read this context for content, it just keeps the hook safe to call.
  */

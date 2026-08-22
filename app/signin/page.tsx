@@ -12,7 +12,7 @@ export default function SignIn() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (isAuthenticated()) router.replace("/dashboard");
+    if (isAuthenticated()) router.replace("/investors");
   }, [router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -22,7 +22,7 @@ export default function SignIn() {
     setLoading(true);
     await new Promise((r) => setTimeout(r, 800));
     signIn();
-    router.push("/dashboard");
+    router.push("/investors");
   };
 
   return (

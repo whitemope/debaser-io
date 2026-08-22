@@ -24,14 +24,14 @@ export default function DeckSlugPage() {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-3 text-center px-6">
         <p className="text-ink text-lg font-semibold">Deck not found.</p>
-        <a href="/dashboard" className="text-acid text-sm hover:underline underline-offset-2">
+        <a href="/investors" className="text-acid text-sm hover:underline underline-offset-2">
           Back to dashboard
         </a>
       </div>
     );
   }
 
-  const onClose = () => router.push("/dashboard");
+  const onClose = () => router.push("/investors");
 
   if (deck === "v1") return <PitchDeck onClose={onClose} />;
   if (deck === "v2") return <PitchDeckHarness onClose={onClose} />;

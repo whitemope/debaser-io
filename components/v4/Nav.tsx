@@ -33,8 +33,8 @@ export default function V4Nav() {
         </nav>
 
         <div className="hidden sm:flex items-center gap-2">
-          <a href="/signin" className="text-sm font-medium px-3 py-2 hover:opacity-70 transition-opacity">
-            Sign in
+          <a href="/investors" className="text-sm font-medium px-3 py-2 hover:opacity-70 transition-opacity">
+            Investors
           </a>
           <a href="#access" className="v4-btn v4-btn-dark">
             Request access
@@ -66,7 +66,7 @@ export default function V4Nav() {
               {l.label}
             </a>
           ))}
-          <a href="/signin" className="px-4 py-2.5 text-sm font-medium">Sign in</a>
+          <a href="/investors" className="px-4 py-2.5 text-sm font-medium">Investors</a>
           <a href="#access" className="v4-btn v4-btn-dark mt-1 justify-center">Request access</a>
         </div>
       )}
