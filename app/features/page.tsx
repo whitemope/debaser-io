@@ -1,7 +1,8 @@
 import { permanentRedirect } from "next/navigation";
+import { DEFAULT_VARIANT } from "@/lib/variants";
 
-// Features now lives under a version slug (/v1/features, /v2/features,
-// /v3/features). Bare "/features" resolves to the default version.
+// Features lives under a concept slug (/music-rights-ai-rails/features, etc.).
+// Bare "/features" resolves to the default concept.
 export default function RootFeaturesPage() {
-  permanentRedirect("/v1/features");
+  permanentRedirect(`/${DEFAULT_VARIANT}/features`);
 }

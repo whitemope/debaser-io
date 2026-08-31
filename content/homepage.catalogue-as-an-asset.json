@@ -1,0 +1,238 @@
+{
+  "hero": {
+    "eyebrow": "Now in private beta",
+    "headline": "The AI tool for music IP.",
+    "subhead": "A song lives forever. Debaser is the new agentic operating system for valuing and growing music catalogues. Every song, split and territory traceable in one platform, for a new generation of catalogue owners investing in an equitable music industry.",
+    "ctaPrimary": "Request access",
+    "ctaSecondary": "See how it works",
+    "note": "Built with independent publishers and catalogue funds."
+  },
+  "problem": {
+    "eyebrow": "The problem",
+    "headline": "A great catalogue can still be badly run.",
+    "items": [
+      {
+        "title": "You inherit the mess, not just the songs.",
+        "description": "Years of statements, split sheets and sub-publishing deals arrive in a different shape from every source."
+      },
+      {
+        "title": "Nobody knows what the catalogue really earns.",
+        "description": "Every report tells a different story. The value ends up a guess dressed as a model."
+      },
+      {
+        "title": "Money leaks quietly.",
+        "description": "Unregistered songs, black-box royalties, expired deals. Income the songs earned that nobody collected."
+      },
+      {
+        "title": "The writers feel it first.",
+        "description": "Late statements and wrong splits reach the people who wrote the songs long before they reach a spreadsheet."
+      }
+    ],
+    "closingLine": "Good songs deserve better than that. So do the people who wrote them."
+  },
+  "productFlow": {
+    "eyebrow": "The product",
+    "headline": "One system for owning a catalogue and growing what it earns.",
+    "subhead": "Debaser keeps a living record of every song, split and payment. It follows the catalogue from the first listen to every statement you send, and each quarter it finds more of what the songs are owed.",
+    "steps": [
+      {
+        "label": "Ingest",
+        "description": "Bring in the seller's statements, contracts, split sheets and registrations, in any format.",
+        "detail": ""
+      },
+      {
+        "label": "Understand",
+        "description": "Debaser maps every song, writer, split and territory into one clear picture.",
+        "detail": ""
+      },
+      {
+        "label": "Value",
+        "description": "See what the catalogue really earns, how it's trending, and where it can grow.",
+        "detail": ""
+      },
+      {
+        "label": "Diligence",
+        "description": "Unregistered songs, broken metadata, expired deals and split disputes, all surfaced before you buy.",
+        "detail": ""
+      },
+      {
+        "label": "Grow",
+        "description": "After close, Debaser collects every royalty, pays each writer on time, and keeps finding income the songs were missing.",
+        "detail": ""
+      }
+    ]
+  },
+  "agents": {
+    "eyebrow": "AI agents",
+    "headline": "A specialist agent for every stage of a song's life.",
+    "items": [
+      {
+        "name": "Ingest Agent",
+        "description": "Reads PRO statements, mechanical statements, sync deals, sub-publishing agreements and cue sheets the moment they land.",
+        "tags": []
+      },
+      {
+        "name": "Understanding Agent",
+        "description": "Turns writer and publisher splits, territories and collection chains into one clear picture of who owns each song.",
+        "tags": []
+      },
+      {
+        "name": "Valuation Agent",
+        "description": "Models what each song earns, how it's ageing, and how much more it could bring in.",
+        "tags": []
+      },
+      {
+        "name": "Diligence Agent",
+        "description": "Finds unregistered songs, missing ISWC or CWR data, expired deals and split disputes before you commit.",
+        "tags": []
+      },
+      {
+        "name": "Royalty Agent",
+        "description": "Calculates mechanical, performance and sync income, and pays every writer accurately and on time.",
+        "tags": []
+      },
+      {
+        "name": "Growth Agent",
+        "description": "Recovers unclaimed and black-box royalties, fixes metadata at the source, and chases the sync and re-registration income the songs are owed.",
+        "tags": []
+      }
+    ],
+    "note": "Every agent works from the same record of the songs, before and after you own them.",
+    "principle": {
+      "lead": "Agents do the digging.",
+      "mid": "Rules keep it honest.",
+      "tail": "People make the calls."
+    }
+  },
+  "useCases": {
+    "headline": "Built for owners who back the songs.",
+    "items": [
+      {
+        "category": "Independent publishers",
+        "headline": "Know the songs before you offer.",
+        "description": "Read every split sheet and registration, then buy with your eyes open."
+      },
+      {
+        "category": "Sub-publishers",
+        "headline": "Collect everything your territory is owed.",
+        "description": "See what each PRO and society actually pays, song by song."
+      },
+      {
+        "category": "Catalogue funds",
+        "headline": "Grow every catalogue you hold.",
+        "description": "One system that keeps finding income across the whole portfolio."
+      },
+      {
+        "category": "Family offices",
+        "headline": "Understand what you're buying.",
+        "description": "An independent read on the songs and the earnings, built from the seller's own data."
+      },
+      {
+        "category": "Writers and estates",
+        "headline": "Sell a catalogue that's in good shape.",
+        "description": "Clean up the registrations and splits so the songs show their real worth."
+      }
+    ]
+  },
+  "missingMoney": {
+    "eyebrow": "Growing the catalogue",
+    "headline": "The same songs, earning more.",
+    "subhead": "Debaser compares what a catalogue should earn against what it actually collects, then goes and closes the gap. Every quarter the songs bring in a little more, and every writer gets their share.",
+    "features": [
+      "Songs that were never registered, filed properly.",
+      "Black-box and unclaimed royalties, recovered.",
+      "Missing territories and societies, brought in.",
+      "Expired sub-publishing deals, renegotiated or replaced.",
+      "Splits corrected to match the paperwork.",
+      "Sync and licensing income the songs earned but nobody chased."
+    ],
+    "ctaLabel": "See what a catalogue could earn"
+  },
+  "explainability": {
+    "headline": "Ask anything about the songs.",
+    "body1": "Ask why a song's earnings moved, where the uncollected money sits, or which writer is owed what. Debaser traces every answer back to the statement row, the registration, the contract term.",
+    "body2": "Not a summary. Not a guess. A clear answer with the evidence attached, whether it's for your investment committee or a writer's manager on the phone.",
+    "chatUserMessage": "Why is this song earning less than last year?",
+    "chatAiResponse": "Streaming is down 22% over three years, driven by two 2019 sync placements rolling off. The song itself is steady, not fading. It is also unregistered in Germany and France, so roughly £4,200 a year in performance income is going uncollected. Register it and that comes back, split with the co-writers as the agreement sets out.",
+    "sources": [
+      {
+        "label": "Earnings history 2019-2025",
+        "detail": "three-year streaming trend"
+      },
+      {
+        "label": "Sync licence schedule",
+        "detail": "two placements expired Q4 2022"
+      },
+      {
+        "label": "PRO registration check",
+        "detail": "unregistered in DE and FR"
+      }
+    ]
+  },
+  "trust": {
+    "eyebrow": "Trust and security",
+    "headline": "Careful with the catalogue. Careful with the data.",
+    "subhead": "A catalogue's data passes between buyers, sellers, lawyers and lenders, and it holds every writer's income. Debaser treats all of it with the care it deserves.",
+    "items": [
+      {
+        "title": "Data rooms",
+        "description": "Every diligence pack is isolated, permissioned and time-boxed."
+      },
+      {
+        "title": "Access control",
+        "description": "Permissions by deal, catalogue and role."
+      },
+      {
+        "title": "Audit trail",
+        "description": "Every figure, answer and source is recorded."
+      },
+      {
+        "title": "Every answer sourced",
+        "description": "Nothing ships without the row, document or clause behind it."
+      },
+      {
+        "title": "Human approval",
+        "description": "No valuation or payment leaves Debaser without a person signing off."
+      },
+      {
+        "title": "Export",
+        "description": "Your model, your evidence, your claims. Take them anywhere."
+      }
+    ]
+  },
+  "vision": {
+    "eyebrow": "The vision",
+    "headline": "A song outlives everyone who owns it.",
+    "body1": "Debaser starts with diligence. It becomes the layer a catalogue lives on as it is valued, bought, grown and passed on to the next generation of owners.",
+    "body2": "Every catalogue the agents work on teaches the next one. Sharper valuations, better collection, and a fairer share reaching the people who wrote the songs.",
+    "graphCaption": "Songs → Recordings → Contracts → Income → Ownership → Usage"
+  },
+  "earlyAccess": {
+    "eyebrow": "Early access",
+    "headline": "Bring us a catalogue you're serious about.",
+    "body": "We work with a small group of independent publishers, sub-publishers and catalogue funds. Share the seller's data and we'll hand back a full read on the songs, the earnings and the upside.",
+    "valueProps": [
+      {
+        "title": "A real catalogue, not a demo",
+        "text": "We take one live opportunity from your pipeline and run it end to end."
+      },
+      {
+        "title": "Direct input into what we build",
+        "text": "The gaps you hit become the next thing on our roadmap."
+      },
+      {
+        "title": "Founding customer terms",
+        "text": "Early partners keep their terms as we grow. That doesn't change later."
+      }
+    ],
+    "problemLabel": "What do you want to know about the catalogue?",
+    "cta": "Request access",
+    "disclaimer": "No spam. We'll reach out directly, one human to another.",
+    "successHeadline": "Request received.",
+    "successBody": "We'll be in touch to set up a look at one of your live deals."
+  },
+  "footer": {
+    "tagline": "The agentic operating system for valuing and growing music catalogues.",
+    "principle": "Agents do the digging. Rules keep it honest. People make the calls."
+  }
+}

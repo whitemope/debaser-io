@@ -9,10 +9,20 @@ export const dynamic = "force-dynamic";
 const CONTENT_DIR = path.join(process.cwd(), "content");
 const GITHUB_API = "https://api.github.com";
 
-// The features doc only has copy for v1/v2 — v3 reuses v1, same fallback
-// lib/features-content.ts applies on the client for the bundled default.
+const VALID_VARIANTS = [
+  "music-rights-ai-rails",
+  "catalogue-as-an-asset",
+  "global-music-economy",
+];
+
+// The features doc only has copy for two concepts — "global-music-economy"
+// reuses "music-rights-ai-rails", the same fallback lib/features-content.ts
+// applies on the client for the bundled default.
 function resolveFileName(doc: string, variant: string): string {
-  const effectiveVariant = doc === "features" && variant === "v3" ? "v1" : variant;
+  const effectiveVariant =
+    doc === "features" && variant === "global-music-economy"
+      ? "music-rights-ai-rails"
+      : variant;
   return `${doc}.${effectiveVariant}.json`;
 }
 
@@ -133,7 +143,7 @@ export async function POST(request: Request) {
 
   if (
     !KNOWN_DOCS.includes(doc) ||
-    (variant !== "v1" && variant !== "v2" && variant !== "v3") ||
+    !VALID_VARIANTS.includes(variant) ||
     typeof fieldPath !== "string" ||
     typeof value !== "string"
   ) {
@@ -167,10 +177,7 @@ export async function GET(request: Request) {
   const doc = searchParams.get("doc") ?? "";
   const variant = searchParams.get("variant") ?? "";
 
-  if (
-    !KNOWN_DOCS.includes(doc) ||
-    (variant !== "v1" && variant !== "v2" && variant !== "v3")
-  ) {
+  if (!KNOWN_DOCS.includes(doc) || !VALID_VARIANTS.includes(variant)) {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
 

@@ -7,9 +7,12 @@ import PitchDeckAssetClass from "@/components/deck/PitchDeckAssetClass";
 import PitchDeckPublishing from "@/components/deck/PitchDeckPublishing";
 
 // Slug is kebab-case of the deck's display title (its "filename").
-const SLUG_TO_DECK: Record<string, "v1" | "v2" | "asset-class" | "publishing"> = {
-  "introducing-debaser-version-1": "v1",
-  "introducing-debaser-version-2": "v2",
+const SLUG_TO_DECK: Record<
+  string,
+  "original" | "harness" | "asset-class" | "publishing"
+> = {
+  "introducing-debaser-version-1": "original",
+  "introducing-debaser-version-2": "harness",
   "asset-class-concept": "asset-class",
   "publishing-concept": "publishing",
 };
@@ -33,8 +36,8 @@ export default function DeckSlugPage() {
 
   const onClose = () => router.push("/investors");
 
-  if (deck === "v1") return <PitchDeck onClose={onClose} />;
-  if (deck === "v2") return <PitchDeckHarness onClose={onClose} />;
+  if (deck === "original") return <PitchDeck onClose={onClose} />;
+  if (deck === "harness") return <PitchDeckHarness onClose={onClose} />;
   if (deck === "asset-class") return <PitchDeckAssetClass onClose={onClose} />;
   return <PitchDeckPublishing onClose={onClose} />;
 }

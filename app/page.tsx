@@ -1,7 +1,9 @@
 import { permanentRedirect } from "next/navigation";
+import { DEFAULT_VARIANT } from "@/lib/variants";
 
-// The homepage now lives under a version slug (/v1, /v2, /v3). Bare "/"
-// always resolves to the default version.
+// The homepage lives under a concept slug (/music-rights-ai-rails,
+// /catalogue-as-an-asset, /global-music-economy). Bare "/" always resolves
+// to the default concept.
 export default function RootPage() {
-  permanentRedirect("/v1");
+  permanentRedirect(`/${DEFAULT_VARIANT}`);
 }

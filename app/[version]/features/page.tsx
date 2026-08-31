@@ -693,6 +693,453 @@ function Feature({ index, item, demo, reversed }: FeatureProps) {
   );
 }
 
+// ══ "Catalogue as an Asset" demos — the song lifecycle ════════════════
+
+// ── V2 Demo 1: Data Room Ingestion ───────────────────────────────────────
+
+const DR_FILES = [
+  { name: "the_mlc_mechanicals_2024.csv",  rows: "3,410 songs", badge: "CSV", dur: 1.1, delay: 0.2 },
+  { name: "prs_statement_h2_2024.pdf",     rows: "1,880 lines", badge: "PDF", dur: 1.4, delay: 0.5 },
+  { name: "sub_pub_agreement_benelux.pdf", rows: "1 deal",      badge: "PDF", dur: 1.0, delay: 0.8 },
+];
+
+const DR_WORKS = [
+  { iswc: "T-070.145.912-3", title: "Northern Line",  writers: "Okafor / Reyes", split: "60 / 40", ok: true },
+  { iswc: "T-070.144.021-8", title: "Slow Weather",   writers: "Okafor",         split: "100",     ok: true },
+  { iswc: "—",               title: "Paper Harbour",  writers: "Reyes / Hill",   split: "unclear", ok: false },
+  { iswc: "T-070.146.550-1", title: "Meridian",       writers: "Okafor / Hill",  split: "50 / 50", ok: true },
+];
+
+function DataRoomDemo() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <DemoShell title="Data Room Ingestion · Meridian Songs">
+      <div ref={ref} className="space-y-2 mb-4">
+        {DR_FILES.map((f) => {
+          const done = f.delay + f.dur;
+          return (
+            <motion.div
+              key={f.name}
+              initial={{ opacity: 0, x: -12 }}
+              animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: f.delay, duration: 0.4, ease: EASE }}
+              className="bg-canvas-card border border-black/[0.05] rounded-lg px-3 py-2.5 flex items-center gap-3"
+            >
+              <span className="text-[9px] font-mono font-bold text-acid bg-acid/10 rounded px-1.5 py-0.5 flex-shrink-0">
+                {f.badge}
+              </span>
+              <div className="flex-1 min-w-0">
+                <p className="text-ink text-[11px] truncate mb-1.5">{f.name}</p>
+                <div className="h-[3px] bg-black/[0.05] rounded-full overflow-hidden">
+                  <motion.div
+                    className="h-full bg-acid rounded-full"
+                    initial={{ width: "0%" }}
+                    animate={inView ? { width: "100%" } : {}}
+                    transition={{ delay: f.delay + 0.2, duration: f.dur, ease: "easeInOut" }}
+                  />
+                </div>
+              </div>
+              <motion.span
+                className="text-ink-tertiary text-[10px] font-mono flex-shrink-0"
+                initial={{ opacity: 0 }}
+                animate={inView ? { opacity: 1 } : {}}
+                transition={{ delay: done + 0.05 }}
+              >
+                {f.rows}
+              </motion.span>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={inView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ delay: done + 0.1, type: "spring", stiffness: 500, damping: 20 }}
+                className="w-4 h-4 rounded-full bg-acid/20 flex items-center justify-center flex-shrink-0"
+              >
+                <svg width="8" height="6" viewBox="0 0 8 6" fill="none">
+                  <path d="M1 3l2 2 4-4" stroke="#4CAF50" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </motion.div>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: 2.5, duration: 0.5, ease: EASE }}
+        className="border border-acid/[0.15] rounded-xl overflow-hidden"
+      >
+        <div className="flex items-center gap-2 px-3 py-2 border-b border-black/[0.05] bg-canvas-card">
+          <div className="w-1.5 h-1.5 rounded-full bg-acid animate-pulse" />
+          <span className="text-acid text-[10px] font-mono">214 songs linked to writers and splits</span>
+        </div>
+        <div className="grid grid-cols-[1.4fr_1.4fr_1fr_auto] text-[9px] font-mono text-ink-tertiary tracking-wide px-3 py-1.5 border-b border-black/[0.04]">
+          <span>ISWC</span>
+          <span>Song</span>
+          <span>Split</span>
+          <span className="text-right">Status</span>
+        </div>
+        <div className="divide-y divide-black/[0.04]">
+          {DR_WORKS.map((r, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ delay: 2.7 + i * 0.07 }}
+              className="grid grid-cols-[1.4fr_1.4fr_1fr_auto] text-[10px] font-mono px-3 py-1.5 items-center"
+            >
+              <span className="text-ink-secondary">{r.iswc}</span>
+              <span className="text-ink">{r.title}</span>
+              <span className="text-ink-tertiary">{r.split}</span>
+              <span className={`text-right ${r.ok ? "text-acid" : "text-amber-400"}`}>
+                {r.ok ? "Linked" : "Review"}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    </DemoShell>
+  );
+}
+
+// ── V2 Demo 2: Rights Model ──────────────────────────────────────────────
+
+const RM_SPLITS = [
+  { party: "A. Okafor",        role: "Writer",    pro: "PRS",   share: 45, delay: 0.2 },
+  { party: "J. Reyes",         role: "Writer",    pro: "SACEM", share: 30, delay: 0.4 },
+  { party: "Meridian Songs",   role: "Publisher", pro: "PRS",   share: 20, delay: 0.6 },
+  { party: "Estate of M. Hill", role: "Writer",   pro: "ASCAP", share: 5,  delay: 0.8 },
+];
+
+function RightsModelDemo() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const total = RM_SPLITS.reduce((s, r) => s + r.share, 0);
+
+  return (
+    <DemoShell title={'Rights Model · "Northern Line"'}>
+      <div ref={ref}>
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-ink text-[11px] font-mono">T-070.145.912-3</span>
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ delay: 1.1 }}
+            className={`text-[10px] font-mono px-2 py-0.5 rounded-full ${
+              total === 100 ? "text-acid bg-acid/10" : "text-amber-400 bg-amber-400/10"
+            }`}
+          >
+            {total === 100 ? "Splits balance to 100%" : `Splits total ${total}%`}
+          </motion.span>
+        </div>
+
+        {/* Stacked share bar */}
+        <div className="flex h-2 rounded-full overflow-hidden mb-4 bg-black/[0.05]">
+          {RM_SPLITS.map((r, i) => (
+            <motion.div
+              key={r.party}
+              className={i % 2 === 0 ? "bg-acid" : "bg-acid/50"}
+              initial={{ width: 0 }}
+              animate={inView ? { width: `${r.share}%` } : {}}
+              transition={{ delay: r.delay + 0.3, duration: 0.5, ease: "easeOut" }}
+            />
+          ))}
+        </div>
+
+        <div className="grid grid-cols-[1.6fr_1fr_0.8fr_auto] text-[9px] font-mono text-ink-tertiary tracking-wide pb-2 mb-1 border-b border-black/[0.04] px-1">
+          <span>Party</span>
+          <span>Role</span>
+          <span>PRO</span>
+          <span className="text-right">Share</span>
+        </div>
+        <div className="space-y-1">
+          {RM_SPLITS.map((r) => (
+            <motion.div
+              key={r.party}
+              initial={{ opacity: 0, y: 6 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: r.delay, duration: 0.35, ease: EASE }}
+              className="grid grid-cols-[1.6fr_1fr_0.8fr_auto] items-center px-1 py-2 text-[10px] font-mono rounded-lg hover:bg-canvas-card transition-colors"
+            >
+              <span className="text-ink">{r.party}</span>
+              <span className="text-ink-tertiary">{r.role}</span>
+              <span className="text-ink-tertiary">{r.pro}</span>
+              <span className="text-ink-secondary text-right">{r.share}%</span>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ delay: 1.3 }}
+          className="mt-4 pt-3 border-t border-black/[0.04] flex items-center gap-2 text-[10px] font-mono"
+        >
+          <span className="text-ink-tertiary">Collection chain</span>
+          <span className="text-ink-secondary">PRS</span>
+          <span className="text-ink-tertiary">→</span>
+          <span className="text-ink-secondary">STIM</span>
+          <span className="text-ink-tertiary">→</span>
+          <span className="text-ink-secondary">Meridian</span>
+        </motion.div>
+      </div>
+    </DemoShell>
+  );
+}
+
+// ── V2 Demo 3: Valuation ─────────────────────────────────────────────────
+
+const VAL_YEARS = [
+  { y: "2019", v: 100 },
+  { y: "2020", v: 88 },
+  { y: "2021", v: 79 },
+  { y: "2022", v: 74 },
+  { y: "2023", v: 66 },
+  { y: "2024", v: 61 },
+];
+
+const VAL_OUT = [
+  { label: "Net annual earnings", value: "£152,400" },
+  { label: "Decay rate",          value: "−7.1% / yr" },
+  { label: "10-year forecast",    value: "£1.02M" },
+  { label: "Indicative range",    value: "£1.1M – £1.4M", acid: true },
+];
+
+function ValuationDemo() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <DemoShell title="Valuation · Meridian Songs · 214 songs">
+      <div ref={ref}>
+        <div className="flex items-end gap-2 h-28 mb-2 px-1">
+          {VAL_YEARS.map((d, i) => (
+            <div key={d.y} className="flex-1 flex flex-col items-center gap-1.5">
+              <motion.div
+                className="w-full bg-acid/70 rounded-t"
+                initial={{ height: 0 }}
+                animate={inView ? { height: `${d.v}%` } : {}}
+                transition={{ delay: 0.2 + i * 0.1, duration: 0.5, ease: "easeOut" }}
+              />
+              <span className="text-ink-tertiary text-[9px] font-mono">{d.y}</span>
+            </div>
+          ))}
+        </div>
+        <p className="text-ink-tertiary text-[9px] font-mono text-center mb-4">
+          Net earnings, normalised across all sources
+        </p>
+
+        <div className="grid grid-cols-2 gap-2">
+          {VAL_OUT.map((o, i) => (
+            <motion.div
+              key={o.label}
+              initial={{ opacity: 0, y: 8 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 1.0 + i * 0.12, duration: 0.4, ease: EASE }}
+              className={`border rounded-lg p-2.5 ${o.acid ? "border-acid/25 bg-acid/[0.05]" : "border-black/[0.05] bg-canvas-card"}`}
+            >
+              <p className="text-ink-tertiary text-[9px] font-mono tracking-wide mb-1">{o.label}</p>
+              <p className={`text-[13px] font-bold ${o.acid ? "text-acid" : "text-ink"}`}>{o.value}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ delay: 1.8 }}
+          className="text-ink-tertiary text-[10px] font-mono mt-3 text-center"
+        >
+          7.3x – 9.2x net annual · sync roll-off modelled
+        </motion.p>
+      </div>
+    </DemoShell>
+  );
+}
+
+// ── V2 Demo 4: Diligence Findings ────────────────────────────────────────
+
+const DIL_ROWS = [
+  { issue: "42 songs unregistered", detail: "DE, FR, BR",            sev: "critical", delay: 0.2 },
+  { issue: "ISWC missing on 11 songs", detail: "blocks CMO matching", sev: "high",     delay: 0.4 },
+  { issue: "Benelux sub-publishing expired", detail: "reverted 14 months ago", sev: "high", delay: 0.6 },
+  { issue: "Undocumented 5% share", detail: "3 songs · Estate of M. Hill", sev: "medium", delay: 0.8 },
+  { issue: "Cue sheets missing", detail: "2 sync placements",        sev: "low",      delay: 1.0 },
+];
+
+const DIL_SEV: Record<string, string> = {
+  critical: "text-red-400 bg-red-400/10 border-red-400/20",
+  high: "text-amber-400 bg-amber-400/10 border-amber-400/20",
+  medium: "text-yellow-400/80 bg-yellow-400/[0.08] border-yellow-400/20",
+  low: "text-ink-tertiary bg-black/[0.04] border-black/[0.06]",
+};
+
+function DiligenceDemo() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <DemoShell title="Diligence · Meridian Songs · pre-offer">
+      <div ref={ref}>
+        <div className="space-y-1.5 mb-4">
+          {DIL_ROWS.map((r) => (
+            <motion.div
+              key={r.issue}
+              initial={{ opacity: 0, x: -8 }}
+              animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: r.delay, duration: 0.35, ease: EASE }}
+              className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-canvas-card border border-black/[0.04]"
+            >
+              <span className={`text-[9px] font-mono uppercase tracking-wide px-1.5 py-0.5 rounded border ${DIL_SEV[r.sev]}`}>
+                {r.sev}
+              </span>
+              <div className="flex-1 min-w-0">
+                <p className="text-ink text-[11px] leading-tight">{r.issue}</p>
+                <p className="text-ink-tertiary text-[9px] font-mono">{r.detail}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 1.4, duration: 0.5, ease: EASE }}
+          className="border-t border-black/[0.08] pt-3 flex items-center justify-between"
+        >
+          <div>
+            <p className="text-ink-tertiary text-[10px] font-mono tracking-wide">Income at risk</p>
+            <p className="text-red-400 text-xl font-bold tabular-nums mt-0.5">£24,600 / yr</p>
+          </div>
+          <div className="inline-flex items-center gap-1.5 bg-red-400/10 border border-red-400/20 rounded-lg px-3 py-1.5">
+            <span className="text-red-400 text-[10px] font-mono">1 critical · 2 high</span>
+          </div>
+        </motion.div>
+      </div>
+    </DemoShell>
+  );
+}
+
+// ── V2 Demo 5: Royalty Recovery ──────────────────────────────────────────
+
+const REC_ROWS = [
+  { society: "The MLC",  type: "Black-box",       amount: "£8,240", status: "Claimed",     ok: true,  delay: 0.2 },
+  { society: "GEMA",     type: "Unregistered",   amount: "£3,900", status: "Filed",       ok: true,  delay: 0.4 },
+  { society: "PRS",      type: "Mismatched IPI", amount: "£1,510", status: "Recovered",   ok: true,  delay: 0.6 },
+  { society: "SACEM",    type: "Unclaimed perf", amount: "£2,700", status: "In progress", ok: false, delay: 0.8 },
+];
+
+function RecoveryDemo() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <DemoShell title="Royalty Recovery · Meridian Songs · Q2 2025">
+      <div ref={ref}>
+        <div className="grid grid-cols-[1fr_1.1fr_0.8fr_auto] text-[9px] font-mono text-ink-tertiary tracking-wide pb-2 mb-1 border-b border-black/[0.04] px-1">
+          <span>Society</span>
+          <span>Type</span>
+          <span className="text-right">Amount</span>
+          <span className="text-right">Status</span>
+        </div>
+        <div className="space-y-1 mb-4">
+          {REC_ROWS.map((r) => (
+            <motion.div
+              key={r.society + r.type}
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ delay: r.delay }}
+              className="grid grid-cols-[1fr_1.1fr_0.8fr_auto] items-center px-1 py-2 text-[10px] font-mono rounded-lg hover:bg-canvas-card transition-colors"
+            >
+              <span className="text-ink">{r.society}</span>
+              <span className="text-ink-tertiary">{r.type}</span>
+              <span className="text-ink-secondary text-right">{r.amount}</span>
+              <span className={`text-right ${r.ok ? "text-acid" : "text-amber-400"}`}>{r.status}</span>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 1.3, duration: 0.5, ease: EASE }}
+          className="border-t border-black/[0.08] pt-3 flex items-center justify-between"
+        >
+          <span className="text-ink-tertiary text-[10px] font-mono">Recovered this quarter</span>
+          <span className="text-acid text-xl font-bold tabular-nums">£16,350</span>
+        </motion.div>
+      </div>
+    </DemoShell>
+  );
+}
+
+// ── V2 Demo 6: Co-writer Payout Run ──────────────────────────────────────
+
+const PAY_ROWS = [
+  { payee: "A. Okafor",          works: "38 songs", amount: "£4,120", status: "Paid", held: false, delay: 0.2 },
+  { payee: "J. Reyes",           works: "22 songs", amount: "£2,980", status: "Paid", held: false, delay: 0.4 },
+  { payee: "Meridian Songs",     works: "publisher", amount: "£9,840", status: "Paid", held: false, delay: 0.6 },
+  { payee: "Estate of M. Hill",  works: "9 songs",  amount: "£1,240", status: "Held · KYC", held: true, delay: 0.8 },
+];
+
+function PayoutDemo() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <DemoShell title="Payout Run · Meridian Songs · Q2 2025">
+      <div ref={ref}>
+        <div className="grid grid-cols-3 gap-2 mb-4">
+          {[
+            { label: "Payees", value: "17" },
+            { label: "This run", value: "£28,400" },
+            { label: "Held", value: "1", amber: true },
+          ].map((m, i) => (
+            <motion.div
+              key={m.label}
+              initial={{ opacity: 0, y: 8 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.1 + i * 0.1, duration: 0.4, ease: EASE }}
+              className={`border rounded-lg p-2.5 ${m.amber ? "border-amber-400/20 bg-amber-400/[0.05]" : "border-black/[0.05] bg-canvas-card"}`}
+            >
+              <p className={`text-base font-bold ${m.amber ? "text-amber-400" : "text-ink"}`}>{m.value}</p>
+              <p className="text-ink-tertiary text-[9px] font-mono">{m.label}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="space-y-1 mb-4">
+          {PAY_ROWS.map((r) => (
+            <motion.div
+              key={r.payee}
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ delay: r.delay }}
+              className="grid grid-cols-[1.4fr_1fr_0.8fr_auto] items-center px-1 py-2 text-[10px] font-mono rounded-lg hover:bg-canvas-card transition-colors"
+            >
+              <span className="text-ink">{r.payee}</span>
+              <span className="text-ink-tertiary">{r.works}</span>
+              <span className="text-ink-secondary text-right">{r.amount}</span>
+              <span className={`text-right ${r.held ? "text-amber-400" : "text-acid"}`}>{r.status}</span>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ delay: 1.3 }}
+          className="border-t border-black/[0.04] pt-3 flex items-center justify-between text-[10px] font-mono"
+        >
+          <span className="text-ink-tertiary">Statements generated for every payee</span>
+          <span className="text-acid">Approved</span>
+        </motion.div>
+      </div>
+    </DemoShell>
+  );
+}
+
 // ── Features demos (illustrative mockups — not sourced from editable content) ──
 
 const FEATURE_DEMOS: { demo: React.ReactNode; reversed: boolean }[] = [
@@ -704,11 +1151,21 @@ const FEATURE_DEMOS: { demo: React.ReactNode; reversed: boolean }[] = [
   { demo: <MissingIncomeDemo />, reversed: true },
 ];
 
+const FEATURE_DEMOS_V2: { demo: React.ReactNode; reversed: boolean }[] = [
+  { demo: <DataRoomDemo />, reversed: false },
+  { demo: <RightsModelDemo />, reversed: true },
+  { demo: <ValuationDemo />, reversed: false },
+  { demo: <DiligenceDemo />, reversed: true },
+  { demo: <RecoveryDemo />, reversed: false },
+  { demo: <PayoutDemo />, reversed: true },
+];
+
 // ── Page ──────────────────────────────────────────────────────────────────
 
 export default function ProductPage() {
   const { variant } = useHomepageVariant();
   const content = useFeaturesContentLive(variant);
+  const demos = variant === "catalogue-as-an-asset" ? FEATURE_DEMOS_V2 : FEATURE_DEMOS;
 
   return (
     <div className="min-h-screen bg-canvas">
@@ -766,7 +1223,7 @@ export default function ProductPage() {
 
       {/* Feature sections */}
       {content.items.map((item, i) => (
-        <Feature key={i} index={i} item={item} {...FEATURE_DEMOS[i]} />
+        <Feature key={i} index={i} item={item} {...demos[i]} />
       ))}
 
       {/* CTA */}

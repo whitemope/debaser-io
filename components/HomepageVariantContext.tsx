@@ -2,24 +2,34 @@
 
 import { createContext, useContext } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import {
+  DEFAULT_VARIANT,
+  isHomepageVariant,
+  type HomepageVariant,
+} from "@/lib/variants";
 
-export type HomepageVariant = "v1" | "v2" | "v3";
-
-const VALID_VARIANTS: HomepageVariant[] = ["v1", "v2", "v3"];
+export type { HomepageVariant } from "@/lib/variants";
+export {
+  HOMEPAGE_VARIANTS,
+  DEFAULT_VARIANT,
+  VARIANT_LABELS,
+  nextVariant,
+} from "@/lib/variants";
 
 const HomepageVariantContext = createContext<{
   variant: HomepageVariant;
   setVariant: (variant: HomepageVariant) => void;
 }>({
-  variant: "v1",
+  variant: DEFAULT_VARIANT,
   setVariant: () => {},
 });
 
 /**
- * The version is the URL, not client state: /v1, /v1/features, /v2, etc.
- * Pages outside the [version] tree (investors, decks, sign in) have no
- * version segment, so they fall back to "v1" here — none of them actually
- * read this context for content, it just keeps the hook safe to call.
+ * The concept is the URL, not client state: /music-rights-ai-rails,
+ * /catalogue-as-an-asset/features, etc. Pages outside the [version] tree
+ * (investors, decks, sign in) have no concept segment, so they fall back to
+ * the default here — none of them actually read this context for content, it
+ * just keeps the hook safe to call.
  */
 export function HomepageVariantProvider({
   children,
@@ -31,10 +41,9 @@ export function HomepageVariantProvider({
 
   const segments = pathname.split("/").filter(Boolean);
   const first = segments[0];
-  const onVersionedRoute = VALID_VARIANTS.includes(first as HomepageVariant);
-  const variant: HomepageVariant = onVersionedRoute
-    ? (first as HomepageVariant)
-    : "v1";
+  const variant: HomepageVariant =
+    first !== undefined && isHomepageVariant(first) ? first : DEFAULT_VARIANT;
+  const onVersionedRoute = variant === first;
 
   const setVariant = (next: HomepageVariant) => {
     if (!onVersionedRoute) return;

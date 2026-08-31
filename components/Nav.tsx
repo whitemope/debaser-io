@@ -5,6 +5,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import BrandMark from "@/components/BrandMark";
 import { useHomepageVariant } from "@/components/HomepageVariantContext";
+import { VARIANT_LABELS, nextVariant } from "@/lib/variants";
 import { useEditMode } from "@/components/EditModeContext";
 
 export default function Nav() {
@@ -33,15 +34,11 @@ export default function Nav() {
         <div className="flex items-center gap-2">
           <BrandMark href={`/${variant}`} />
           <button
-            onClick={() =>
-              setVariant(
-                variant === "v1" ? "v2" : variant === "v2" ? "v3" : "v1"
-              )
-            }
-            aria-label="Toggle homepage copy variant"
+            onClick={() => setVariant(nextVariant(variant))}
+            aria-label="Switch homepage concept"
             className="px-1.5 py-1 rounded-[4px] bg-black/[0.04] text-ink-tertiary text-[10px] font-mono tracking-tight leading-none hover:bg-black/[0.07] hover:text-ink-secondary transition-colors"
           >
-            {variant === "v1" ? "Version 1" : variant === "v2" ? "Version 2" : "Version 3"}
+            {VARIANT_LABELS[variant]}
           </button>
           <button
             onClick={toggleEditMode}

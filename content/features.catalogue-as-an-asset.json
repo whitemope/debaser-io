@@ -1,0 +1,81 @@
+{
+  "hero": {
+    "eyebrow": "Product",
+    "headline": "Every stage of a song's life, on one system.",
+    "subhead": "Six capabilities, from the first file in the data room to every writer payment years after close. Know the songs, buy well, then grow what they earn."
+  },
+  "items": [
+    {
+      "tag": "Ingestion",
+      "title": "Every file in the data room, read in minutes.",
+      "description": "Debaser reads PRO statements, mechanical statements, sync deals, sub-publishing agreements, split sheets and cue sheets, in whatever format the seller sends, and turns them into one clean record of the songs.",
+      "bullets": [
+        "PDF, CSV, XLSX and portal exports handled automatically",
+        "Statements reconciled against each other across sources",
+        "Every song, writer and split extracted and linked",
+        "Full ingestion trail kept for the data room"
+      ]
+    },
+    {
+      "tag": "Understanding",
+      "title": "One clear picture of every song, split and territory.",
+      "description": "Debaser resolves writer and publisher shares, PRO affiliations, sub-publishing chains and collection routes into a single model of who owns each song, and where it earns.",
+      "bullets": [
+        "Writer and publisher splits normalised to 100%",
+        "Territory and PRO collection chains mapped end to end",
+        "Counterparties matched across every agreement",
+        "Conflicts and overlapping claims flagged for review"
+      ]
+    },
+    {
+      "tag": "Valuation",
+      "title": "Know what the songs earn, and where they can earn more.",
+      "description": "Debaser models earnings history, how each song is ageing, revenue concentration and forecast cash flow, then shows both a fair price and the upside a better-run catalogue would unlock.",
+      "bullets": [
+        "Net earnings history normalised across every source",
+        "Ageing and concentration measured song by song",
+        "Forecast cash flow with sync roll-off modelled",
+        "Offer range and growth case, with the evidence behind them"
+      ]
+    },
+    {
+      "tag": "Diligence",
+      "title": "Every gap found before you commit.",
+      "description": "Debaser surfaces the things that change the price and the plan: unregistered songs, missing ISWC and CWR data, expired deals, and splits that never matched the paperwork.",
+      "bullets": [
+        "Unregistered and mis-registered songs, by territory",
+        "Missing or broken ISWC and CWR metadata",
+        "Expired or reverted sub-publishing agreements",
+        "Split disputes and undocumented shares"
+      ]
+    },
+    {
+      "tag": "Growth",
+      "title": "The same songs, earning more each year.",
+      "description": "After close, Debaser keeps comparing what the catalogue should earn against what it collects, then closes the gap: recovering unclaimed income, filing registrations that were never made, and chasing new sync and licensing.",
+      "bullets": [
+        "Black-box and unclaimed royalty recovery",
+        "Re-registration filed where songs were missed",
+        "Metadata fixed at the source, not patched over",
+        "Sync and licensing opportunities surfaced and pursued"
+      ]
+    },
+    {
+      "tag": "Royalties",
+      "title": "Every writer paid right, from the day you close.",
+      "description": "Debaser calculates mechanical, performance and sync income, pays every co-writer and collaborator on schedule, and keeps the record current as the songs keep earning.",
+      "bullets": [
+        "Clear statements and payments for every co-writer",
+        "Recoupment and advance tracking per deal",
+        "Ownership transfer and PRO re-registration handled",
+        "Continuous monitoring against the case you bought on"
+      ]
+    }
+  ],
+  "cta": {
+    "headline": "Ready to see it on a real catalogue?",
+    "subhead": "Share the seller's data. We'll hand back a full read on the songs, the earnings and the upside.",
+    "ctaPrimary": "Request access",
+    "ctaSecondary": "Back to overview"
+  }
+}

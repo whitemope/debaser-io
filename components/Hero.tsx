@@ -15,22 +15,28 @@ const fadeUp = {
   }),
 };
 
-function RoyaltyReviewMockup() {
+function DiligenceReadMockup() {
   const findings = [
     {
-      finding: "£18,420 cannot be matched to known recordings.",
-      evidence: "Spotify UK. 12 missing or invalid ISRCs.",
-      action: "Investigate",
+      icon: "⚠",
+      color: "text-amber-400",
+      main: "18 songs unregistered across 3 territories",
+      sub: "DE, FR, BR · £24,600/yr owed, uncollected",
+      borderBottom: true,
     },
     {
-      finding: "Producer deduction conflicts with the agreement.",
-      evidence: "Clause 4.2(b).",
-      action: "Review",
+      icon: "⚠",
+      color: "text-amber-400",
+      main: "Sub-publishing deal expired mid-term",
+      sub: "Benelux · reverted 14 months ago, still collecting",
+      borderBottom: true,
     },
     {
-      finding: "Three expected statements are missing.",
-      evidence: "Germany, France and Japan.",
-      action: "Prepare claim",
+      icon: "ℹ",
+      color: "text-blue-400",
+      main: "2 sync placements roll off in 2025",
+      sub: "already modelled into the forecast",
+      borderBottom: false,
     },
   ];
 
@@ -53,65 +59,118 @@ function RoyaltyReviewMockup() {
             </div>
             <div className="w-px h-3.5 bg-black/[0.06]" />
             <span className="text-[11px] text-ink-tertiary font-mono tracking-wide">
-              debaser · royalty review
+              debaser · catalogue read
             </span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse-slow" />
-            <span className="text-[11px] text-amber-600/80 font-mono">
-              in review
+            <div className="w-1.5 h-1.5 rounded-full bg-acid animate-pulse-slow" />
+            <span className="text-[11px] text-acid/80 font-mono">
+              diligence complete
             </span>
           </div>
         </div>
 
         <div className="p-5 sm:p-6">
+          {/* Header */}
           <div className="flex items-start justify-between mb-5">
             <div>
               <p className="text-[10px] text-ink-tertiary font-mono tracking-wide mb-1">
-                Q2 2026
+                214 songs · 6 years of statements
               </p>
               <h3 className="text-ink text-xl font-semibold tracking-tight">
-                Royalty Review
+                Meridian Songs
               </h3>
             </div>
-          </div>
-
-          <div className="border border-black/[0.06] rounded-xl overflow-hidden">
-            <div className="grid grid-cols-[2fr_1.4fr_auto] text-[10px] font-mono text-ink-tertiary tracking-wide px-4 py-2.5 bg-black/[0.02] border-b border-black/[0.05]">
-              <span>Finding</span>
-              <span>Evidence</span>
-              <span>Action</span>
-            </div>
-            {findings.map((row, i) => (
-              <div
-                key={i}
-                className={`grid grid-cols-[2fr_1.4fr_auto] gap-2 px-4 py-3.5 items-center ${
-                  i < findings.length - 1 ? "border-b border-black/[0.04]" : ""
-                }`}
-              >
-                <span className="text-ink/85 text-[13px] leading-snug">
-                  {row.finding}
-                </span>
-                <span className="text-ink-tertiary text-[11px] font-mono leading-snug">
-                  {row.evidence}
-                </span>
-                <span className="text-acid text-[12px] font-medium whitespace-nowrap">
-                  {row.action}
-                </span>
+            <div className="text-right">
+              <div className="text-acid text-xl font-bold tabular-nums">
+                £1.24M
               </div>
-            ))}
+              <div className="text-ink-tertiary text-[11px] mt-0.5 leading-tight">
+                indicative value · 8.1x
+              </div>
+            </div>
           </div>
 
-          <div className="flex gap-2.5 mt-4">
-            <button className="flex-1 py-2 text-[13px] text-ink-secondary border border-black/[0.08] rounded-lg hover:bg-black/[0.02] transition-colors font-medium">
-              Open evidence
-            </button>
-            <button className="flex-1 py-2 text-[13px] text-acid border border-acid/25 rounded-lg hover:bg-acid/5 transition-colors font-medium">
-              Assign
-            </button>
-            <button className="flex-1 py-2 text-[13px] text-btn-primary-fg bg-btn-primary rounded-lg font-medium hover:bg-btn-primary/90 transition-colors">
-              Export claim
-            </button>
+          {/* Stats */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-5">
+            <div className="bg-canvas rounded-xl border border-black/[0.05] p-3.5">
+              <div className="text-ink text-xl font-bold tabular-nums">
+                £152K
+              </div>
+              <div className="text-ink-tertiary text-[11px] mt-0.5 leading-tight">
+                net annual earnings
+              </div>
+            </div>
+            <div className="bg-canvas rounded-xl border border-black/[0.05] p-3.5">
+              <div className="text-ink text-xl font-bold tabular-nums">
+                −7%/yr
+              </div>
+              <div className="text-ink-tertiary text-[11px] mt-0.5 leading-tight">
+                natural decline
+              </div>
+            </div>
+            <div className="bg-canvas rounded-xl border border-orange-500/20 p-3.5">
+              <div className="text-orange-400 text-xl font-bold tabular-nums">
+                31%
+              </div>
+              <div className="text-ink-tertiary text-[11px] mt-0.5 leading-tight">
+                from the top 10 songs
+              </div>
+            </div>
+            <div className="bg-canvas rounded-xl border border-acid/20 p-3.5">
+              <div className="text-acid text-xl font-bold tabular-nums">
+                £41K/yr
+              </div>
+              <div className="text-ink-tertiary text-[11px] mt-0.5 leading-tight">
+                income to recover
+              </div>
+            </div>
+          </div>
+
+          {/* Findings panel */}
+          <div
+            className="rounded-xl p-4 border"
+            style={{
+              background: "rgba(248, 247, 255, 0.90)",
+              borderColor: "rgba(76, 175, 80, 0.30)",
+            }}
+          >
+            <div className="flex items-center gap-2 mb-3.5">
+              <div className="w-1.5 h-1.5 rounded-full bg-acid animate-pulse-slow" />
+              <span className="text-acid text-[10px] font-mono tracking-wide">
+                Findings
+              </span>
+            </div>
+
+            <div className="space-y-3">
+              {findings.map((item, i) => (
+                <div
+                  key={i}
+                  className={`flex gap-3 ${item.borderBottom ? "pb-3 border-b border-black/[0.05]" : ""}`}
+                >
+                  <span className={`${item.color} text-xs mt-0.5 flex-shrink-0`}>
+                    {item.icon}
+                  </span>
+                  <div>
+                    <p className="text-ink/80 text-[13px] leading-relaxed">
+                      {item.main}
+                    </p>
+                    <p className="text-ink-tertiary text-[11px] mt-0.5 font-mono">
+                      {item.sub}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex gap-2.5 mt-4 pt-3.5 border-t border-black/[0.05]">
+              <button className="flex-1 py-2 text-[13px] text-acid border border-acid/25 rounded-lg hover:bg-acid/5 transition-colors font-medium">
+                Adjust model
+              </button>
+              <button className="flex-1 py-2 text-[13px] text-btn-primary-fg bg-btn-primary rounded-lg font-medium hover:bg-btn-primary/90 transition-colors">
+                Export read
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -431,7 +490,7 @@ function CataloguePortfolioMockup() {
 
 export default function Hero() {
   const { variant } = useHomepageVariant();
-  const isV2 = variant === "v2";
+  const isV2 = variant === "catalogue-as-an-asset";
   const content = useHomepageContentLive(variant).hero;
 
   return (
@@ -535,10 +594,10 @@ export default function Hero() {
           animate="show"
           className={content.note ? "" : "mt-12"}
         >
-          {variant === "v3" ? (
+          {variant === "global-music-economy" ? (
             <CataloguePortfolioMockup />
           ) : isV2 ? (
-            <RoyaltyReviewMockup />
+            <DiligenceReadMockup />
           ) : (
             <RoyaltyRunMockup />
           )}

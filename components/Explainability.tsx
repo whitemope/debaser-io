@@ -10,10 +10,12 @@ function ExplainChat({
   userMessage,
   aiResponse,
   sources,
+  inputPlaceholder,
 }: {
   userMessage: string;
   aiResponse: string;
   sources: { label: string; detail: string }[];
+  inputPlaceholder: string;
 }) {
   return (
     <div
@@ -106,7 +108,7 @@ function ExplainChat({
       <div className="px-5 pb-5">
         <div className="flex items-center gap-3 bg-canvas border border-black/[0.07] rounded-xl px-4 py-3">
           <span className="text-ink-tertiary text-sm flex-1">
-            Ask about any payment, recording or contract...
+            {inputPlaceholder}
           </span>
           <button
             className="w-7 h-7 rounded-lg bg-acid flex items-center justify-center flex-shrink-0"
@@ -153,6 +155,11 @@ export default function Explainability() {
               userMessage={content.chatUserMessage}
               aiResponse={content.chatAiResponse}
               sources={content.sources}
+              inputPlaceholder={
+                variant === "catalogue-as-an-asset"
+                  ? "Ask about any song, split or payment..."
+                  : "Ask about any payment, recording or contract..."
+              }
             />
           </motion.div>
 

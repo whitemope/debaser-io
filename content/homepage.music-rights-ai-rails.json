@@ -1,8 +1,8 @@
 {
   "hero": {
-    "eyebrow": "Now in early access",
-    "headline": "Music rights on AI rails.",
-    "subhead": "Debaser knows the music industry. It unites catalogue owners, manages statements, handles contracts, catches what no one has time to check by hand, and traces global royalty claims... all for those who have a claim.",
+    "eyebrow": "Now in private beta",
+    "headline": "Music rights with AI rails.",
+    "subhead": "Debaser knows the music industry. Connect your contracts, catalogue data, statements and existing royalty systems. Instantly find errors, explain payments and recover claims... all for those who have a claim.",
     "ctaPrimary": "Request early access",
     "ctaSecondary": "See how it works",
     "note": ""
@@ -36,8 +36,8 @@
   },
   "productFlow": {
     "eyebrow": "The workflow",
-    "headline": "New rails for a new generation of catalogue owners.",
-    "subhead": "Debaser turns messy inputs into a workflow you can actually trust. Every step backed by the source it came from.",
+    "headline": "Debaser sits as and AI workspace above the royalty stack you already run.",
+    "subhead": "Messy inputs become repeatable workflows, with every step backed by the source it came from.",
     "steps": [
       {
         "label": "Ingest",
@@ -68,7 +68,7 @@
   },
   "agents": {
     "eyebrow": "The specialists",
-    "headline": "The royalty work nobody wants to do manually.",
+    "headline": "Specialist AI agents for royalty operations.",
     "items": [
       {
         "name": "Ingestion Agent",
@@ -122,12 +122,12 @@
     "note": "",
     "principle": {
       "lead": "Debaser dives in.",
-      "mid": "Humans approve.",
-      "tail": "Debaser acts."
+      "mid": "Rules control.",
+      "tail": "People manage."
     }
   },
   "useCases": {
-    "headline": "Built for the people behind the catalogue.",
+    "headline": "Built for the teams who value artistry.",
     "items": [
       {
         "category": "Labels",
@@ -171,8 +171,8 @@
     "ctaLabel": ""
   },
   "explainability": {
-    "headline": "Every number should be able to defend itself.",
-    "body1": "Ask why a number changed, and Debaser traces the answer back to the row, the metadata, the clause to dig out the real cause, where ever it lies.",
+    "headline": "As a question, and have an answer you can verify.",
+    "body1": "Ever had a client query a number? Debaser can step in to trace the answer back to the row, the metadata, the clause to dig out the real cause, where ever it lies.",
     "body2": "Not a summary. Not a guess dressed up as an answer. A structured explanation with the evidence attached, so your team can check it, not just trust it.",
     "chatUserMessage": "Why did this artist earn less this quarter?",
     "chatAiResponse": "Spotify UK income dropped 31% versus Q1. Two tracks were unmatched due to missing ISRCs, accounting for roughly £3,100 in unattributed income. The producer deduction was also applied before the recoupment threshold, which conflicts with clause 4.2(b) of the recording agreement.",
@@ -193,7 +193,7 @@
   },
   "trust": {
     "eyebrow": "Trust and security",
-    "headline": "Built for data this sensitive.",
+    "headline": "Built for sensitive rights data.",
     "subhead": "Royalty data is some of the most commercially sensitive information in music. We built accordingly.",
     "items": [
       {
@@ -232,9 +232,9 @@
   },
   "vision": {
     "eyebrow": "The vision",
-    "headline": "A global ledger of who's owed what, everywhere music is used.",
-    "body1": "We see a world where a single graph connects every song, recording, release, contract, owner, use and payment, everywhere, for every revenue stream.",
-    "body2": "Debaser is starting on the operational layer, where statements pile up, income goes missing, and teams are buried in work that shouldn't need a human at all.",
+    "headline": "A straight line from every play to every the rights holder.",
+    "body1": "Say goodbye to blanket contracts. The technology to connect every song with every revenue stream worldwide has arrived. With it we will debase a century of ceremony.",
+    "body2": "Starting with the operations layer, where statements pile up and income goes missing, our vision is an AI powered rights and contract AI layer connected to global usage data.",
     "graphCaption": "Songs → Recordings → Contracts → Income → Ownership → Usage"
   },
   "earlyAccess": {

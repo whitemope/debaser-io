@@ -1,13 +1,11 @@
-import v1 from "@/content/features.v1.json";
-import v2 from "@/content/features.v2.json";
-import type { HomepageVariant } from "@/components/HomepageVariantContext";
+import musicRightsAiRails from "@/content/features.music-rights-ai-rails.json";
+import catalogueAsAnAsset from "@/content/features.catalogue-as-an-asset.json";
+import type { HomepageVariant } from "@/lib/variants";
 
-export type FeaturesContent = typeof v1;
+export type FeaturesContent = typeof musicRightsAiRails;
 
-const content: Record<"v1" | "v2", FeaturesContent> = { v1, v2 };
-
-// The features page only has v1/v2 copy today — homepage Version 3 reuses
-// the v1 features content rather than needing its own variant.
+// The features page only has copy for two concepts today — "global-music-economy"
+// reuses the "music-rights-ai-rails" copy rather than needing its own file.
 export function getFeaturesContent(variant: HomepageVariant): FeaturesContent {
-  return content[variant === "v2" ? "v2" : "v1"];
+  return variant === "catalogue-as-an-asset" ? catalogueAsAnAsset : musicRightsAiRails;
 }

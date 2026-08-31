@@ -8,7 +8,7 @@ import Editable from "@/components/Editable";
 
 export default function ProductFlow() {
   const { variant } = useHomepageVariant();
-  const isV2 = variant === "v2";
+  const isV2 = variant === "catalogue-as-an-asset";
   const content = useHomepageContentLive(variant).productFlow;
   const steps = content.steps;
 
@@ -122,8 +122,8 @@ export default function ProductFlow() {
           >
             <div className="inline-block border border-black/[0.07] rounded-2xl px-8 py-5 bg-canvas-card">
               <p className="text-ink text-base sm:text-lg font-medium tracking-tight">
-                Curve calculates the royalty.{" "}
-                <span className="text-acid">Debaser tells you whether it is right.</span>
+                Most owners collect what arrives.{" "}
+                <span className="text-acid">Debaser goes and finds the rest.</span>
               </p>
             </div>
           </motion.div>

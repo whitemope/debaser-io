@@ -1,9 +1,8 @@
 import { notFound } from "next/navigation";
-
-const VALID_VERSIONS = ["v1", "v2", "v3"];
+import { HOMEPAGE_VARIANTS } from "@/lib/variants";
 
 export function generateStaticParams() {
-  return VALID_VERSIONS.map((version) => ({ version }));
+  return HOMEPAGE_VARIANTS.map((version) => ({ version }));
 }
 
 export default async function VersionLayout({
@@ -15,7 +14,7 @@ export default async function VersionLayout({
 }) {
   const { version } = await params;
 
-  if (!VALID_VERSIONS.includes(version)) {
+  if (!(HOMEPAGE_VARIANTS as string[]).includes(version)) {
     notFound();
   }
 

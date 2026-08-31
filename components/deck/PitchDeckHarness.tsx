@@ -686,13 +686,13 @@ export default function PitchDeckHarness({ onClose }: { onClose: () => void }) {
       {/* ── Header ── */}
       <div className="flex-shrink-0 flex items-center justify-between gap-3 px-3 sm:px-6 h-14 sm:h-16 border-b border-black/[0.05] bg-canvas-subtle/60 backdrop-blur-sm">
         <div className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1">
-          <a href="/v1" className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
+          <a href="/music-rights-ai-rails" className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
             <GhostMark className="w-5 h-5 sm:w-6 sm:h-6 text-[#1a1a1a]" />
             <span className="hidden sm:inline text-[#1a1a1a] text-base font-semibold">debaser</span>
           </a>
           <div className="hidden sm:block w-px h-4 bg-black/[0.08] mx-1 flex-shrink-0" />
           <span className="text-[#1a1a1a] text-xs sm:text-sm truncate min-w-0">
-            Introducing Debaser (Version 2) · Harness
+            Debaser (Global Music Economy)
           </span>
         </div>
 

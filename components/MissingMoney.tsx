@@ -3,47 +3,41 @@
 import { motion } from "framer-motion";
 import { EASE } from "@/lib/animation";
 import { useHomepageVariant } from "@/components/HomepageVariantContext";
+import type { HomepageVariant } from "@/lib/variants";
 import { useHomepageContentLive } from "@/lib/live-content";
 import Editable from "@/components/Editable";
 
-function GapVisual() {
-  const rows = [
-    {
-      source: "Spotify UK",
-      expected: "£12,400",
-      received: "£9,100",
-      gap: "–£3,300",
-      severity: "high",
-    },
-    {
-      source: "MCPS DE",
-      expected: "£4,200",
-      received: "—",
-      gap: "Missing",
-      severity: "critical",
-    },
-    {
-      source: "Apple Music US",
-      expected: "£8,800",
-      received: "£8,720",
-      gap: "–£80",
-      severity: "low",
-    },
-    {
-      source: "SOCAN CA",
-      expected: "£1,900",
-      received: "£1,900",
-      gap: "Matched",
-      severity: "ok",
-    },
-    {
-      source: "Warner FR",
-      expected: "£6,100",
-      received: "£4,200",
-      gap: "–£1,900",
-      severity: "high",
-    },
-  ];
+const GAP_VIEWS = {
+  default: {
+    header: "Income Gap Analysis · Q2 2024",
+    unaccounted: "£5,280 unaccounted",
+    footer: "2 claim packages ready to export",
+    rows: [
+      { source: "Spotify UK",     expected: "£12,400", received: "£9,100", gap: "–£3,300", severity: "high" },
+      { source: "MCPS DE",        expected: "£4,200",  received: "—",      gap: "Missing",  severity: "critical" },
+      { source: "Apple Music US", expected: "£8,800",  received: "£8,720", gap: "–£80",     severity: "low" },
+      { source: "SOCAN CA",       expected: "£1,900",  received: "£1,900", gap: "Matched",  severity: "ok" },
+      { source: "Warner FR",      expected: "£6,100",  received: "£4,200", gap: "–£1,900",  severity: "high" },
+    ],
+  },
+  catalogue: {
+    header: "Royalties Owed · Meridian Songs",
+    unaccounted: "£11,900/yr to bring back",
+    footer: "3 claims filed, more in progress",
+    rows: [
+      { source: "GEMA · DE",   expected: "£4,200", received: "£0",     gap: "Unregistered", severity: "critical" },
+      { source: "The MLC · US", expected: "£5,400", received: "£2,100", gap: "–£3,300",      severity: "high" },
+      { source: "SACEM · FR",  expected: "£3,900", received: "£1,600", gap: "–£2,300",      severity: "high" },
+      { source: "PRS · UK",    expected: "£9,800", received: "£9,800", gap: "Matched",      severity: "ok" },
+      { source: "JASRAC · JP", expected: "£2,100", received: "£0",     gap: "Black-box",    severity: "critical" },
+    ],
+  },
+};
+
+function GapVisual({ variant }: { variant: HomepageVariant }) {
+  const view =
+    variant === "catalogue-as-an-asset" ? GAP_VIEWS.catalogue : GAP_VIEWS.default;
+  const rows = view.rows;
 
   const severityColor: Record<string, string> = {
     critical: "text-red-400",
@@ -71,11 +65,11 @@ function GapVisual() {
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 rounded-full bg-acid" />
           <span className="text-ink-tertiary text-[11px] font-mono tracking-wide">
-            Income Gap Analysis · Q2 2024
+            {view.header}
           </span>
         </div>
         <span className="text-[11px] font-mono text-red-400/80">
-          £5,280 unaccounted
+          {view.unaccounted}
         </span>
       </div>
 
@@ -112,7 +106,7 @@ function GapVisual() {
 
         <div className="mt-4 pt-3 border-t border-black/[0.04] flex items-center justify-between">
           <span className="text-ink-tertiary text-[11px] font-mono">
-            2 claim packages ready to export
+            {view.footer}
           </span>
           <button className="text-acid text-[12px] font-medium hover:underline underline-offset-2">
             Export evidence →
@@ -199,7 +193,7 @@ export default function MissingMoney() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
           >
-            <GapVisual />
+            <GapVisual variant={variant} />
           </motion.div>
         </div>
       </div>

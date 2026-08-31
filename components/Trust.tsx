@@ -8,7 +8,7 @@ import Editable from "@/components/Editable";
 
 export default function Trust() {
   const { variant } = useHomepageVariant();
-  const isV2 = variant === "v2";
+  const isV2 = variant === "catalogue-as-an-asset";
   const content = useHomepageContentLive(variant).trust;
   const trustItems = content.items;
 

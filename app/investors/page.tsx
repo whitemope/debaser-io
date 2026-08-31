@@ -22,19 +22,19 @@ const DECK_DATE_SHORT = new Date().toLocaleDateString("en-US", { month: "short",
 
 const DECKS: DeckMeta[] = [
   {
-    id: "aug-2026-publishing",
-    slug: "publishing-concept",
-    title: "Publishing Concept",
-    subtitle: "Investor deck · Song rights mid-market",
+    id: "june-2026",
+    slug: "introducing-debaser-version-1",
+    title: "Debaser (Music Rights AI Rails)",
+    subtitle: "Pre-seed · Investor presentation",
     date: DECK_DATE_SHORT,
-    slides: 7,
+    slides: 15,
     status: "ready",
-    thumbnail: "/deck-thumbs/publishing-concept.png",
+    thumbnail: "/deck-thumbs/v1.png",
   },
   {
     id: "aug-2026-asset-class",
     slug: "asset-class-concept",
-    title: "Asset Class Concept",
+    title: "Debaser (Catalogue as an Asset)",
     subtitle: "Investor deck · Music IP mid-market",
     date: DECK_DATE_SHORT,
     slides: 7,
@@ -42,24 +42,24 @@ const DECKS: DeckMeta[] = [
     thumbnail: "/deck-thumbs/asset-class-concept.png",
   },
   {
+    id: "aug-2026-publishing",
+    slug: "publishing-concept",
+    title: "Debaser (Catalogue as an Asset - Publishers)",
+    subtitle: "Investor deck · Song rights mid-market",
+    date: DECK_DATE_SHORT,
+    slides: 7,
+    status: "ready",
+    thumbnail: "/deck-thumbs/publishing-concept.png",
+  },
+  {
     id: "july-2026-harness",
     slug: "introducing-debaser-version-2",
-    title: "Introducing Debaser (Version 2)",
+    title: "Debaser (Global Music Economy)",
     subtitle: "Pre-seed · Investor presentation",
     date: DECK_DATE_SHORT,
     slides: 16,
     status: "ready",
     thumbnail: "/deck-thumbs/v2.png",
-  },
-  {
-    id: "june-2026",
-    slug: "introducing-debaser-version-1",
-    title: "Introducing Debaser (Version 1)",
-    subtitle: "Pre-seed · Investor presentation",
-    date: DECK_DATE_SHORT,
-    slides: 15,
-    status: "ready",
-    thumbnail: "/deck-thumbs/v1.png",
   },
   { id: "sk1", slug: "", title: "", subtitle: "", date: "", slides: 0, status: "skeleton", thumbnail: "" },
   { id: "sk2", slug: "", title: "", subtitle: "", date: "", slides: 0, status: "skeleton", thumbnail: "" },
@@ -304,7 +304,7 @@ export default function InvestorDashboard() {
             </button>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid sm:grid-cols-2 gap-4">
             {DECKS.map((deck) => (
               <DeckCard
                 key={deck.id}

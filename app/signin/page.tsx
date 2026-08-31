@@ -33,7 +33,7 @@ export default function SignIn() {
       <div className="relative w-full max-w-sm">
         {/* Logo */}
         <div className="flex items-center justify-center gap-2.5 mb-10">
-          <a href="/v1" className="flex items-center gap-2.5 group">
+          <a href="/music-rights-ai-rails" className="flex items-center gap-2.5 group">
             <div className="w-8 h-8 bg-acid rounded-lg flex items-center justify-center">
               <span className="text-canvas text-sm font-bold">d</span>
             </div>
@@ -98,7 +98,7 @@ export default function SignIn() {
         </div>
 
         <p className="text-center mt-6 text-ink-tertiary text-xs">
-          <a href="/v1" className="hover:text-ink-secondary transition-colors">
+          <a href="/music-rights-ai-rails" className="hover:text-ink-secondary transition-colors">
             ← Back to debaser.io
           </a>
         </p>
