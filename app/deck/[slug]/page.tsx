@@ -6,15 +6,15 @@ import PitchDeckHarness from "@/components/deck/PitchDeckHarness";
 import PitchDeckAssetClass from "@/components/deck/PitchDeckAssetClass";
 import PitchDeckPublishing from "@/components/deck/PitchDeckPublishing";
 
-// Slug is kebab-case of the deck's display title (its "filename").
+// Deck slugs mirror the homepage concept they pitch.
 const SLUG_TO_DECK: Record<
   string,
   "original" | "harness" | "asset-class" | "publishing"
 > = {
-  "introducing-debaser-version-1": "original",
-  "introducing-debaser-version-2": "harness",
-  "asset-class-concept": "asset-class",
-  "publishing-concept": "publishing",
+  "music-rights-ai-rails": "original",
+  "global-music-economy": "harness",
+  "catalogue-as-an-asset": "asset-class",
+  "catalogue-as-an-asset-publishers": "publishing",
 };
 
 export default function DeckSlugPage() {
