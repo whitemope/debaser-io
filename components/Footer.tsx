@@ -4,7 +4,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 import OptionToggle from "@/components/OptionToggle";
 import GhostMark from "@/components/GhostMark";
 import { usePathname } from "next/navigation";
-import { useHomepageVariant } from "@/components/HomepageVariantContext";
+import { useHomepageVariant, conceptBasePath } from "@/components/HomepageVariantContext";
 import { useHomepageContentLive } from "@/lib/live-content";
 import Editable from "@/components/Editable";
 
@@ -13,7 +13,8 @@ export default function Footer() {
   const { variant } = useHomepageVariant();
   const content = useHomepageContentLive(variant).footer;
   const pathname = usePathname();
-  const homeBase = pathname === `/${variant}` ? "" : `/${variant}`;
+  const conceptBase = conceptBasePath(variant);
+  const homeBase = pathname === (conceptBase || "/") ? "" : conceptBase || "/";
 
   return (
     <footer className="border-t border-black/[0.05] bg-canvas py-12">

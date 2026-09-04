@@ -1,7 +1,7 @@
 "use client";
 
 import { useHomepageVariant } from "@/components/HomepageVariantContext";
-import { VARIANT_LABELS, nextVariant } from "@/lib/variants";
+import { conceptSwitcherLabel, nextVariant } from "@/lib/variants";
 
 export default function OptionToggle() {
   const { variant, setVariant } = useHomepageVariant();
@@ -16,7 +16,7 @@ export default function OptionToggle() {
         <path d="M7 16V4M7 4L3 8M7 4l4 4" />
         <path d="M17 8v12M17 20l4-4M17 20l-4-4" />
       </svg>
-      <span>{VARIANT_LABELS[variant]}</span>
+      <span>{conceptSwitcherLabel(variant)}</span>
     </button>
   );
 }

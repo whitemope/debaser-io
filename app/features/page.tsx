@@ -1,8 +1,3 @@
-import { permanentRedirect } from "next/navigation";
-import { DEFAULT_VARIANT } from "@/lib/variants";
-
-// Features lives under a concept slug (/music-rights-ai-rails/features, etc.).
-// Bare "/features" resolves to the default concept.
-export default function RootFeaturesPage() {
-  permanentRedirect(`/${DEFAULT_VARIANT}/features`);
-}
+// "/features" serves the default concept's features page (no slug), matching
+// the site root. The other two concepts use /<slug>/features.
+export { default } from "@/components/FeaturesPage";

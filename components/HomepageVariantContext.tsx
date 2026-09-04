@@ -13,6 +13,9 @@ export {
   HOMEPAGE_VARIANTS,
   DEFAULT_VARIANT,
   VARIANT_LABELS,
+  CONCEPT_SWITCHER_LABEL,
+  conceptSwitcherLabel,
+  conceptBasePath,
   nextVariant,
 } from "@/lib/variants";
 
@@ -25,11 +28,12 @@ const HomepageVariantContext = createContext<{
 });
 
 /**
- * The concept is the URL, not client state: /music-rights-ai-rails,
- * /catalogue-as-an-asset/features, etc. Pages outside the [version] tree
- * (investors, decks, sign in) have no concept segment, so they fall back to
- * the default here — none of them actually read this context for content, it
- * just keeps the hook safe to call.
+ * The concept is the URL, not client state. The default concept lives at the
+ * root ("/", "/features"); the other two sit under their slug
+ * ("/music-rights-ai-rails", "/global-music-economy/features", etc.). Pages
+ * outside this tree (investors, decks, sign in) have no concept route, so they
+ * fall back to the default here — none of them read this context for content,
+ * it just keeps the hook safe to call.
  */
 export function HomepageVariantProvider({
   children,
@@ -41,15 +45,21 @@ export function HomepageVariantProvider({
 
   const segments = pathname.split("/").filter(Boolean);
   const first = segments[0];
-  const variant: HomepageVariant =
-    first !== undefined && isHomepageVariant(first) ? first : DEFAULT_VARIANT;
-  const onVersionedRoute = variant === first;
+  const hasSlug = first !== undefined && isHomepageVariant(first);
+  const variant: HomepageVariant = hasSlug ? (first as HomepageVariant) : DEFAULT_VARIANT;
+
+  // The concept switcher works on the homepage ("/") and features page
+  // ("/features"), whether or not a slug is present. It stays inert on the
+  // unrelated pages (investors, decks, sign in).
+  const rest = hasSlug ? segments.slice(1) : segments;
+  const onConceptRoute =
+    hasSlug || pathname === "/" || pathname === "/features";
 
   const setVariant = (next: HomepageVariant) => {
-    if (!onVersionedRoute) return;
-    const rest = segments.slice(1);
+    if (!onConceptRoute) return;
     const hash = typeof window !== "undefined" ? window.location.hash : "";
-    router.push(`/${[next, ...rest].join("/")}${hash}`);
+    const prefix = next === DEFAULT_VARIANT ? [] : [next];
+    router.push(`/${[...prefix, ...rest].join("/")}${hash}`);
   };
 
   return (

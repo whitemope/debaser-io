@@ -1,18 +1,18 @@
 {
   "hero": {
     "eyebrow": "Now in private beta",
-    "headline": "The AI tool for music IP.",
-    "subhead": "A song lives forever. Debaser is the new agentic operating system for valuing and growing music catalogues. Every song, split and territory traceable in one platform, for a new generation of catalogue owners investing in an equitable music industry.",
+    "headline": "AI agents for music IP",
+    "subhead": "Debaser is the agentic operating system that values, grows, and manages music catalogues for publishers. Every song, split and territory traceable in one automated platform, for a new generation of catalogue owners investing in an equitable music industry.",
     "ctaPrimary": "Request access",
     "ctaSecondary": "See how it works",
-    "note": "Built with independent publishers and catalogue funds."
+    "note": "Built for independent publishers, catalogue funds and writers."
   },
   "problem": {
     "eyebrow": "The problem",
-    "headline": "A great catalogue can still be badly run.",
+    "headline": "A trillion-dollar industry, still running on decades-old plumbing.",
     "items": [
       {
-        "title": "You inherit the mess, not just the songs.",
+        "title": "Inherit the songs and the mess",
         "description": "Years of statements, split sheets and sub-publishing deals arrive in a different shape from every source."
       },
       {
@@ -28,12 +28,12 @@
         "description": "Late statements and wrong splits reach the people who wrote the songs long before they reach a spreadsheet."
       }
     ],
-    "closingLine": "Good songs deserve better than that. So do the people who wrote them."
+    "closingLine": "A song lives forever."
   },
   "productFlow": {
     "eyebrow": "The product",
-    "headline": "One system for owning a catalogue and growing what it earns.",
-    "subhead": "Debaser keeps a living record of every song, split and payment. It follows the catalogue from the first listen to every statement you send, and each quarter it finds more of what the songs are owed.",
+    "headline": "One workspace, many agents, tasked to recover the value in music.",
+    "subhead": "Debaser sits above the old world of music royalty administration, keeping a living record of every song, split and payment. It follows the catalogue from the first listen to every statement you send, and each quarter it finds more of what the songs are owed.",
     "steps": [
       {
         "label": "Ingest",
@@ -105,7 +105,7 @@
     }
   },
   "useCases": {
-    "headline": "Built for owners who back the songs.",
+    "headline": "Built for people who value artistry.",
     "items": [
       {
         "category": "Independent publishers",
@@ -149,7 +149,7 @@
     "ctaLabel": "See what a catalogue could earn"
   },
   "explainability": {
-    "headline": "Ask anything about the songs.",
+    "headline": "Ask anything.",
     "body1": "Ask why a song's earnings moved, where the uncollected money sits, or which writer is owed what. Debaser traces every answer back to the statement row, the registration, the contract term.",
     "body2": "Not a summary. Not a guess. A clear answer with the evidence attached, whether it's for your investment committee or a writer's manager on the phone.",
     "chatUserMessage": "Why is this song earning less than last year?",
@@ -171,7 +171,7 @@
   },
   "trust": {
     "eyebrow": "Trust and security",
-    "headline": "Careful with the catalogue. Careful with the data.",
+    "headline": "Built for rights sensitive data.",
     "subhead": "A catalogue's data passes between buyers, sellers, lawyers and lenders, and it holds every writer's income. Debaser treats all of it with the care it deserves.",
     "items": [
       {
@@ -202,9 +202,9 @@
   },
   "vision": {
     "eyebrow": "The vision",
-    "headline": "A song outlives everyone who owns it.",
-    "body1": "Debaser starts with diligence. It becomes the layer a catalogue lives on as it is valued, bought, grown and passed on to the next generation of owners.",
-    "body2": "Every catalogue the agents work on teaches the next one. Sharper valuations, better collection, and a fairer share reaching the people who wrote the songs.",
+    "headline": "A straight line - from every play to every rights holder.",
+    "body1": "Say goodbye to blanket contracts. The technology to connect every song with every revenue stream worldwide has arrived.",
+    "body2": "Starting with the operations layer, every catalogue the agents work on teaches the next one. Sharper valuations, better collection, and a fairer share reaching the people who wrote the songs.",
     "graphCaption": "Songs → Recordings → Contracts → Income → Ownership → Usage"
   },
   "earlyAccess": {

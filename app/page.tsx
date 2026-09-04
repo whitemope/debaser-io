@@ -1,9 +1,4 @@
-import { permanentRedirect } from "next/navigation";
-import { DEFAULT_VARIANT } from "@/lib/variants";
-
-// The homepage lives under a concept slug (/music-rights-ai-rails,
-// /catalogue-as-an-asset, /global-music-economy). Bare "/" always resolves
-// to the default concept.
-export default function RootPage() {
-  permanentRedirect(`/${DEFAULT_VARIANT}`);
-}
+// The site root serves the default concept ("catalogue-as-an-asset") with no
+// slug. The other two concepts live under /music-rights-ai-rails and
+// /global-music-economy via app/[version]/page.tsx.
+export { default } from "@/components/Homepage";

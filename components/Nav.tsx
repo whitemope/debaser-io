@@ -5,7 +5,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import BrandMark from "@/components/BrandMark";
 import { useHomepageVariant } from "@/components/HomepageVariantContext";
-import { VARIANT_LABELS, nextVariant } from "@/lib/variants";
+import { conceptSwitcherLabel, conceptBasePath, nextVariant } from "@/lib/variants";
 import { useEditMode } from "@/components/EditModeContext";
 
 export default function Nav() {
@@ -14,11 +14,13 @@ export default function Nav() {
   const { editMode, toggleEditMode } = useEditMode();
   const pathname = usePathname();
 
-  // When not on the version's homepage, anchor links need the version
-  // prefix so they navigate home first, then scroll to the section.
-  const isHome = pathname === `/${variant}`;
-  const homeBase = isHome ? "" : `/${variant}`;
-  const featuresHref = `/${variant}/features`;
+  // When not on the concept's homepage, anchor links need the concept's base
+  // path so they navigate home first, then scroll to the section. The default
+  // concept's home is "/", the others' is "/<slug>".
+  const conceptBase = conceptBasePath(variant);
+  const isHome = pathname === (conceptBase || "/");
+  const homeBase = isHome ? "" : conceptBase || "/";
+  const featuresHref = `${conceptBase}/features`;
 
   const mainLinks = [
     { label: "Product",   href: `${homeBase}#product` },
@@ -32,13 +34,13 @@ export default function Nav() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-canvas">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <BrandMark href={`/${variant}`} />
+          <BrandMark href={conceptBase || "/"} />
           <button
             onClick={() => setVariant(nextVariant(variant))}
             aria-label="Switch homepage concept"
             className="px-1.5 py-1 rounded-[4px] bg-black/[0.04] text-ink-tertiary text-[10px] font-mono tracking-tight leading-none hover:bg-black/[0.07] hover:text-ink-secondary transition-colors"
           >
-            {VARIANT_LABELS[variant]}
+            {conceptSwitcherLabel(variant)}
           </button>
           <button
             onClick={toggleEditMode}

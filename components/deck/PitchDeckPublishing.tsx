@@ -164,7 +164,78 @@ function MarketSlide() {
   );
 }
 
-// ─── Slide 3 — Every Deal Starts With A Mess ───────────────────────────────
+// ─── Slide 3 — Why Now ─────────────────────────────────────────────────────
+
+function WhyNowSlide() {
+  const forces = [
+    {
+      stat: "€13.97bn",
+      label: "Creator collections keep growing",
+      detail: "CISAC global collections for songwriters and composers rise every year. So does the admin behind them.",
+      accent: true,
+    },
+    {
+      stat: "×7",
+      label: "Where a song earns has exploded",
+      detail: "Streaming, sync, UGC, social, lyrics, live. Each pays through a different chain into a different account.",
+      accent: false,
+    },
+    {
+      stat: "Now",
+      label: "AI can finally read the paperwork",
+      detail: "Models can parse a split sheet, match a PRO line and explain it. Publishing admin tools still cannot.",
+      accent: true,
+    },
+  ];
+  const capital = [
+    { name: "Reservoir", detail: "Public since 2021. More than 150,000 songs and still acquiring across genres and eras." },
+    { name: "Concord", detail: "Backed an $850m securitisation across more than a million songs and compositions." },
+    { name: "Litmus Music", detail: "Launched in 2022 with $500m from Carlyle to buy song and recording rights." },
+    { name: "Influence Media", detail: "Raised around $1bn with BlackRock backing to acquire flagship songwriter catalogues." },
+  ];
+  return (
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
+      <Eyebrow>03 — Why Now</Eyebrow>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-8 max-w-2xl">
+        Three forces are converging on song rights.
+      </H1>
+
+      <div className="grid lg:grid-cols-3 gap-3 mb-6">
+        {forces.map((f) => (
+          <div key={f.label} className="border border-black/[0.06] rounded-2xl p-5 bg-canvas-card flex flex-col gap-2">
+            <span className={`text-3xl font-bold tracking-tight ${f.accent ? "text-[#3D5AFE]" : "text-[#1a1a1a]"}`}>
+              {f.stat}
+            </span>
+            <p className="text-[#1a1a1a] text-sm font-semibold">{f.label}</p>
+            <p className="text-[#1a1a1a] text-xs leading-relaxed">{f.detail}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="border border-black/[0.06] bg-canvas-card rounded-2xl p-5 mb-6">
+        <p className="text-[#1a1a1a] text-[10px] font-mono tracking-wide mb-3">Capital is already committed to song catalogues</p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {capital.map((c) => (
+            <div key={c.name}>
+              <p className="text-[#1a1a1a] text-xs font-semibold mb-1 leading-snug">{c.name}</p>
+              <p className="text-[#1a1a1a] text-[11px] leading-relaxed">{c.detail}</p>
+            </div>
+          ))}
+        </div>
+        <p className="text-[#1a1a1a] text-[10px] font-mono mt-3">
+          Sources: Billboard, Music Business Worldwide, Music Week (2021–2026).
+        </p>
+      </div>
+
+      <AgentNote>
+        The money is here. The people who wrote the songs are still waiting on it.
+        Debaser is building for the years of administration that follow every deal.
+      </AgentNote>
+    </div>
+  );
+}
+
+// ─── Slide 4 — Every Deal Starts With A Mess ───────────────────────────────
 
 function MessSlide() {
   const mess = [
@@ -187,7 +258,7 @@ function MessSlide() {
   ];
   return (
     <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
-      <Eyebrow>03 — The Problem</Eyebrow>
+      <Eyebrow>04 — The Problem</Eyebrow>
       <H1 className="text-2xl sm:text-4xl md:text-5xl mb-3">Song rights are investable.</H1>
       <H1 className="text-2xl sm:text-4xl md:text-5xl mb-10">Split data isn&apos;t.</H1>
 
@@ -263,7 +334,7 @@ function SystemSlide() {
   const after = agents.filter((a) => a.phase === "AFTER ACQUISITION");
   return (
     <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
-      <Eyebrow>04 — The System</Eyebrow>
+      <Eyebrow>05 — The System</Eyebrow>
       <H1 className="text-2xl sm:text-4xl md:text-5xl mb-2">One song. One system.</H1>
       <Body className="text-sm sm:text-base mb-6 max-w-xl">
         Debaser creates the living record of a publishing catalogue, and runs it as
@@ -331,7 +402,7 @@ function WedgeSlide() {
   ];
   return (
     <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
-      <Eyebrow>05 — The Wedge</Eyebrow>
+      <Eyebrow>06 — The Wedge</Eyebrow>
       <H1 className="text-2xl sm:text-4xl md:text-5xl mb-4 max-w-2xl">
         Built for the companies acquiring the long tail of song rights.
       </H1>
@@ -378,7 +449,74 @@ function WedgeSlide() {
   );
 }
 
-// ─── Slide 6 — A Category Is Forming ───────────────────────────────────────
+// ─── Slide 7 — The Opportunity ─────────────────────────────────────────────
+
+function OpportunitySlide() {
+  const evidence = [
+    { value: "€13.97bn", label: "Creator collections", detail: "CISAC global collection income, 2025." },
+    { value: "$424m", label: "Unmatched mechanicals", detail: "Historical royalties paid to the MLC that never found an owner. Most of it songwriter money." },
+    { value: "28% → 90%", label: "Allocation accuracy", detail: "UK club royalty research found 28% reached the right creator. Better tech gets close to 90%." },
+  ];
+  const tiers = [
+    { label: "TAM", amount: "~$10bn+", desc: "Global royalty operations across every publisher, administrator, PRO and fund." },
+    { label: "SAM", amount: "~$2.5bn", desc: "Mid-market publishers, sub-publishers and administrators in US, UK, EU and AU." },
+    { label: "SOM", amount: "~£80m", desc: "Beachhead. UK and Western EU independent publishers, years one to three." },
+  ];
+  return (
+    <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
+      <Eyebrow>07 — The Opportunity</Eyebrow>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-2">The money exists.</H1>
+      <H1 className="text-2xl sm:text-4xl md:text-5xl mb-8">It just doesn&apos;t reach the writer.</H1>
+
+      <div className="grid lg:grid-cols-2 gap-8 mb-6">
+        <div>
+          <p className="text-[#1a1a1a] text-[10px] font-mono tracking-wide mb-3">The leak</p>
+          <div className="flex flex-col gap-3">
+            {evidence.map((e) => (
+              <div key={e.label} className="border border-black/[0.06] rounded-xl p-4 flex items-start gap-3">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#3D5AFE] flex-shrink-0 mt-1.5" />
+                <div>
+                  <span className="text-xl font-bold tabular-nums tracking-tight text-[#1a1a1a] block">{e.value}</span>
+                  <p className="text-[#1a1a1a] text-xs font-semibold mt-1 mb-0.5">{e.label}</p>
+                  <p className="text-[#1a1a1a] text-[11px] leading-relaxed">{e.detail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <p className="text-[#1a1a1a] text-[10px] font-mono tracking-wide mb-3">The ops and infrastructure market</p>
+          <div className="flex flex-col gap-2.5">
+            {tiers.map((t) => (
+              <div
+                key={t.label}
+                className="border border-[#3D5AFE]/35 bg-[#3D5AFE]/[0.05] rounded-xl px-4 py-3 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3"
+              >
+                <div className="flex items-baseline gap-3 sm:contents">
+                  <span className="text-[10px] font-mono text-[#1a1a1a] tracking-wide flex-shrink-0 sm:w-10">{t.label}</span>
+                  <span className="text-lg font-bold tabular-nums text-[#3D5AFE] flex-shrink-0 sm:w-24">{t.amount}</span>
+                </div>
+                <p className="text-[#1a1a1a] text-xs leading-relaxed flex-1">{t.desc}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-[#1a1a1a] text-[10px] font-mono mt-3">
+            Preliminary estimates. Deeper TAM/SAM/SOM research in progress.
+          </p>
+        </div>
+      </div>
+
+      <div className="mt-auto border border-black/[0.07] bg-canvas-card rounded-xl px-6 py-4">
+        <p className="text-[#1a1a1a] text-sm font-medium text-center tracking-tight">
+          Every unclaimed royalty Debaser&apos;s agents recover{" "}
+          <span className="text-[#3D5AFE]">lands with the writer who earned it.</span>
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// ─── Slide 8 — A Category Is Forming ───────────────────────────────────────
 
 function CategorySlide() {
   const rows = [
@@ -391,7 +529,7 @@ function CategorySlide() {
   ];
   return (
     <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
-      <Eyebrow>06 — The Category</Eyebrow>
+      <Eyebrow>08 — The Category</Eyebrow>
       <H1 className="text-2xl sm:text-4xl md:text-5xl mb-2">Pieces of this already exist.</H1>
       <H1 className="text-2xl sm:text-4xl md:text-5xl mb-8">Nobody owns the lifecycle.</H1>
 
@@ -443,7 +581,7 @@ function RoadmapSlide() {
   ];
   return (
     <div className="w-full min-h-full flex flex-col px-5 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-14">
-      <Eyebrow>07 — The Roadmap</Eyebrow>
+      <Eyebrow>09 — The Roadmap</Eyebrow>
       <H1 className="text-2xl sm:text-4xl md:text-5xl mb-2">The publishing asset layer.</H1>
       <Body className="text-sm sm:text-base mb-8 max-w-xl">
         Start with diligence. Become the infrastructure beneath every song&apos;s
@@ -494,13 +632,15 @@ function RoadmapSlide() {
 // ─── Slides registry ───────────────────────────────────────────────────────
 
 const SLIDES = [
-  { id: "debaser",   label: "Debaser",                     Component: CoverSlide },
-  { id: "market",    label: "The Market",                  Component: MarketSlide },
-  { id: "mess",      label: "Every Deal Starts With A Mess", Component: MessSlide },
-  { id: "system",    label: "One Song. One System.",       Component: SystemSlide },
-  { id: "wedge",     label: "Start With The Buyer",         Component: WedgeSlide },
-  { id: "category",  label: "A Category Is Forming",        Component: CategorySlide },
-  { id: "roadmap",   label: "The Publishing Asset Layer",   Component: RoadmapSlide },
+  { id: "debaser",     label: "Debaser",                      Component: CoverSlide },
+  { id: "market",      label: "The Market",                   Component: MarketSlide },
+  { id: "why-now",     label: "Why Now",                      Component: WhyNowSlide },
+  { id: "mess",        label: "Every Deal Starts With A Mess", Component: MessSlide },
+  { id: "system",      label: "One Song. One System.",        Component: SystemSlide },
+  { id: "wedge",       label: "Start With The Buyer",          Component: WedgeSlide },
+  { id: "opportunity", label: "The Opportunity",              Component: OpportunitySlide },
+  { id: "category",    label: "A Category Is Forming",         Component: CategorySlide },
+  { id: "roadmap",     label: "The Publishing Asset Layer",    Component: RoadmapSlide },
 ];
 
 // ─── Slide transition variants ─────────────────────────────────────────────
